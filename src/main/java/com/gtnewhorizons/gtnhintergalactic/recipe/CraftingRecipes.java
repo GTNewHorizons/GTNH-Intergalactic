@@ -5,7 +5,6 @@ import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 import com.dreammaster.item.ItemList;
 
-import cpw.mods.ironchest.IronChest;
 import galaxyspace.BarnardsSystem.BRBlocks;
 import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
@@ -21,7 +20,6 @@ import micdoodle8.mods.galacticraft.core.util.RecipeUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -44,14 +42,6 @@ public class CraftingRecipes {
         RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(GSItems.SpacesuitHelmet), new ItemStack(GCItems.sensorGlasses)}, FluidRegistry.getFluidStack("molten.duralumin", 1440), new ItemStack(GSItems.SpacesuitHelmetGlasses), 600, 1920);
         RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(GSItems.SpacesuitPlate), GT_ModHandler.getModItem("IC2", "itemArmorJetpackElectric", 1, WILDCARD_VALUE)}, FluidRegistry.getFluidStack("molten.duralumin", 1440), new ItemStack(GSItems.SpacesuitJetPlate), 600, 1920);
         RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(GSItems.SpacesuitBoots), new ItemStack(GSItems.CompressedPlates, 2, 4)}, FluidRegistry.getFluidStack("molten.duralumin", 1440), new ItemStack(GSItems.SpacesuitGravityBoots), 600, 1920);
-        addStorageRocketRecipes(GCItems.rocketTier1, 480);
-        addStorageRocketRecipes(MarsItems.spaceship, 1024);
-        addStorageRocketRecipes(AsteroidsItems.tier3Rocket, 1920);
-        addStorageRocketRecipes(GSItems.Tier4Rocket, 4096);
-        addStorageRocketRecipes(GSItems.Tier5Rocket, 7680);
-        addStorageRocketRecipes(GSItems.Tier6Rocket, 16384);
-        addStorageRocketRecipes(GSItems.Tier7Rocket, 30720);
-        addStorageRocketRecipes(GSItems.Tier8Rocket, 65536);
 
         //Autoclave
         RA.addAutoclaveRecipe(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.MysteriousCrystal, 1), FluidRegistry.getFluidStack("water", 1000), new ItemStack(GSItems.UnknowCrystal), 9000, 3600, 480);
@@ -158,12 +148,6 @@ public class CraftingRecipes {
 
     private static void addDecorativeMetalBlockRecipe(int meta, ItemStack plate) {
         RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, meta), new Object[]{"HP ", "PSP", " PW", 'H', "craftingToolHardHammer", 'P', plate, 'S', "stone", 'W', "craftingToolWrench"});
-    }
-
-    private static void addStorageRocketRecipes(Item rocket, int eut) {
-    	RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(rocket), new ItemStack(IronChest.ironChestBlock, 1, 3)}, null, new ItemStack(rocket, 1, 1), 100, eut);
-    	RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(rocket), new ItemStack(IronChest.ironChestBlock)}, null, new ItemStack(rocket, 1, 2), 100, eut);
-    	RA.addAssemblerRecipe(new ItemStack[]{new ItemStack(rocket), new ItemStack(IronChest.ironChestBlock, 1, 1)}, null, new ItemStack(rocket, 1, 3), 100, eut);
     }
 
 }
