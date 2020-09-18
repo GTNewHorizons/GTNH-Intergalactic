@@ -5,6 +5,7 @@ import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 import com.dreammaster.item.ItemList;
 
+import buildcraft.BuildCraftBuilders;
 import galaxyspace.BarnardsSystem.BRBlocks;
 import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
@@ -67,17 +68,17 @@ public class CraftingRecipes {
         RA.addCompressorRecipe(new ItemStack(GSItems.GlowstoneDusts, 4, 3), new ItemStack(GSBlocks.ProteusBlocks), 300, 2);
         RA.addCompressorRecipe(new ItemStack(GSItems.GlowstoneDusts, 4, 4), new ItemStack(GSBlocks.PlutoGlowStone), 300, 2);
 
-        //Printer
-        RA.addPrinterRecipe(new ItemStack(GCItems.heavyPlatingTier1), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 576), ItemList.SchematicsMoonBuggy.getIS(0), new ItemStack(GCItems.schematic), 200, 480);
-        RA.addPrinterRecipe(new ItemStack(MarsItems.marsItemBasic, 1, 3), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 864), ItemList.SchematicsTier2.getIS(0), new ItemStack(GCItems.schematic, 1, 1), 200, 1920);
-        RA.addPrinterRecipe(new ItemStack(GCItems.meteoricIronIngot, 1, 1), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 864), ItemList.SchematicsCargoRocket.getIS(0), new ItemStack(MarsItems.schematic, 1, 1), 200, 1920);
-        RA.addPrinterRecipe(new ItemStack(AsteroidsItems.basicItem), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 1152), ItemList.SchematicsTier3.getIS(0), new ItemStack(MarsItems.schematic), 200, 7680);
-        RA.addPrinterRecipe(new ItemStack(MarsItems.marsItemBasic, 1, 5), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 1152), ItemList.SchematicsAstroMiner.getIS(0), new ItemStack(MarsItems.schematic, 1, 2), 200, 7680);
-        RA.addPrinterRecipe(ItemList.HeavyDutyPlateTier4.getIS(), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 1728), ItemList.SchematicsTier4.getIS(0), new ItemStack(GSItems.Tier4Schematic), 200, 30720);
-        RA.addPrinterRecipe(ItemList.HeavyDutyPlateTier5.getIS(), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 2304), ItemList.SchematicsTier5.getIS(0), new ItemStack(GSItems.Tier5Schematic), 200, 122880);
-        RA.addPrinterRecipe(ItemList.HeavyDutyPlateTier6.getIS(), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 3456), ItemList.SchematicsTier6.getIS(0), new ItemStack(GSItems.Tier6Schematic), 200, 491520);
-        RA.addPrinterRecipe(ItemList.HeavyDutyPlateTier7.getIS(), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 4608), ItemList.SchematicsTier7.getIS(0), new ItemStack(GSItems.Tier7Schematic), 200, 1966080);
-        RA.addPrinterRecipe(ItemList.HeavyDutyPlateTier8.getIS(), FluidRegistry.getFluidStack("dye.chemical.dyeblue", 6912), ItemList.SchematicsTier8.getIS(0), new ItemStack(GSItems.Tier8Schematic), 200, 7864320);
+        //Laser Engraver
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsMoonBuggy.getIS(0), new ItemStack(GCItems.schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier2.getIS(0), new ItemStack(GCItems.schematic, 1, 1), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier3.getIS(0), new ItemStack(MarsItems.schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsCargoRocket.getIS(0), new ItemStack(MarsItems.schematic, 1, 1), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsAstroMiner.getIS(0), new ItemStack(MarsItems.schematic, 1, 2), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier4.getIS(0), new ItemStack(GSItems.Tier4Schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier5.getIS(0), new ItemStack(GSItems.Tier5Schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier6.getIS(0), new ItemStack(GSItems.Tier6Schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier7.getIS(0), new ItemStack(GSItems.Tier7Schematic), 200, 480, true);
+        RA.addLaserEngraverRecipe(new ItemStack(BuildCraftBuilders.blueprintItem), ItemList.SchematicsTier8.getIS(0), new ItemStack(GSItems.Tier8Schematic), 200, 480, true);
 
         //Pulverization
         RA.addPulveriserRecipe(new ItemStack(GSBlocks.CeresGlowStone), new ItemStack[]{new ItemStack(GSItems.GlowstoneDusts, 4)}, new int[]{10000}, 300, 2);
