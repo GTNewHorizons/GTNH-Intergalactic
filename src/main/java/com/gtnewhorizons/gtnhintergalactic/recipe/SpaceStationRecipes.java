@@ -11,7 +11,7 @@ import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 public class SpaceStationRecipes {
 
     public static void loadRecipes() {
-        if (GSConfigDimensions.enableVenusSS) {
+        /*if(GSConfigDimensions.enableVenusSS) {
             HashMap<Object, Integer> inputMap = new HashMap<Object, Integer>();
             inputMap.put("ingotLead", 64);
             inputMap.put("ingotTitanium", 16);
@@ -19,7 +19,7 @@ public class SpaceStationRecipes {
             inputMap.put("ingotDesh", 12);
             GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.dimensionIDVenusOrbit, GSConfigDimensions.dimensionIDVenus, new SpaceStationRecipe(inputMap)));
         }
-        if (GSConfigDimensions.enableMarsSS) {
+        if(GSConfigDimensions.enableMarsSS) {
             HashMap<Object, Integer> inputMap = new HashMap<Object, Integer>();
             inputMap.put("ingotCopper", 64);
             inputMap.put("ingotTitanium", 4);
@@ -27,6 +27,11 @@ public class SpaceStationRecipes {
             inputMap.put("ingotDesh", 12);
             GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.dimensionIDMarsOrbit, ConfigManagerMars.dimensionIDMars, new SpaceStationRecipe(inputMap)));
         }
+        if(GSConfigDimensions.enableJupiterSS) {
+            HashMap<Object, Integer> inputMap = new HashMap<Object, Integer>();
+        	inputMap.put("logWood", 1);
+        	GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.dimensionIDJupiterOrbit, GSConfigDimensions.dimensionIDJupiter, new SpaceStationRecipe(inputMap)));
+        }*/
     }
 
 }
