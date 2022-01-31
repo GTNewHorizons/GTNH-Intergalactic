@@ -39,7 +39,6 @@ import net.minecraft.world.WorldProvider;
 
 public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBase_EM {
 
-    public static ItemStack instance;
     private static Consumer<TileEntityDysonSwarm> moduleDestroyer;
     private static IIconContainer OVERLAY_FRONT_GLOW;
     private static IIconContainer OVERLAY_FRONT_ACTIVE_GLOW;
@@ -168,7 +167,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             if(isValidMetaTileEntity(bus)) {
                 for(int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                    if(stack != null && stack.getItem() == GSItems.DysonSwarmModule) {
+                    if(stack != null && stack.getItem() == GSItems.DysonSwarmParts && stack.getItemDamage() == 0) {
                     	moduleCount += stack.stackSize;
                         stack = null;
                     }
@@ -314,7 +313,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         .addStructureInfo("Control Center Base Casing: 115 - 138 (depending on the amount of Optical Slave Connectors)")
         .addStructureInfo("Control Center Primary Windings: 20")
         .addStructureInfo("Control Center Secondary Windings: 12")
-        .addStructureInfo("Ultra Hign Strenght Concrete Floor: 1")
+        .addStructureInfo("Control Center Toroid Casing: 128")
+        .addStructureInfo("Ultra Hign Strenght Concrete Floor: 255")
         .addStructureInfo("Awakened Draconium Coil Block: 9")
         .addStructureInfo("Hermetic Casing X: 1")
         .addStructureInfo("Titanium Frame Box: 16")
@@ -380,7 +380,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     public static void initCommon() {
-        instance = new TileEntityDysonSwarm(1337, "DysonSwarm", "Dyson Swarm Ground Unit").getStackForm(1);
+        GSItems.DysonSwarmController = new TileEntityDysonSwarm(1050, "DysonSwarm", "Dyson Swarm Ground Unit").getStackForm(1);
         powerFactors = new HashMap<>();
 
         // parse the powerFactors config entry from String[] to Map<String, Double>
