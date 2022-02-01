@@ -380,7 +380,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     public static void initCommon() {
-        GSItems.DysonSwarmController = new TileEntityDysonSwarm(1050, "DysonSwarm", "Dyson Swarm Ground Unit").getStackForm(1);
+        GSItems.DysonSwarmController = new TileEntityDysonSwarm(14001, "DysonSwarm", "Dyson Swarm Ground Unit").getStackForm(1);
         powerFactors = new HashMap<>();
 
         // parse the powerFactors config entry from String[] to Map<String, Double>
