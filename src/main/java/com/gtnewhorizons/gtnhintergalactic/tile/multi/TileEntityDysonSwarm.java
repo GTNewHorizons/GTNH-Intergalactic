@@ -84,12 +84,12 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             .addElement('g', GT_StructureUtility.ofFrame(Materials.Titanium))
             .addElement('h', StructureUtility.ofBlock(GregTech_API.sBlockCasings6, 10)) //Hermetic Casing X
             .addElement('i', StructureUtility.ofChain(
-                    GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addInputToMachineList, CASING_INDEX_LAUNCH, 2),
+                    GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicInputToMachineList, CASING_INDEX_LAUNCH, 2),
                     StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 2))) //Dyson Swarm Module Deployment Unit Base Casing
             .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 3)) //Dyson Swarm Module Deployment Unit Core
             .addElement('k', GT_StructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
             .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 4)) //Dyson Swarm Module Deployment Unit Superconducting Magnet
-            .addElement('n', GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addMaintenanceToMachineList, CASING_INDEX_FLOOR, 3))
+            .addElement('n', GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicMaintenanceToMachineList, CASING_INDEX_FLOOR, 3))
             .addElement('o', StructureUtility.ofChain(
             		GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, CASING_INDEX_COMMAND, 4),
             		StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 5))) //Dyson Swarm Command Center Base Casing
@@ -105,11 +105,11 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     private double powerFactor = 0.0;
     private int moduleCount = 0;
 
-    public TileEntityDysonSwarm(int aID, String aName, String aNameRegional) {
+    protected TileEntityDysonSwarm(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public TileEntityDysonSwarm(String aName) {
+    protected TileEntityDysonSwarm(String aName) {
         super(aName);
     }
 
