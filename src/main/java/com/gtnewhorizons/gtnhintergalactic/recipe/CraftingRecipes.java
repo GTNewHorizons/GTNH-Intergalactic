@@ -38,8 +38,8 @@ import net.minecraftforge.fluids.FluidStack;
 public class CraftingRecipes {
 
     public static void loadRecipes() {
-        Fluid moltenHypogen = FluidRegistry.getFluid("molten.hypogen");
-        Fluid moltenRadoxPolymer = FluidRegistry.getFluid("molten.radoxpoly");
+        Fluid moltenRhugnor = FluidRegistry.getFluid("molten.rhugnor"); //GTPP
+        Fluid moltenRadoxPolymer = FluidRegistry.getFluid("molten.radoxpoly"); //dreamcraft
         Item ocItem = GameRegistry.findItem("OpenComputers", "item");
         Item case1 = GameRegistry.findItem("OpenComputers", "case1");
         Item case2 = GameRegistry.findItem("OpenComputers", "case2");
@@ -101,12 +101,30 @@ public class CraftingRecipes {
                 ItemRegistry.energyDistributor[9], ItemList.Circuit_Chip_QPIC.get(16), ItemList.Circuit_Chip_QPIC.get(16), ItemRegistry.energyDistributor[9]},
                 new FluidStack[]{GSMaterials.liquidHelium.getFluidOrGas(50000), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, new ItemStack(GSBlocks.DysonSpherePart, 4, 0), 800, 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(new ItemStack(GSItems.DysonSwarmParts, 1, 3), 192000, 512, 2000000, 32, new ItemStack[]{
-                new ItemStack(GSItems.DysonSwarmParts, 16, 3), new ItemStack(GSItems.DysonSwarmParts, 16, 3), new ItemStack(GSItems.DysonSwarmParts, 16, 3), new ItemStack(GSItems.DysonSwarmParts, 16, 3),
-                new ItemStack(advancedRadiationProtectionPlate, 16), new ItemStack(advancedRadiationProtectionPlate, 16), new ItemStack(advancedRadiationProtectionPlate, 16), new ItemStack(advancedRadiationProtectionPlate, 16),
-                ItemList.Reactor_Coolant_Sp_6.get(1), ItemList.Reactor_Coolant_Sp_6.get(1), ItemList.Reactor_Coolant_Sp_6.get(1), ItemList.Reactor_Coolant_Sp_6.get(1),
-                GT_OreDictUnificator.get(OrePrefixes.pipeMedium, Materials.Infinity, 4), new ItemStack(frfCoil3), new ItemStack(frfCoil3), GT_OreDictUnificator.get(OrePrefixes.pipeMedium, Materials.Infinity, 4)},
-                new FluidStack[]{new FluidStack(moltenHypogen, 40), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, new ItemStack(GSBlocks.DysonSpherePart, 3, 1), 600, 8000000);
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+            new ItemStack(GSItems.DysonSwarmParts, 1, 3), 192000, 512, 2000000, 32,
+            new ItemStack[]{
+                new ItemStack(GSItems.DysonSwarmParts, 16, 3),
+                new ItemStack(GSItems.DysonSwarmParts, 16, 3),
+                new ItemStack(GSItems.DysonSwarmParts, 16, 3),
+                new ItemStack(GSItems.DysonSwarmParts, 16, 3),
+                new ItemStack(advancedRadiationProtectionPlate, 16),
+                new ItemStack(advancedRadiationProtectionPlate, 16),
+                new ItemStack(advancedRadiationProtectionPlate, 16),
+                new ItemStack(advancedRadiationProtectionPlate, 16),
+                ItemList.Reactor_Coolant_Sp_6.get(1),
+                ItemList.Reactor_Coolant_Sp_6.get(1),
+                ItemList.Reactor_Coolant_Sp_6.get(1),
+                ItemList.Reactor_Coolant_Sp_6.get(1),
+                GT_OreDictUnificator.get(OrePrefixes.pipeMedium, Materials.Infinity, 4),
+                new ItemStack(frfCoil3),
+                new ItemStack(frfCoil3),
+                GT_OreDictUnificator.get(OrePrefixes.pipeMedium, Materials.Infinity, 4)},
+            new FluidStack[]{new FluidStack(moltenRhugnor, 40),
+                Materials.SuperCoolant.getFluid(16000),
+                Materials.SolderingAlloy.getMolten(11520),
+                Materials.UUMatter.getFluid(8000)},
+            new ItemStack(GSBlocks.DysonSpherePart, 3, 1), 600, 8000000);
 
         TT_recipeAdder.addResearchableAssemblylineRecipe(ItemList.Quantum_Chest_IV.get(1), 192000, 512, 2000000, 32, new ItemStack[]{
                 new ItemStack(GregTech_API.sBlockMachines, 1, 11232), new ItemStack(pikoCircuit), new ItemStack(pikoCircuit), new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
@@ -127,7 +145,7 @@ public class CraftingRecipes {
                 ItemList.Circuit_Chip_QPIC.get(32), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), new ItemStack(pikoCircuit, 4),
                 new ItemStack(pikoCircuit, 4), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), ItemList.Circuit_Chip_QPIC.get(32),
                 new ItemStack(GregTech_API.sBlockMachines, 1, 11232), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2), new ItemStack(GregTech_API.sBlockMachines, 1, 11232)},
-                new FluidStack[]{new FluidStack(moltenHypogen, 40), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, new ItemStack(GSBlocks.DysonSpherePart, 4, 4), 800, 8000000);
+                new FluidStack[]{new FluidStack(moltenRhugnor, 40), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, new ItemStack(GSBlocks.DysonSpherePart, 4, 4), 800, 8000000);
 
         TT_recipeAdder.addResearchableAssemblylineRecipe(CustomItemList.Machine_Multi_Computer.get(1), 192000, 512, 2000000, 32, new ItemStack[]{
                 new ItemStack(GregTech_API.sBlockMachines, 1, 11232), new ItemStack(ocItem, 1, 103), new ItemStack(ocItem, 1, 103), new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
@@ -162,7 +180,7 @@ public class CraftingRecipes {
         		new ItemStack(quantumCircuit, 2), new ItemStack(magicalMemory, 2), new ItemStack(ocItem, 4, 103), new ItemStack(quantumCircuit, 2),
         		new ItemStack(quantumCircuit, 2), new ItemStack(ocItem, 4, 103), new ItemStack(magicalMemory, 2), new ItemStack(quantumCircuit, 2),
         		new ItemStack(GregTech_API.sBlockMachines, 1, 11232), new ItemStack(irradiantReinforcedBedrockiumPlate), new ItemStack(irradiantReinforcedBedrockiumPlate), new ItemStack(GregTech_API.sBlockMachines, 1, 11232)},
-        		new FluidStack[]{new FluidStack(moltenHypogen, 100), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, GSItems.DysonSwarmController, 2400, 32000000);
+        		new FluidStack[]{new FluidStack(moltenRhugnor, 100), Materials.SuperCoolant.getFluid(16000), Materials.SolderingAlloy.getMolten(11520), Materials.UUMatter.getFluid(8000)}, GSItems.DysonSwarmController, 2400, 32000000);
 
         //Chemical Reactor
         RA.addChemicalRecipe(Materials.Carbon.getDust(1), GT_OreDictUnificator.get("dustHafnia", 1), null, Materials.Oxygen.getGas(2000), GSMaterials.hafniumCarbide.get(OrePrefixes.dust), 400);
