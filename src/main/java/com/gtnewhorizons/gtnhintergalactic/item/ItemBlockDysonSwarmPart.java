@@ -20,6 +20,7 @@ public class ItemBlockDysonSwarmPart extends ItemBlock {
 		return "tile.DysonSwarm" + BlockDysonSwarmPart.names[stack.getItemDamage() % BlockDysonSwarmPart.names.length];
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean f3_h) {
 		if(stack.getItemDamage() == 9) {
