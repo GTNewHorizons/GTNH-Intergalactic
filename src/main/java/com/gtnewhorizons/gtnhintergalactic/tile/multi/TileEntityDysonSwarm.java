@@ -2,8 +2,12 @@ package galaxyspace.core.tile.machine.multi;
 
 import static net.minecraft.util.EnumChatFormatting.*;
 
-import java.text.NumberFormat;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Locale.Category;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -32,6 +36,7 @@ import gregtech.api.objects.XSTR;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_StructureUtility;
+import gregtech.api.util.GT_Utility;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -46,6 +51,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     private static ITexture OVERLAY_FRONT_ACTIVE;
     private static Map<String, Double> powerFactors;
 
+    private static final Map<Locale, DecimalFormat> DECIMAL_FORMATTERS = new HashMap<>();
     private static final String LORE_TOOLTIP;
     private static final String STRUCTURE_PIECE_MAIN = "main";
     private static final int CASING_INDEX_RECEIVER = 150;
@@ -91,8 +97,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 4)) //Dyson Swarm Module Deployment Unit Superconducting Magnet
             .addElement('n', GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicMaintenanceToMachineList, CASING_INDEX_FLOOR, 3))
             .addElement('o', StructureUtility.ofChain(
-            		GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, CASING_INDEX_COMMAND, 4),
-            		StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 5))) //Dyson Swarm Command Center Base Casing
+                    GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, CASING_INDEX_COMMAND, 4),
+                    StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 5))) //Dyson Swarm Command Center Base Casing
             .addElement('p', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 6)) //Dyson Swarm Command Center Primary Windings
             .addElement('s', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 7)) //Dyson Swarm Command Center Secondary Windings
             .addElement('t', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 8)) //Dyson Swarm Command Center Toroid Casing
@@ -120,12 +126,12 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     public void onFirstTick_EM(IGregTechTileEntity aBaseMetaTileEntity) {
-    	powerFactor = getPowerFactor();
+        powerFactor = getPowerFactor();
     }
 
     @Override
     public void onServerStart() {
-    	powerFactor = getPowerFactor();
+        powerFactor = getPowerFactor();
     }
 
     /*************
@@ -145,11 +151,11 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     @Override
     public boolean checkMachine_EM(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         return structureCheck_EM(STRUCTURE_PIECE_MAIN, 10, 18, 3)
-        		&& mMaintenanceHatches.size() == 1
-        		&& mInputBusses.size() > 0
-        		&& mInputHatches.size() > 0
-        		&& eInputData.size() > 0
-        		&& (mDynamoHatches.size() > 0 || eDynamoMulti.size() > 0);
+                && mMaintenanceHatches.size() == 1
+                && mInputBusses.size() > 0
+                && mInputHatches.size() > 0
+                && eInputData.size() > 0
+                && (mDynamoHatches.size() > 0 || eDynamoMulti.size() > 0);
     }
 
     @Override
@@ -168,20 +174,20 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 for(int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
                     if(stack != null && stack.getItem() == GSItems.DysonSwarmParts && stack.getItemDamage() == 0) {
-                    	moduleCount += stack.stackSize;
+                        moduleCount += stack.stackSize;
                         stack = null;
                     }
                 }
             }
         }
 
-    	eRequiredData = (long) Math.ceil(Math.max(GSConfigCore.computationFactor * Math.pow(moduleCount, GSConfigCore.computationExponent) - GSConfigCore.baseComputation, 0));
+        eRequiredData = (long) Math.ceil(Math.max(GSConfigCore.computationFactor * Math.pow(moduleCount, GSConfigCore.computationExponent) - GSConfigCore.baseComputation, 0));
         euPerTick     = (long) (((long) moduleCount) * GSConfigCore.euPerModule * powerFactor);
 
         if(moduleCount > 0 && depleteInput(GSConfigCore.coolantFluid)) {
             // With a certain chance (configurable), the size of the ItemStack(s) is reduced.
             // This has the effect that the player must constantly replace "broken" Modules.
-        	moduleDestroyer.accept(this);
+            moduleDestroyer.accept(this);
             mEfficiencyIncrease = 10000;
             mMaxProgresstime = 20;
             return true;
@@ -192,15 +198,15 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     public boolean energyFlowOnRunningTick(ItemStack aStack, boolean allowProduction) {
-    	if(allowProduction && euPerTick > 0) {
+        if(allowProduction && euPerTick > 0) {
             addEnergyOutput_EM(euPerTick, 1);
-    	}
+        }
         return true;
     }
 
     @Override
     public boolean addEnergyOutput_EM(long EU, long Amperes) {
-    	return addEnergyOutput_EM(EU, Amperes, true);
+        return addEnergyOutput_EM(EU, Amperes, true);
     }
 
     public boolean addEnergyOutput_EM(long EU, long Amperes, boolean allowMixedVoltages) {
@@ -273,16 +279,14 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
-    	NumberFormat nf = NumberFormat.getNumberInstance();
-    	nf.setMaximumFractionDigits(5);
-    	String eu_module = nf.format(GSConfigCore.euPerModule);
-    	String destroy_chance = nf.format(GSConfigCore.destroyModuleFactor);
-    	String destroy_exponent = nf.format(GSConfigCore.destroyModuleExponent);
-    	String fluid_amount = nf.format(GSConfigCore.coolantConsumption);
-    	String fluid_name = GSConfigCore.coolantFluid.getLocalizedName();
-    	String a = nf.format(GSConfigCore.computationFactor);
-    	String b = nf.format(GSConfigCore.computationExponent);
-    	String c = nf.format(GSConfigCore.baseComputation);
+        String eu_module = getDecimalFormat().format(GSConfigCore.euPerModule);
+        String destroy_chance = getDecimalFormat().format(GSConfigCore.destroyModuleFactor);
+        String destroy_exponent = getDecimalFormat().format(GSConfigCore.destroyModuleExponent);
+        String fluid_amount = getDecimalFormat().format(GSConfigCore.coolantConsumption);
+        String fluid_name = GSConfigCore.coolantFluid.getLocalizedName();
+        String a = getDecimalFormat().format(GSConfigCore.computationFactor);
+        String b = getDecimalFormat().format(GSConfigCore.computationExponent);
+        String c = getDecimalFormat().format(GSConfigCore.baseComputation);
 
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("Dyson Swarm")
@@ -295,6 +299,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         .addInfo("Requires " + fluid_amount + "L/s of " + fluid_name + ".")
         .addInfo("Requires n computation per tick according to this formula:")
         .addInfo(" n=" + a + "*m^" + b + "-" + c + ", where m is the amount of modules.")
+        .addInfo(" n is rounded up and never negative.")
         .addSeparator()
         .beginStructureBlock(16, 20, 16, false)
         .addStructureInfo(ITALIC + "This structure is too complex to describe, use the Multiblock Structure Hologram Projector!")
@@ -328,11 +333,11 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     public String[] getInfoData() {
         return new String[] {
                 LIGHT_PURPLE + "Operational Data:" + RESET,
-                "Modules: " + YELLOW + NumberFormat.getNumberInstance().format(moduleCount) + RESET,
-                "Power Factor: " + (powerFactor < 1.0f ? RED : GREEN) + NumberFormat.getPercentInstance().format(powerFactor) + RESET,
-                "Theoretical Output: " + YELLOW + NumberFormat.getNumberInstance().format(((long) moduleCount * GSConfigCore.euPerModule * powerFactor)) + RESET + " EU/t",
-                "Current Output: " + YELLOW + NumberFormat.getNumberInstance().format(euPerTick) + RESET + " EU/t",
-                "Computation required: " + YELLOW + NumberFormat.getNumberInstance().format(eRequiredData) + RESET + "/t",
+                "Modules: " + YELLOW + GT_Utility.formatNumbers(moduleCount) + RESET,
+                "Power Factor: " + (powerFactor < 1.0f ? RED : GREEN) + GT_Utility.formatNumbers(powerFactor * 100.0) + "%" + RESET,
+                "Theoretical Output: " + YELLOW + GT_Utility.formatNumbers(((long) moduleCount * GSConfigCore.euPerModule * powerFactor)) + RESET + " EU/t",
+                "Current Output: " + YELLOW + GT_Utility.formatNumbers(euPerTick) + RESET + " EU/t",
+                "Computation required: " + YELLOW + GT_Utility.formatNumbers(eRequiredData) + RESET + "/t",
                 "Maintenance Status: " + (getRepairStatus() == getIdealStatus()
                         ? GREEN + "Working perfectly" + RESET
                         : RED + "Has problems" + RESET),
@@ -345,7 +350,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
      ******************/
 
     public double getPowerFactor() {
-    	WorldProvider provider = this.getBaseMetaTileEntity().getWorld().provider;
+        WorldProvider provider = this.getBaseMetaTileEntity().getWorld().provider;
         if(provider instanceof IOrbitDimension) {
             return powerFactors.getOrDefault("SS_" + ((IOrbitDimension) provider).getPlanetToOrbit(), GSConfigCore.powerFactorDefault);
         }
@@ -364,19 +369,32 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     public double calculateOutput() {
-    	return ((long) moduleCount) * GSConfigCore.euPerModule * powerFactor;
+        return ((long) moduleCount) * GSConfigCore.euPerModule * powerFactor;
+    }
+
+    private static DecimalFormat getDecimalFormat() {
+        return DECIMAL_FORMATTERS.computeIfAbsent(Locale.getDefault(Category.FORMAT), locale -> {
+            DecimalFormat format = new DecimalFormat();
+            format.setGroupingUsed(true);
+            format.setMaximumFractionDigits(5);
+            format.setRoundingMode(RoundingMode.HALF_UP);
+            DecimalFormatSymbols dfs = format.getDecimalFormatSymbols();
+            dfs.setGroupingSeparator(',');
+            format.setDecimalFormatSymbols(dfs);
+            return format;
+        });
     }
 
     @Override
     public void loadNBTData(NBTTagCompound aNBT) {
-    	super.loadNBTData(aNBT);
-    	moduleCount = aNBT.getInteger("moduleCount");
+        super.loadNBTData(aNBT);
+        moduleCount = aNBT.getInteger("moduleCount");
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
-    	super.saveNBTData(aNBT);
-    	aNBT.setInteger("moduleCount", moduleCount);
+        super.saveNBTData(aNBT);
+        aNBT.setInteger("moduleCount", moduleCount);
     }
 
     public static void initCommon() {
@@ -398,11 +416,11 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         // If the Module Destruction chance is zero or less, always return true.
         if(GSConfigCore.destroyModuleFactor > 0.0f) {
             moduleDestroyer = tile -> {
-            	tile.moduleCount -= (int) (getRandom() * GSConfigCore.destroyModuleFactor * Math.pow(tile.moduleCount, GSConfigCore.destroyModuleExponent));
+                tile.moduleCount -= (int) (getRandom() * GSConfigCore.destroyModuleFactor * Math.pow(tile.moduleCount, GSConfigCore.destroyModuleExponent));
 
-            	if(tile.moduleCount < 0) {
-            		tile.moduleCount = 0;
-            	}
+                if(tile.moduleCount < 0) {
+                    tile.moduleCount = 0;
+                }
             };
 
         } else {
@@ -414,8 +432,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
      * @return a Gaussian random value between 0.0 and 2.0 with mean 1.0
      */
     private static double getRandom() {
-    	double d = XSTR.XSTR_INSTANCE.nextGaussian() + 1.0;
-    	return d < 0.0 || d > 2.0 ? getRandom() : d;
+        double d = XSTR.XSTR_INSTANCE.nextGaussian() + 1.0;
+        return d < 0.0 || d > 2.0 ? getRandom() : d;
     }
 
     public static void initClient() {
@@ -431,13 +449,13 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     static {
-    	String[] possibleLore = new String[] {
-    			"Wait, this isn't an army of vacuum cleaners?",
-    			"Number 9? Not quite.",
-    			"Not the game.",
-    			"Basically solar panels.",
-    			"Invented by a free man."};
-    	LORE_TOOLTIP = possibleLore[XSTR.XSTR_INSTANCE.nextInt(possibleLore.length)];
+        String[] possibleLore = new String[] {
+                "Wait, this isn't an army of vacuum cleaners?",
+                "Number 9? Not quite.",
+                "Not the game.",
+                "Basically solar panels.",
+                "Invented by a free man."};
+        LORE_TOOLTIP = possibleLore[XSTR.XSTR_INSTANCE.nextInt(possibleLore.length)];
     }
 
 }
