@@ -129,11 +129,6 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         powerFactor = getPowerFactor();
     }
 
-    @Override
-    public void onServerStart() {
-        powerFactor = getPowerFactor();
-    }
-
     /*************
      * STRUCTURE *
      *************/
