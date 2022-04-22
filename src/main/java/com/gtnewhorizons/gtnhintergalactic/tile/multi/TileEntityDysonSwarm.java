@@ -314,7 +314,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         .addStructureInfo("Control Center Primary Windings: 20")
         .addStructureInfo("Control Center Secondary Windings: 12")
         .addStructureInfo("Control Center Toroid Casing: 128")
-        .addStructureInfo("Ultra Hign Strenght Concrete Floor: 255")
+        .addStructureInfo("Ultra High Strenght Concrete Floor: 255")
         .addStructureInfo("Awakened Draconium Coil Block: 9")
         .addStructureInfo("Hermetic Casing X: 1")
         .addStructureInfo("Titanium Frame Box: 16")
