@@ -37,7 +37,10 @@ import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_StructureUtility;
 import gregtech.api.util.GT_Utility;
+import gregtech.common.items.GT_MetaGenerated_Tool_01;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldProvider;
@@ -170,7 +173,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
                     if(stack != null && stack.getItem() == GSItems.DysonSwarmParts && stack.getItemDamage() == 0) {
                         moduleCount += stack.stackSize;
-                        stack = null;
+                        stack.stackSize = 0;
                     }
                 }
             }
@@ -251,6 +254,38 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         return false;
     }
 
+    @Override
+    public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, byte aSide, float aX, float aY, float aZ) {
+        ItemStack heldItem = aPlayer.getHeldItem();
+
+        // Check if the player is holding a plunger
+        if(heldItem == null || heldItem.getItem() != GT_MetaGenerated_Tool_01.INSTANCE || heldItem.getItemDamage() != GT_MetaGenerated_Tool_01.PLUNGER) {
+            return super.onRightclick(aBaseMetaTileEntity, aPlayer);
+        }
+
+        // Setup
+        int prevCount = this.moduleCount;
+        int maxReduction = (int) Math.min(this.moduleCount, GT_MetaGenerated_Tool_01.getToolMaxDamage(heldItem) - GT_MetaGenerated_Tool_01.getToolDamage(heldItem));
+        ItemStack modules = new ItemStack(GSItems.DysonSwarmParts, maxReduction);
+
+        // Fill player inventory
+        aPlayer.inventory.addItemStackToInventory(modules);
+
+        // If the player's inventory is full and some modules are still left and the player is sneaking, spawn them in front of the controller
+        if(modules.stackSize > 0 && aPlayer.isSneaking()) {
+            aPlayer.worldObj.spawnEntityInWorld(new EntityItem(aPlayer.worldObj, aPlayer.posX, aPlayer.posY + 0.5, aPlayer.posZ, modules));
+
+            // Set moduleCount based on the number of ejected modules and damage the plunger
+            this.moduleCount = 0;
+            GT_MetaGenerated_Tool_01.INSTANCE.doDamage(heldItem, maxReduction);
+        } else {
+            this.moduleCount = prevCount - maxReduction + modules.stackSize;
+            GT_MetaGenerated_Tool_01.INSTANCE.doDamage(heldItem, maxReduction - modules.stackSize);
+        }
+
+        return true;
+    }
+
     /****************
      * CLIENT STUFF *
      ****************/
@@ -295,6 +330,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         .addInfo("Requires n computation per tick according to this formula:")
         .addInfo(" n=" + a + "*m^" + b + "-" + c + ", where m is the amount of modules.")
         .addInfo(" n is rounded up and never negative.")
+        .addInfo("R-Click with a Plunger to extract as many Modules to your inventory as possible.")
+        .addInfo("Sneaking will dump the rest on the ground.")
         .addSeparator()
         .beginStructureBlock(16, 20, 16, false)
         .addStructureInfo(ITALIC + "This structure is too complex to describe, use the Multiblock Structure Hologram Projector!")
