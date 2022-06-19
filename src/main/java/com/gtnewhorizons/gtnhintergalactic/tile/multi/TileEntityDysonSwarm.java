@@ -83,31 +83,31 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 {"                ", "                ", "                ", "        xeeex   ", "        eccce   ", "        eccce   ", "        eccce   ", "        xeeex   ", "                ", "ooooooo         ", "oyyyyyo         ", "oyyyyyo    ziiiz", "oyyyyyo    izzzi", "oyyyyyo    izzzi", "oyyyyyo    izzzi", "ooooooo    ziiiz"},
                 {"                ", "                ", "                ", "        xx~xx   ", "        xxxxx   ", "        xxxxx   ", "        xxxxx   ", "        xxxxx   ", "                ", "yyyyyyy         ", "yyyyyyy         ", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz"},
                 {"bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbnbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb"}}))
-            .addElement('b', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 9)) //Dyson Swarm Ground Unit Ultra High Strenght Concrete Floor
+            .addElement('b', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 9)) //Dyson Swarm Ground Unit Ultra High Strenght Concrete Floor
             .addElement('c', StructureUtility.ofBlock(GregTech_API.sBlockCasings5, 8)) //Awakened Draconium Coil Block
-            .addElement('d', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 1)) //Dyson Swarm Energy Receiver Dish Block
+            .addElement('d', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 1)) //Dyson Swarm Energy Receiver Dish Block
             .addElement('e', StructureUtility.ofChain(
                     GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDynamoToMachineList, CASING_INDEX_RECEIVER, 1),
-                    StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 0))) //Dyson Swarm Energy Receiver Base Casing
+                    StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0))) //Dyson Swarm Energy Receiver Base Casing
             .addElement('f', GT_StructureUtility.ofFrame(Materials.HSSS))
             .addElement('g', GT_StructureUtility.ofFrame(Materials.Titanium))
             .addElement('h', StructureUtility.ofBlock(GregTech_API.sBlockCasings6, 10)) //Hermetic Casing X
             .addElement('i', StructureUtility.ofChain(
                     GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicInputToMachineList, CASING_INDEX_LAUNCH, 2),
-                    StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 2))) //Dyson Swarm Module Deployment Unit Base Casing
-            .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 3)) //Dyson Swarm Module Deployment Unit Core
+                    StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2))) //Dyson Swarm Module Deployment Unit Base Casing
+            .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 3)) //Dyson Swarm Module Deployment Unit Core
             .addElement('k', GT_StructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
-            .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 4)) //Dyson Swarm Module Deployment Unit Superconducting Magnet
+            .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 4)) //Dyson Swarm Module Deployment Unit Superconducting Magnet
             .addElement('n', GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicMaintenanceToMachineList, CASING_INDEX_FLOOR, 3))
             .addElement('o', StructureUtility.ofChain(
                     GT_StructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, CASING_INDEX_COMMAND, 4),
-                    StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 5))) //Dyson Swarm Command Center Base Casing
-            .addElement('p', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 6)) //Dyson Swarm Command Center Primary Windings
-            .addElement('s', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 7)) //Dyson Swarm Command Center Secondary Windings
-            .addElement('t', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 8)) //Dyson Swarm Command Center Toroid Casing
-            .addElement('x', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 0)) //Dyson Swarm Energy Receiver Base Casing
-            .addElement('y', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 5)) //Dyson Swarm Command Center Base Casing
-            .addElement('z', StructureUtility.ofBlock(GSBlocks.DysonSpherePart, 2)) //Dyson Swarm Module Deployment Unit Base Casing
+                    StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5))) //Dyson Swarm Command Center Base Casing
+            .addElement('p', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 6)) //Dyson Swarm Command Center Primary Windings
+            .addElement('s', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 7)) //Dyson Swarm Command Center Secondary Windings
+            .addElement('t', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 8)) //Dyson Swarm Command Center Toroid Casing
+            .addElement('x', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0)) //Dyson Swarm Energy Receiver Base Casing
+            .addElement('y', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5)) //Dyson Swarm Command Center Base Casing
+            .addElement('z', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2)) //Dyson Swarm Module Deployment Unit Base Casing
             .build();
 
     private long euPerTick = 0;
@@ -171,7 +171,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             if(isValidMetaTileEntity(bus)) {
                 for(int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                    if(stack != null && stack.getItem() == GSItems.DysonSwarmParts && stack.getItemDamage() == 0) {
+                    if(stack != null && stack.getItem() == GSItems.DysonSwarmItems && stack.getItemDamage() == 0) {
                         moduleCount += stack.stackSize;
                         stack.stackSize = 0;
                     }
@@ -266,7 +266,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         // Setup
         int prevCount = this.moduleCount;
         int maxReduction = (int) Math.min(this.moduleCount, GT_MetaGenerated_Tool_01.getToolMaxDamage(heldItem) - GT_MetaGenerated_Tool_01.getToolDamage(heldItem));
-        ItemStack modules = new ItemStack(GSItems.DysonSwarmParts, maxReduction);
+        ItemStack modules = new ItemStack(GSItems.DysonSwarmItems, maxReduction);
 
         // Fill player inventory
         aPlayer.inventory.addItemStackToInventory(modules);
@@ -470,10 +470,10 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     public static void initClient() {
         initCommon();
-        BlockIcons.setCasingTextureForId(CASING_INDEX_RECEIVER, TextureFactory.of(GSBlocks.DysonSpherePart, 0));
-        BlockIcons.setCasingTextureForId(CASING_INDEX_LAUNCH, TextureFactory.of(GSBlocks.DysonSpherePart, 2));
-        BlockIcons.setCasingTextureForId(CASING_INDEX_COMMAND, TextureFactory.of(GSBlocks.DysonSpherePart, 5));
-        BlockIcons.setCasingTextureForId(CASING_INDEX_FLOOR, TextureFactory.of(GSBlocks.DysonSpherePart, 9));
+        BlockIcons.setCasingTextureForId(CASING_INDEX_RECEIVER, TextureFactory.of(GSBlocks.DysonSwarmBlocks, 0));
+        BlockIcons.setCasingTextureForId(CASING_INDEX_LAUNCH, TextureFactory.of(GSBlocks.DysonSwarmBlocks, 2));
+        BlockIcons.setCasingTextureForId(CASING_INDEX_COMMAND, TextureFactory.of(GSBlocks.DysonSwarmBlocks, 5));
+        BlockIcons.setCasingTextureForId(CASING_INDEX_FLOOR, TextureFactory.of(GSBlocks.DysonSwarmBlocks, 9));
         OVERLAY_FRONT = TextureFactory.of(new CustomIcon("iconsets/OVERLAY_FRONT_DYSONSPHERE"));
         OVERLAY_FRONT_ACTIVE = TextureFactory.of(new CustomIcon("iconsets/OVERLAY_FRONT_DYSONSPHERE_ACTIVE"));
         OVERLAY_FRONT_GLOW = new CustomIcon("iconsets/OVERLAY_FRONT_DYSONSPHERE_GLOW");
