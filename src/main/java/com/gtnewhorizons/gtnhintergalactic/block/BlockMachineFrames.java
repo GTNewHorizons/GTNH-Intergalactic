@@ -27,14 +27,14 @@ public class BlockMachineFrames extends Block implements ITerraformableBlock {
 
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
-        if(GregTech_API.isMachineBlock(this, world.getBlockMetadata(x, y, z))) {
+        if (GregTech_API.isMachineBlock(this, world.getBlockMetadata(x, y, z))) {
             GregTech_API.causeMachineUpdate(world, x, y, z);
         }
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        if(GregTech_API.isMachineBlock(block, meta)) {
+        if (GregTech_API.isMachineBlock(block, meta)) {
             GregTech_API.causeMachineUpdate(world, x, y, z);
         }
     }
