@@ -57,6 +57,9 @@ public class CraftingRecipes {
         Item micaInsulator = GameRegistry.findItem("dreamcraft", "item.MicaInsulatorFoil");
         Item irradiantReinforcedBedrockiumPlate =
                 GameRegistry.findItem("dreamcraft", "item.IrradiantReinforcedBedrockiumPlate");
+        Fluid solderUEV = FluidRegistry.getFluid("molten.mutatedlivingsolder") != null
+                ? FluidRegistry.getFluid("molten.mutatedlivingsolder")
+                : FluidRegistry.getFluid("molten.solderingalloy");
 
         // Assembler
         RA.addAssemblerRecipe(
@@ -366,7 +369,7 @@ public class CraftingRecipes {
                     ItemList.Sensor_UEV.get(1),
                     new ItemStack(ocItem, 2, 91)
                 },
-                new FluidStack[] {Materials.SolderingAlloy.getMolten(18432)},
+                new FluidStack[] {new FluidStack(solderUEV, 18432)},
                 new ItemStack(GSItems.DysonSwarmItems, 64),
                 100,
                 1966080);
@@ -398,7 +401,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     GSMaterials.liquidHelium.getFluidOrGas(50000),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 4, 0),
@@ -432,7 +435,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRhugnor, 40),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 3, 1),
@@ -466,7 +469,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     Materials.Lubricant.getFluid(50000),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 4, 2),
@@ -500,7 +503,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     Materials.Lubricant.getFluid(50000),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 1, 3),
@@ -534,7 +537,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRhugnor, 40),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 4, 4),
@@ -568,7 +571,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     Materials.SuperCoolant.getFluid(16000),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 8, 5),
@@ -602,7 +605,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRadoxPolymer, 3456),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 4, 6),
@@ -636,7 +639,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRadoxPolymer, 3240),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 4, 7),
@@ -674,7 +677,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRadoxPolymer, 144),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 new ItemStack(GSBlocks.DysonSwarmBlocks, 1, 8),
@@ -704,7 +707,7 @@ public class CraftingRecipes {
                 new FluidStack[] {
                     new FluidStack(moltenRhugnor, 100),
                     Materials.SuperCoolant.getFluid(16000),
-                    Materials.SolderingAlloy.getMolten(11520),
+                    new FluidStack(solderUEV, 11520),
                     Materials.UUMatter.getFluid(8000)
                 },
                 GSItems.DysonSwarmController,
