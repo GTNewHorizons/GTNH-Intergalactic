@@ -749,7 +749,7 @@ public class CraftingRecipes {
 
         // Vacuum Freezer
         RA.addVacuumFreezerRecipe(
-                Materials.Helium.getGas(1000), GSMaterials.liquidHelium.getFluidOrGas(1000), 1200, 7680);
+                Materials.Helium.getGas(1000), GSMaterials.liquidHelium.getFluidOrGas(1000), 1800, 480);
 
         // Autoclave
         RA.addAutoclaveRecipe(
