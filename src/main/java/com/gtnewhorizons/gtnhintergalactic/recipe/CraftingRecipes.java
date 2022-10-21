@@ -46,7 +46,7 @@ public class CraftingRecipes {
         Item keyboard = GameRegistry.findItem("OpenComputers", "keyboard");
         Item magicalMemory = GameRegistry.findItem("computronics", "computronics.ocSpecialParts");
         Item blueprint = GameRegistry.findItem("BuildCraft|Builders", "blueprintItem");
-        Item frfCoil3 = GameRegistry.findItem("GoodGenerator", "FRF_Coil_3");
+        Item frfCoil3 = GameRegistry.findItem("GoodGenerator", "FRF_Coil_2");
         Item advancedRadiationProtectionPlate =
                 GameRegistry.findItem("GoodGenerator", "advancedRadiationProtectionPlate");
         Item tungstenString = GameRegistry.findItem("dreamcraft", "item.TungstenString");
@@ -374,7 +374,7 @@ public class CraftingRecipes {
                 100,
                 1966080);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Energy Receiver Base Casing
                 ItemList.Circuit_Chip_QPIC.get(1),
                 192000,
                 512,
@@ -385,14 +385,14 @@ public class CraftingRecipes {
                     ItemList.Circuit_Chip_QPIC.get(16),
                     ItemList.Circuit_Chip_QPIC.get(16),
                     ItemRegistry.energyDistributor[9],
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 1),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 1),
                     ItemList.UHV_Coil.get(32),
                     ItemList.UHV_Coil.get(32),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 1),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 1),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 1),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 1),
                     ItemList.UHV_Coil.get(32),
                     ItemList.UHV_Coil.get(32),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 1),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 1),
                     ItemRegistry.energyDistributor[9],
                     ItemList.Circuit_Chip_QPIC.get(16),
                     ItemList.Circuit_Chip_QPIC.get(16),
@@ -408,7 +408,7 @@ public class CraftingRecipes {
                 800,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Energy Receiver Dish Block
                 new ItemStack(GSItems.DysonSwarmItems, 1, 3),
                 192000,
                 512,
@@ -442,29 +442,29 @@ public class CraftingRecipes {
                 600,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Module Deployment Unit Base Casing
                 ItemList.Quantum_Chest_IV.get(1),
                 192000,
                 512,
                 2000000,
                 32,
                 new ItemStack[] {
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(pikoCircuit),
                     new ItemStack(pikoCircuit),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    ItemList.Electric_Pump_UEV.get(16),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    ItemList.Electric_Pump_UIV.get(16),
                     ItemList.Quantum_Tank_IV.get(1),
                     ItemList.Quantum_Tank_IV.get(1),
-                    ItemList.Electric_Pump_UEV.get(16),
-                    ItemList.Conveyor_Module_UEV.get(16),
+                    ItemList.Electric_Pump_UIV.get(16),
+                    ItemList.Conveyor_Module_UIV.get(16),
                     ItemList.Quantum_Chest_IV.get(1),
                     ItemList.Quantum_Chest_IV.get(1),
-                    ItemList.Conveyor_Module_UEV.get(16),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    ItemList.Conveyor_Module_UIV.get(16),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(pikoCircuit),
                     new ItemStack(pikoCircuit),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232)
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231)
                 },
                 new FluidStack[] {
                     Materials.Lubricant.getFluid(50000),
@@ -476,29 +476,29 @@ public class CraftingRecipes {
                 800,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Module Deployment Unit Core
                 new ItemStack(Blocks.dropper),
                 192000,
                 512,
                 2000000,
                 32,
                 new ItemStack[] {
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    ItemList.Conveyor_Module_UEV.get(8),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    ItemList.Conveyor_Module_UIV.get(8),
                     new ItemStack(Blocks.dropper, 64),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    ItemList.Conveyor_Module_UEV.get(8),
-                    ItemList.Robot_Arm_UEV.get(16),
-                    ItemList.Electric_Piston_UEV.get(16),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    ItemList.Conveyor_Module_UIV.get(8),
+                    ItemList.Robot_Arm_UIV.get(16),
+                    ItemList.Electric_Piston_UIV.get(16),
                     new ItemStack(Blocks.dropper, 64),
                     new ItemStack(Blocks.dropper, 64),
-                    ItemList.Electric_Piston_UEV.get(16),
-                    ItemList.Robot_Arm_UEV.get(16),
-                    ItemList.Conveyor_Module_UEV.get(8),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    ItemList.Electric_Piston_UIV.get(16),
+                    ItemList.Robot_Arm_UIV.get(16),
+                    ItemList.Conveyor_Module_UIV.get(8),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(Blocks.dropper, 64),
-                    ItemList.Conveyor_Module_UEV.get(8),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232)
+                    ItemList.Conveyor_Module_UIV.get(8),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231)
                 },
                 new FluidStack[] {
                     Materials.Lubricant.getFluid(50000),
@@ -510,29 +510,29 @@ public class CraftingRecipes {
                 200,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Module Deployment Unit Superconducting Magnet
                 new ItemStack(GregTech_API.sBlockMachines, 1, 10984),
                 192000,
                 512,
                 2000000,
                 32,
                 new ItemStack[] {
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     ItemList.Circuit_Chip_QPIC.get(32),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
                     new ItemStack(pikoCircuit, 4),
                     new ItemStack(pikoCircuit, 4),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
                     ItemList.Circuit_Chip_QPIC.get(32),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUHV, 2),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232)
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.SuperconductorUEV, 2),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231)
                 },
                 new FluidStack[] {
                     new FluidStack(moltenRhugnor, 40),
@@ -544,17 +544,17 @@ public class CraftingRecipes {
                 800,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Control Center Base Casing
                 CustomItemList.Machine_Multi_Computer.get(1),
                 192000,
                 512,
                 2000000,
                 32,
                 new ItemStack[] {
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(ocItem, 1, 103),
                     new ItemStack(ocItem, 1, 103),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(pikoCircuit),
                     CustomItemList.Machine_Multi_Computer.get(1),
                     CustomItemList.Machine_Multi_Computer.get(1),
@@ -563,10 +563,10 @@ public class CraftingRecipes {
                     CustomItemList.Machine_Multi_Computer.get(1),
                     CustomItemList.Machine_Multi_Computer.get(1),
                     new ItemStack(pikoCircuit),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                     new ItemStack(ocItem, 1, 103),
                     new ItemStack(ocItem, 1, 103),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232)
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231)
                 },
                 new FluidStack[] {
                     Materials.SuperCoolant.getFluid(16000),
@@ -578,7 +578,7 @@ public class CraftingRecipes {
                 1600,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Control Center Primary Windings
                 CustomItemList.tM_TeslaPrimary_6.get(1),
                 192000,
                 512,
@@ -612,7 +612,7 @@ public class CraftingRecipes {
                 800,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Control Center Secondary Windings
                 CustomItemList.tM_TeslaSecondary.get(1),
                 192000,
                 512,
@@ -646,7 +646,7 @@ public class CraftingRecipes {
                 800,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Control Center Toroid Casing
                 CustomItemList.tM_TeslaToroid.get(1),
                 192000,
                 512,
@@ -658,16 +658,12 @@ public class CraftingRecipes {
                             GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
                             GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 1),
                     GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
-                            GT_OreDictUnificator.get(
-                                    OrePrefixes.frameGt, Materials.Longasssuperconductornameforuhvwire, 1),
-                            GT_OreDictUnificator.get(
-                                    OrePrefixes.frameGt, Materials.Longasssuperconductornameforuhvwire, 1),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUEVBase, 1),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUEVBase, 1),
                             GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
                     GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
-                            GT_OreDictUnificator.get(
-                                    OrePrefixes.frameGt, Materials.Longasssuperconductornameforuhvwire, 1),
-                            GT_OreDictUnificator.get(
-                                    OrePrefixes.frameGt, Materials.Longasssuperconductornameforuhvwire, 1),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUEVBase, 1),
+                            GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SuperconductorUEVBase, 1),
                             GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
                     GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 1),
                             GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Neutronium, 1),
@@ -684,25 +680,25 @@ public class CraftingRecipes {
                 200,
                 8000000);
 
-        TT_recipeAdder.addResearchableAssemblylineRecipe(
+        TT_recipeAdder.addResearchableAssemblylineRecipe( // Dyson Swarm Controller
                 GT_ModHandler.getModItem("supersolarpanel", "PhotonicSolarPanel", 1),
                 192000,
                 512,
                 8000000,
                 16,
                 new ItemStack[] {
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                             new ItemStack(irradiantReinforcedBedrockiumPlate),
                             new ItemStack(irradiantReinforcedBedrockiumPlate),
-                            new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
-                    new ItemStack(quantumCircuit, 2), new ItemStack(magicalMemory, 2), new ItemStack(ocItem, 4, 103),
-                            new ItemStack(quantumCircuit, 2),
-                    new ItemStack(quantumCircuit, 2), new ItemStack(ocItem, 4, 103), new ItemStack(magicalMemory, 2),
-                            new ItemStack(quantumCircuit, 2),
-                    new ItemStack(GregTech_API.sBlockMachines, 1, 11232),
+                            new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
+                    new ItemStack(pikoCircuit, 2), new ItemStack(magicalMemory, 2), new ItemStack(ocItem, 4, 103),
+                            new ItemStack(pikoCircuit, 2),
+                    new ItemStack(pikoCircuit, 2), new ItemStack(ocItem, 4, 103), new ItemStack(magicalMemory, 2),
+                            new ItemStack(pikoCircuit, 2),
+                    new ItemStack(GregTech_API.sBlockMachines, 1, 11231),
                             new ItemStack(irradiantReinforcedBedrockiumPlate),
                             new ItemStack(irradiantReinforcedBedrockiumPlate),
-                            new ItemStack(GregTech_API.sBlockMachines, 1, 11232)
+                            new ItemStack(GregTech_API.sBlockMachines, 1, 11231)
                 },
                 new FluidStack[] {
                     new FluidStack(moltenRhugnor, 100),
