@@ -7,11 +7,14 @@ import com.github.bartimaeusnek.bartworks.common.loaders.ItemRegistry;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.github.technus.tectech.recipe.TT_recipeAdder;
 import com.github.technus.tectech.thing.CustomItemList;
+import com.github.technus.tectech.thing.casing.TT_Container_Casings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import galaxyspace.BarnardsSystem.BRBlocks;
+import galaxyspace.core.item.ItemMiningDrones;
 import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
 import galaxyspace.core.register.GSMaterials;
+import galaxyspace.core.tile.machine.multi.elevator.projects.miner.SpaceMiningAsteroidDefinitions;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -59,6 +62,9 @@ public class CraftingRecipes {
                 GameRegistry.findItem("dreamcraft", "item.IrradiantReinforcedBedrockiumPlate");
         Fluid solderUEV = FluidRegistry.getFluid("molten.mutatedlivingsolder") != null
                 ? FluidRegistry.getFluid("molten.mutatedlivingsolder")
+                : FluidRegistry.getFluid("molten.solderingalloy");
+        Fluid solderLuV = FluidRegistry.getFluid("molten.indalloy140") != null
+                ? FluidRegistry.getFluid("molten.indalloy140")
                 : FluidRegistry.getFluid("molten.solderingalloy");
 
         // Assembler
@@ -709,6 +715,540 @@ public class CraftingRecipes {
                 GSItems.DysonSwarmController,
                 2400,
                 32000000);
+
+        // Space Elevator Controller
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GT_ModHandler.getModItem("OpenBlocks", "elevator", 1, 0),
+                256000,
+                256,
+                1000000,
+                4,
+                new Object[] {
+                    GT_ModHandler.getModItem("OpenBlocks", "elevator", 1),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 64),
+                    ItemList.Field_Generator_UV.get(16),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier7", 32),
+                    ItemList.Circuit_Chip_PPIC.get(64),
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 64),
+                    ItemList.Electric_Motor_UV.get(32),
+                    new ItemStack(GSBlocks.SpaceElevatorBlocks, 8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(16000),
+                    Materials.Lubricant.getFluid(32000),
+                    Materials.Neutronium.getMolten(1440)
+                },
+                GSItems.SpaceElevatorController,
+                36000,
+                800000);
+
+        // Nanotube spool
+        RA.addAssemblerRecipe(
+                new ItemStack[] {
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.Graphene, 64),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.Graphene, 64),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.Graphene, 64),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, Materials.Graphene, 64),
+                },
+                Materials.AdvancedGlue.getFluid(720),
+                new ItemStack(GSItems.SpaceElevatorItems, 1, 0),
+                1200,
+                120000,
+                true);
+
+        // Space Elevator Cable
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.SpaceElevatorItems, 1, 0),
+                128000,
+                256,
+                500000,
+                2,
+                new Object[] {
+                    new ItemStack(GSItems.SpaceElevatorItems, 16, 0),
+                    new ItemStack(GSItems.SpaceElevatorItems, 16, 0),
+                    new ItemStack(GSItems.SpaceElevatorItems, 16, 0),
+                    new ItemStack(GSItems.SpaceElevatorItems, 16, 0),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                },
+                new FluidStack[] {Materials.AdvancedGlue.getFluid(720)},
+                new ItemStack(GSBlocks.SpaceElevatorCable),
+                1200,
+                1000000);
+
+        // Space Elevator Base Casing
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GT_OreDictUnificator.get(OrePrefixes.block, Materials.Neutronium, 1),
+                64000,
+                128,
+                500000,
+                2,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Palladium, 32),
+                    GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 64),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    ItemList.Electric_Piston_UV.get(2),
+                    GT_OreDictUnificator.get(OrePrefixes.ring, Materials.CosmicNeutronium, 8),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(2000),
+                    Materials.Iridium.getMolten(1152)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorBlocks, 8, 0),
+                1200,
+                800000);
+
+        // Space Elevator Support Structure
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 1),
+                64000,
+                128,
+                500000,
+                2,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.bolt, Materials.Naquadria, 16),
+                    GT_OreDictUnificator.get(OrePrefixes.stickLong, Materials.Neutronium, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.plateDouble, Materials.Osmiridium, 8),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(1000),
+                    Materials.Iridium.getMolten(1440)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorBlocks, 8, 1),
+                1200,
+                800000);
+
+        // Space Elevator Internal Structure
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(TT_Container_Casings.sBlockCasingsTT, 1, 0),
+                64000,
+                128,
+                500000,
+                2,
+                new Object[] {
+                    new ItemStack(TT_Container_Casings.sBlockCasingsTT, 8, 0),
+                    GT_OreDictUnificator.get(OrePrefixes.bolt, Materials.Palladium, 16),
+                    GT_OreDictUnificator.get(OrePrefixes.plateDouble, Materials.Neutronium, 8),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(8000),
+                    Materials.Concrete.getMolten(1440)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorBlocks, 8, 2),
+                1200,
+                800000);
+
+        // Space Elevator Motor MK-I
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSBlocks.SpaceElevatorBlocks, 1, 0),
+                64000,
+                128,
+                500000,
+                2,
+                new Object[] {
+                    new ItemStack(GSBlocks.SpaceElevatorBlocks, 1, 0),
+                    ItemList.Electric_Motor_UV.get(4),
+                    GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Neutronium, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Neutronium, 4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Superconductor), 1},
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 16),
+                    GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 16),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(8000),
+                    Materials.Naquadria.getMolten(1440),
+                    Materials.Lubricant.getFluid(16000)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorMotor, 1, 0),
+                2400,
+                800000);
+
+        // Space Elevator Motor MK-II
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSBlocks.SpaceElevatorMotor, 1, 0),
+                128000,
+                256,
+                2000000,
+                2,
+                new Object[] {
+                    new ItemStack(GSBlocks.SpaceElevatorBlocks, 1, 0),
+                    ItemList.Electric_Motor_UHV.get(4),
+                    GT_OreDictUnificator.get(OrePrefixes.ring, Materials.CosmicNeutronium, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.stick, Materials.CosmicNeutronium, 4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 1},
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Infinity, 16),
+                    GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 16),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 5760),
+                    Materials.UUMatter.getFluid(8000),
+                    Materials.Naquadria.getMolten(1440),
+                    Materials.Lubricant.getFluid(16000)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorMotor, 1, 1),
+                2400,
+                4000000);
+
+        // Space Elevator Motor MK-III
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSBlocks.SpaceElevatorMotor, 1, 1),
+                128000,
+                256,
+                2000000,
+                2,
+                new Object[] {
+                    new ItemStack(GSBlocks.SpaceElevatorBlocks, 1, 0),
+                    ItemList.Electric_Motor_UEV.get(4),
+                    GT_OreDictUnificator.get(OrePrefixes.ring, Materials.Infinity, 8),
+                    GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Infinity, 4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Bio), 1},
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.TranscendentMetal, 16),
+                    GT_OreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 16),
+                },
+                new FluidStack[] {
+                    new FluidStack(solderUEV, 2880),
+                    Materials.UUMatter.getFluid(8000),
+                    Materials.Naquadria.getMolten(1440),
+                    Materials.Lubricant.getFluid(24000)
+                },
+                new ItemStack(GSBlocks.SpaceElevatorMotor, 1, 2),
+                2400,
+                4000000);
+
+        // Space Elevator Modules
+
+        // Pump Module MK-I
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GSItems.PlanetarySiphonController,
+                16777216,
+                2048,
+                2000000,
+                4,
+                new Object[] {
+                    ItemList.OilDrillInfinite.get(1),
+                    GSItems.PlanetarySiphonController,
+                    CustomItemList.enderLinkFluidCover.get(2),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Infinity, 4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Bio), 4},
+                    ItemList.Electric_Pump_UEV.get(2),
+                    GT_OreDictUnificator.get(OrePrefixes.gearGt, Materials.Infinity, 4),
+                    GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 32),
+                },
+                new FluidStack[] {new FluidStack(solderUEV, 1296), Materials.Infinity.getMolten(576)},
+                GSItems.SpaceElevatorModuleHatch_PumpT1,
+                6000,
+                8000000);
+
+        // Miner Module MK-I
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                ItemRegistry.voidminer[2],
+                2000000,
+                512,
+                2000000,
+                8,
+                new Object[] {
+                    ItemList.OreDrill4.get(1),
+                    ItemList.Robot_Arm_UV.get(8),
+                    ItemList.Field_Generator_UV.get(4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Superconductor), 16},
+                    ItemList.Sensor_UV.get(16),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt04, Materials.SuperconductorUV, 32),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 16)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 2880),
+                    Materials.Naquadria.getMolten(1440),
+                    Materials.Lubricant.getFluid(8000)
+                },
+                GSItems.SpaceElevatorModuleHatch_MinerT1,
+                4500,
+                2000000);
+        // Miner Module MK-II
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GSItems.SpaceElevatorModuleHatch_MinerT1,
+                3000000,
+                1024,
+                3000000,
+                12,
+                new Object[] {
+                    GSItems.SpaceElevatorModuleHatch_MinerT1,
+                    ItemList.Robot_Arm_UHV.get(8),
+                    ItemList.Field_Generator_UHV.get(4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 16},
+                    ItemList.Sensor_UHV.get(16),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt04, Materials.SuperconductorUHV, 32),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.CosmicNeutronium, 16)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 2880),
+                    Materials.Naquadria.getMolten(2880),
+                    Materials.Lubricant.getFluid(16000)
+                },
+                GSItems.SpaceElevatorModuleHatch_MinerT2,
+                9000,
+                8000000);
+        // Miner Module MK-III
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GSItems.SpaceElevatorModuleHatch_MinerT2,
+                4000000,
+                2048,
+                4000000,
+                16,
+                new Object[] {
+                    GSItems.SpaceElevatorModuleHatch_MinerT2,
+                    ItemList.Robot_Arm_UEV.get(8),
+                    ItemList.Field_Generator_UEV.get(4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Bio), 16},
+                    ItemList.Sensor_UEV.get(16),
+                    GT_OreDictUnificator.get(OrePrefixes.wireGt04, Materials.SuperconductorUEV, 32),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.Infinity, 16)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderUEV, 2880),
+                    Materials.TranscendentMetal.getMolten(1440),
+                    Materials.UUMatter.getFluid(2000)
+                },
+                GSItems.SpaceElevatorModuleHatch_MinerT3,
+                18000,
+                16000000);
+
+        // Mining drones
+
+        // LV
+        RA.addAssemblerRecipe(
+                new ItemStack[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Titanium, 8),
+                    ItemList.Robot_Arm_LV.get(8),
+                    ItemList.Field_Generator_LV.get(2),
+                    GT_OreDictUnificator.get("circuitAdvanced", 4),
+                    new ItemStack(GCItems.heavyPlatingTier1, 16),
+                    new ItemStack(GCItems.rocketEngine, 2),
+                    ItemList.Sensor_LV.get(8)
+                },
+                Materials.SolderingAlloy.getMolten(720),
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.LV.ordinal()),
+                1200,
+                480,
+                false);
+
+        // MV
+        RA.addAssemblerRecipe(
+                new ItemStack[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.TungstenSteel, 8),
+                    ItemList.Robot_Arm_MV.get(8),
+                    ItemList.Field_Generator_MV.get(2),
+                    GT_OreDictUnificator.get("circuitData", 4),
+                    new ItemStack(GCItems.heavyPlatingTier1, 32),
+                    new ItemStack(GCItems.rocketEngine, 4),
+                    ItemList.Sensor_MV.get(8)
+                },
+                Materials.SolderingAlloy.getMolten(1440),
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.MV.ordinal()),
+                1200,
+                480,
+                false);
+
+        // HV
+        RA.addAssemblerRecipe(
+                new ItemStack[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Iridium, 8),
+                    ItemList.Robot_Arm_HV.get(8),
+                    ItemList.Field_Generator_HV.get(2),
+                    GT_OreDictUnificator.get("circuitElite", 4),
+                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemMars", 32),
+                    new ItemStack(GCItems.rocketEngine, 4),
+                    ItemList.Sensor_HV.get(8)
+                },
+                Materials.SolderingAlloy.getMolten(1440),
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.HV.ordinal()),
+                1200,
+                480,
+                false);
+
+        // EV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.HV.ordinal()),
+                50000,
+                128,
+                1000000,
+                4,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Trinium, 8),
+                    ItemList.Robot_Arm_EV.get(8),
+                    ItemList.Field_Generator_EV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Master), 4},
+                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 32),
+                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 4, 1),
+                    ItemList.Sensor_EV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 720),
+                    Materials.Iridium.getMolten(720),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 16000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.EV.ordinal()),
+                1200,
+                24000);
+
+        // IV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.EV.ordinal()),
+                75000,
+                128,
+                1000000,
+                8,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.NaquadahAlloy, 8),
+                    ItemList.Robot_Arm_IV.get(8),
+                    ItemList.Field_Generator_IV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Ultimate), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier4", 32),
+                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 4, 1),
+                    ItemList.Sensor_IV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 1440),
+                    Materials.Iridium.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 32000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.IV.ordinal()),
+                1200,
+                100000);
+
+        // LuV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.IV.ordinal()),
+                100000,
+                256,
+                2000000,
+                4,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Naquadria, 8),
+                    ItemList.Robot_Arm_LuV.get(8),
+                    ItemList.Field_Generator_LuV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Ultimate), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier5", 32),
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier3", 4),
+                    ItemList.Sensor_LuV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 2880),
+                    Materials.Osmiridium.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 64000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.LuV.ordinal()),
+                1200,
+                400000);
+
+        // ZPM
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.LuV.ordinal()),
+                125000,
+                256,
+                2000000,
+                8,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Neutronium, 8),
+                    ItemList.Robot_Arm_ZPM.get(8),
+                    ItemList.Field_Generator_ZPM.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Superconductor), 2},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier6", 32),
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier3", 4),
+                    ItemList.Sensor_ZPM.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 2880),
+                    Materials.Osmiridium.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 128000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.ZPM.ordinal()),
+                1200,
+                400000);
+
+        // UV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.ZPM.ordinal()),
+                150000,
+                512,
+                4000000,
+                4,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.CosmicNeutronium, 8),
+                    ItemList.Robot_Arm_UV.get(8),
+                    ItemList.Field_Generator_UV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Infinite), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier7", 32),
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier4", 4),
+                    ItemList.Sensor_UV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderLuV, 2880),
+                    Materials.Naquadria.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 256000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UV.ordinal()),
+                1200,
+                400000);
+
+        // UHV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UV.ordinal()),
+                175000,
+                512,
+                4000000,
+                8,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.Infinity, 8),
+                    ItemList.Robot_Arm_UHV.get(8),
+                    ItemList.Field_Generator_UHV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Bio), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier8", 32),
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier4", 4),
+                    ItemList.Sensor_UHV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderUEV, 2880),
+                    Materials.Neutronium.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 512000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UHV.ordinal()),
+                1200,
+                400000);
+
+        // UHV
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UHV.ordinal()),
+                200000,
+                512,
+                4000000,
+                8,
+                new Object[] {
+                    GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.CosmicNeutronium, 8),
+                    ItemList.Robot_Arm_UEV.get(8),
+                    ItemList.Field_Generator_UEV.get(2),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Nano), 4},
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier8", 64),
+                    GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier4", 8),
+                    ItemList.Sensor_UEV.get(8)
+                },
+                new FluidStack[] {
+                    new FluidStack(solderUEV, 2880),
+                    Materials.Quantium.getMolten(1440),
+                    new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 512000)
+                },
+                new ItemStack(GSItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UEV.ordinal()),
+                1200,
+                800000);
 
         // Chemical Reactor
         RA.addChemicalRecipe(
@@ -1401,6 +1941,9 @@ public class CraftingRecipes {
             'H',
             ItemList.Hull_IV.get(1)
         });
+
+        // Space Mining
+        SpaceMiningAsteroidDefinitions.addAsteroids();
     }
 
     private static void addDyedFutureGlassRecipe(int meta, String color) {
