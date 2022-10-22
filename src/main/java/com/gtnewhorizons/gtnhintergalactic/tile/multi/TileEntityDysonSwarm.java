@@ -561,7 +561,10 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             if (isValidMetaTileEntity(bus)) {
                 for (int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                    if (stack != null && stack.getItem() == GSItems.DysonSwarmItems && stack.getItemDamage() == 0) {
+                    if (stack != null
+                            && stack.getItem() == GSItems.DysonSwarmItems
+                            && stack.getItemDamage() == 0
+                            && moduleCount < (GSConfigCore.maxModules + 1)) {
                         moduleCount += stack.stackSize;
                         stack.stackSize = 0;
                     }
@@ -569,10 +572,6 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             }
         }
 
-        eRequiredData = (long) Math.ceil(Math.max(
-                GSConfigCore.computationFactor * Math.pow(moduleCount, GSConfigCore.computationExponent)
-                        - GSConfigCore.baseComputation,
-                0));
         euPerTick = (long) (((long) moduleCount) * GSConfigCore.euPerModule * powerFactor);
 
         if (moduleCount > 0 && depleteInput(GSConfigCore.coolantFluid)) {
@@ -580,7 +579,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             // This has the effect that the player must constantly replace "broken" Modules.
             moduleDestroyer.accept(this);
             mEfficiencyIncrease = 10000;
-            mMaxProgresstime = 20;
+            mMaxProgresstime = 72000;
             return true;
         }
         mEfficiency = 0;
@@ -719,13 +718,10 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         String eu_module = getDecimalFormat().format(GSConfigCore.euPerModule);
-        String destroy_chance = getDecimalFormat().format(GSConfigCore.destroyModuleFactor);
-        String destroy_exponent = getDecimalFormat().format(GSConfigCore.destroyModuleExponent);
+        String a = getDecimalFormat().format(GSConfigCore.destroyModule_a);
         String fluid_amount = getDecimalFormat().format(GSConfigCore.coolantConsumption);
         String fluid_name = GSConfigCore.coolantFluid.getLocalizedName();
-        String a = getDecimalFormat().format(GSConfigCore.computationFactor);
-        String b = getDecimalFormat().format(GSConfigCore.computationExponent);
-        String c = getDecimalFormat().format(GSConfigCore.baseComputation);
+        String base_chance = getDecimalFormat().format(GSConfigCore.destroyModuleBase_chance);
 
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("Dyson Swarm")
@@ -734,12 +730,10 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 .addInfo("Put Dyson Swarm Modules in the Input Bus(ses) to send them to the next star.")
                 .addInfo("Outputs " + eu_module + "*f EU/t, where f is a dimension-dependent factor.")
                 .addInfo("Each second, n of m Dyson Swarm Modules are destroyed according to this formula:")
-                .addInfo(" n=X*" + destroy_chance + "*m^" + destroy_exponent
-                        + ", where X is a normally distributed random number between 0 and 2 with mean 1.")
-                .addInfo("Requires " + fluid_amount + "L/s of " + fluid_name + ".")
-                .addInfo("Requires n computation per tick according to this formula:")
-                .addInfo(" n=" + a + "*m^" + b + "-" + c + ", where m is the amount of modules.")
-                .addInfo(" n is rounded up and never negative.")
+                .addInfo(" Each hour, n of m modules are destroyed according to this formula: n = (2 * " + base_chance
+                        + ") / (exp(-" + a + "* (m - 1))+exp(" + GSConfigCore.destroyModuleBase_chance + " * cps))"
+                        + ", where cps is computation per second.")
+                .addInfo("Requires " + fluid_amount + "L/h of " + fluid_name + ".")
                 .addInfo("R-Click with a Plunger to extract as many Modules to your inventory as possible.")
                 .addInfo("Sneaking will dump the rest on the ground.")
                 .addSeparator()
@@ -765,7 +759,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 .addStructureInfo("Control Center Primary Windings: 20")
                 .addStructureInfo("Control Center Secondary Windings: 12")
                 .addStructureInfo("Control Center Toroid Casing: 128")
-                .addStructureInfo("Ultra High Strenght Concrete Floor: 255")
+                .addStructureInfo("Ultra High Strength Concrete Floor: 255")
                 .addStructureInfo("Awakened Draconium Coil Block: 9")
                 .addStructureInfo("Hermetic Casing X: 1")
                 .addStructureInfo("Titanium Frame Box: 16")
@@ -814,10 +808,6 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         }
     }
 
-    public double calculateOutput() {
-        return ((long) moduleCount) * GSConfigCore.euPerModule * powerFactor;
-    }
-
     private static DecimalFormat getDecimalFormat() {
         return DECIMAL_FORMATTERS.computeIfAbsent(Locale.getDefault(Category.FORMAT), locale -> {
             DecimalFormat format = new DecimalFormat();
@@ -858,14 +848,14 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 e.printStackTrace();
             }
         }
-
         // If the Module Destruction chance is greater than zero is, initialize the method to randomly destroy modules.
         // If the Module Destruction chance is zero or less, always return true.
-        if (GSConfigCore.destroyModuleFactor > 0.0f) {
+        if (GSConfigCore.destroyModule_a > 0.0f) {
             moduleDestroyer = tile -> {
-                tile.moduleCount -= (int) (getRandom()
-                        * GSConfigCore.destroyModuleFactor
-                        * Math.pow(tile.moduleCount, GSConfigCore.destroyModuleExponent));
+                tile.moduleCount -= (2 * GSConfigCore.destroyModuleBase_chance)
+                        / (Math.exp(-GSConfigCore.destroyModule_a * (tile.moduleCount - 1))
+                                + Math.exp(GSConfigCore.destroyModule_b
+                                        * Math.min(tile.eAvailableData, (long) GSConfigCore.destroyModuleMaxCPS)));
 
                 if (tile.moduleCount < 0) {
                     tile.moduleCount = 0;
@@ -877,14 +867,6 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 /*NO-OP*/
             };
         }
-    }
-
-    /**
-     * @return a Gaussian random value between 0.0 and 2.0 with mean 1.0
-     */
-    private static double getRandom() {
-        double d = XSTR.XSTR_INSTANCE.nextGaussian() + 1.0;
-        return d < 0.0 || d > 2.0 ? getRandom() : d;
     }
 
     public static void initClient() {
