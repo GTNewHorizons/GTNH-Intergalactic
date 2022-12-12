@@ -1065,7 +1065,7 @@ public class CraftingRecipes {
                     ItemList.Robot_Arm_HV.get(8),
                     ItemList.Field_Generator_HV.get(2),
                     GT_OreDictUnificator.get("circuitElite", 4),
-                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemMars", 32),
+                    new ItemStack(MarsItems.marsItemBasic, 32, 3),
                     new ItemStack(GCItems.rocketEngine, 4),
                     ItemList.Sensor_HV.get(8)
                 },
@@ -1087,8 +1087,8 @@ public class CraftingRecipes {
                     ItemList.Robot_Arm_EV.get(8),
                     ItemList.Field_Generator_EV.get(2),
                     new Object[] {OrePrefixes.circuit.get(Materials.Master), 4},
-                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 32),
-                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 4, 1),
+                    new ItemStack(AsteroidsItems.basicItem, 32, 0),
+                    new ItemStack(AsteroidsItems.basicItem, 4, 1),
                     ItemList.Sensor_EV.get(8)
                 },
                 new FluidStack[] {
@@ -1113,7 +1113,7 @@ public class CraftingRecipes {
                     ItemList.Field_Generator_IV.get(2),
                     new Object[] {OrePrefixes.circuit.get(Materials.Ultimate), 4},
                     GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier4", 32),
-                    GT_ModHandler.getModItem("GalacticraftMars", "item.itemBasicAsteroids", 4, 1),
+                    new ItemStack(AsteroidsItems.basicItem, 4, 1),
                     ItemList.Sensor_IV.get(8)
                 },
                 new FluidStack[] {
