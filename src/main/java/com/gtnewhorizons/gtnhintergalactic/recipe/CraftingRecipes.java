@@ -1,6 +1,7 @@
 package galaxyspace.core.recipe;
 
 import static gregtech.api.enums.GT_Values.RA;
+import static gregtech.api.enums.GT_Values.VP;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 import com.github.bartimaeusnek.bartworks.common.loaders.ItemRegistry;
@@ -15,6 +16,7 @@ import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
 import galaxyspace.core.register.GSMaterials;
 import galaxyspace.core.tile.machine.multi.elevator.projects.miner.SpaceMiningAsteroidDefinitions;
+import goodgenerator.items.MyMaterial;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -948,6 +950,28 @@ public class CraftingRecipes {
                 GSItems.SpaceElevatorModuleHatch_PumpT1,
                 6000,
                 8000000);
+
+        // Pump Module MK-II
+        TT_recipeAdder.addResearchableAssemblylineRecipe(
+                GSItems.SpaceElevatorModuleHatch_PumpT1,
+                33554432,
+                8192,
+                64000000,
+                4,
+                new Object[] {
+                    ItemList.OilDrillInfinite.get(4),
+                    GT_Utility.copyAmount(4, GSItems.PlanetarySiphonController),
+                    CustomItemList.enderLinkFluidCover.get(8),
+                    GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SpaceTime, 4),
+                    new Object[] {OrePrefixes.circuit.get(Materials.Nano), 16},
+                    ItemList.Electric_Pump_UIV.get(8),
+                    GT_OreDictUnificator.get(OrePrefixes.gearGt, Materials.SpaceTime, 4),
+                    MyMaterial.metastableOganesson.get(OrePrefixes.screw, 64),
+                },
+                new FluidStack[] {new FluidStack(solderUEV, 4608), Materials.TranscendentMetal.getMolten(2304)},
+                GSItems.SpaceElevatorModuleHatch_PumpT2,
+                600 * 20,
+                (int) VP[11]);
 
         // Miner Module MK-I
         TT_recipeAdder.addResearchableAssemblylineRecipe(
