@@ -963,7 +963,7 @@ public class CraftingRecipes {
                     GT_Utility.copyAmount(4, GSItems.PlanetarySiphonController),
                     CustomItemList.enderLinkFluidCover.get(8),
                     GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SpaceTime, 4),
-                    new Object[] {OrePrefixes.circuit.get(Materials.Nano), 16},
+                    new Object[] {OrePrefixes.circuit.get(Materials.Optical), 16},
                     ItemList.Electric_Pump_UIV.get(8),
                     GT_OreDictUnificator.get(OrePrefixes.gearGt, Materials.SpaceTime, 4),
                     MyMaterial.metastableOganesson.get(OrePrefixes.screw, 64),
@@ -1260,7 +1260,7 @@ public class CraftingRecipes {
                     GT_OreDictUnificator.get(OrePrefixes.toolHeadDrill, Materials.CosmicNeutronium, 8),
                     ItemList.Robot_Arm_UEV.get(8),
                     ItemList.Field_Generator_UEV.get(2),
-                    new Object[] {OrePrefixes.circuit.get(Materials.Nano), 4},
+                    new Object[] {OrePrefixes.circuit.get(Materials.Optical), 4},
                     GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier8", 64),
                     GT_ModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier4", 8),
                     ItemList.Sensor_UEV.get(8)
