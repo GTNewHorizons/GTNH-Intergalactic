@@ -728,6 +728,21 @@ public class CraftingRecipes {
                 600 * 20,
                 (int) VP[11]);
 
+        // Pump Module MK-II - Assembler alt
+        RA.addAssemblerRecipe(
+                new ItemStack[] { GT_Utility.copyAmount(4, GSItems.SpaceElevatorModuleHatch_PumpT1),
+                        GT_OreDictUnificator.get(OrePrefixes.frameGt, Materials.SpaceTime, 8),
+                        GT_OreDictUnificator.get(OrePrefixes.circuit, Materials.Optical, 16),
+                        ItemList.Electric_Pump_UIV.get(8),
+                        GT_OreDictUnificator.get(OrePrefixes.gearGt, Materials.SpaceTime, 8),
+                        MyMaterial.metastableOganesson.get(OrePrefixes.screw, 64),
+                        GT_OreDictUnificator.get(OrePrefixes.plateDouble, Materials.TranscendentMetal, 16), },
+                new FluidStack(solderUEV, 4608),
+                GSItems.SpaceElevatorModuleHatch_PumpT2,
+                1200 * 20,
+                (int) VP[11],
+                false);
+
         // Miner Module MK-I
         TT_recipeAdder.addResearchableAssemblylineRecipe(
                 ItemRegistry.voidminer[2],
