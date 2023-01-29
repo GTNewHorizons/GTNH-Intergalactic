@@ -2,11 +2,29 @@ package galaxyspace.core.tile.machine.multi;
 
 import static net.minecraft.util.EnumChatFormatting.*;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Locale.Category;
+import java.util.Map;
+import java.util.function.Consumer;
+
+import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
+
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.WorldProvider;
+
 import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.github.technus.tectech.thing.metaTileEntity.multi.base.GT_MetaTileEntity_MultiblockBase_EM;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
+
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.config.GSConfigCore;
 import galaxyspace.core.register.GSBlocks;
@@ -28,20 +46,6 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_StructureUtility;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Locale.Category;
-import java.util.Map;
-import java.util.function.Consumer;
-import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.WorldProvider;
 
 public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBase_EM {
 
@@ -59,448 +63,171 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     private static final int CASING_INDEX_COMMAND = 151;
     private static final int CASING_INDEX_LAUNCH = 152;
     private static final int CASING_INDEX_FLOOR = 153;
-    private static final IStructureDefinition<TileEntityDysonSwarm> STRUCTURE_DEFINITION =
-            StructureDefinition.<TileEntityDysonSwarm>builder()
-                    .addShape(STRUCTURE_PIECE_MAIN, StructureUtility.transpose(new String[][] {
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "         ---    ",
-                            "  ttt           ",
-                            "  ttt        k  ",
-                            "  ttt       k k ",
-                            "             k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "  ttt    ---    ",
-                            " ttttt          ",
-                            " ttttt       k  ",
-                            " ttttt      k k ",
-                            "  ttt        k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "  ttt    ---    ",
-                            " ttttt          ",
-                            " ttttt       k  ",
-                            " ttttt      k k ",
-                            "  ttt        k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "  ttt    ---    ",
-                            " ttttt          ",
-                            " ttttt       k  ",
-                            " ttttt      k k ",
-                            "  ttt        k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "         ---    ",
-                            "  ttt           ",
-                            "  tst        k  ",
-                            "  ttt       k k ",
-                            "             k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----------",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "         ---    ",
-                            "                ",
-                            "   s         k  ",
-                            "            k k ",
-                            "             k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----h-----",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "  ttt    ---    ",
-                            " t g t          ",
-                            " tgsgt       k  ",
-                            " t g t      k k ",
-                            "  ttt        k  ",
-                            "                "
-                        },
-                        {
-                            "         ---    ",
-                            "        -----   ",
-                            "       -------  ",
-                            "      --------- ",
-                            "     -----------",
-                            "     -----f-----",
-                            "     -----------",
-                            "      --------- ",
-                            "       -------  ",
-                            "        -----   ",
-                            "         ---    ",
-                            "                ",
-                            "   s         k  ",
-                            "            k k ",
-                            "             k  ",
-                            "                "
-                        },
-                        {
-                            "         ddd    ",
-                            "        d---d   ",
-                            "       d-----d  ",
-                            "      d-------d ",
-                            "     d---------d",
-                            "     d----f----d",
-                            "     d---------d",
-                            "      d-------d ",
-                            "       d-----d  ",
-                            "        d---d   ",
-                            "  ttt    ddd    ",
-                            " t g t          ",
-                            " tgsgt      kmk ",
-                            " t g t      m m ",
-                            "  ttt       kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "         ddd    ",
-                            "        ddddd   ",
-                            "       dd---dd  ",
-                            "      dd-----dd ",
-                            "      dd--f--dd ",
-                            "      dd-----dd ",
-                            "       dd---dd  ",
-                            "        ddddd   ",
-                            "         ddd    ",
-                            "                ",
-                            "                ",
-                            "   s        kmk ",
-                            "            m m ",
-                            "            kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         ddd    ",
-                            "        ddddd   ",
-                            "        ddddd   ",
-                            "        ddddd   ",
-                            "         ddd    ",
-                            "                ",
-                            "                ",
-                            "  ttt           ",
-                            " t g t          ",
-                            " tgsgt      kmk ",
-                            " t g t      m m ",
-                            "  ttt       kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "   s        kmk ",
-                            "            m m ",
-                            "            kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "  ttt           ",
-                            " t g t          ",
-                            " tgsgt      kmk ",
-                            " t g t      m m ",
-                            "  ttt       kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "   s        kmk ",
-                            "            m m ",
-                            "            kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "   s        kmk ",
-                            "            m m ",
-                            "            kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "         f f    ",
-                            "                ",
-                            "                ",
-                            "                ",
-                            "  ppp           ",
-                            " p   p          ",
-                            " p s p      kmk ",
-                            " p   p      m m ",
-                            "  ppp       kmk ",
-                            "                "
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "                ",
-                            "yyyyyyy         ",
-                            "yyyyyyy         ",
-                            "yypppyy    zzzzz",
-                            "yypypyy    zzzzz",
-                            "yypppyy    zzjzz",
-                            "yyyyyyy    zzzzz",
-                            "yyyyyyy    zzzzz"
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "        xeeex   ",
-                            "        eccce   ",
-                            "        eccce   ",
-                            "        eccce   ",
-                            "        xeeex   ",
-                            "                ",
-                            "ooooooo         ",
-                            "oyyyyyo         ",
-                            "oyyyyyo    ziiiz",
-                            "oyyyyyo    izzzi",
-                            "oyyyyyo    izzzi",
-                            "oyyyyyo    izzzi",
-                            "ooooooo    ziiiz"
-                        },
-                        {
-                            "                ",
-                            "                ",
-                            "                ",
-                            "        xx~xx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "        xxxxx   ",
-                            "                ",
-                            "yyyyyyy         ",
-                            "yyyyyyy         ",
-                            "yyyyyyy    zzzzz",
-                            "yyyyyyy    zzzzz",
-                            "yyyyyyy    zzzzz",
-                            "yyyyyyy    zzzzz",
-                            "yyyyyyy    zzzzz"
-                        },
-                        {
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbnbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb",
-                            "bbbbbbbbbbbbbbbb"
-                        }
-                    }))
-                    .addElement(
-                            'b',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks,
-                                    9)) // Dyson Swarm Ground Unit Ultra High Strenght Concrete Floor
-                    .addElement(
-                            'c',
-                            StructureUtility.ofBlock(GregTech_API.sBlockCasings5, 8)) // Awakened Draconium Coil Block
-                    .addElement(
-                            'd',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 1)) // Dyson Swarm Energy Receiver Dish Block
-                    .addElement(
-                            'e',
-                            StructureUtility.ofChain(
-                                    GT_StructureUtility.ofHatchAdder(
-                                            TileEntityDysonSwarm::addDynamoToMachineList, CASING_INDEX_RECEIVER, 1),
-                                    StructureUtility.ofBlock(
-                                            GSBlocks.DysonSwarmBlocks, 0))) // Dyson Swarm Energy Receiver Base Casing
-                    .addElement('f', GT_StructureUtility.ofFrame(Materials.HSSS))
-                    .addElement('g', GT_StructureUtility.ofFrame(Materials.Titanium))
-                    .addElement('h', StructureUtility.ofBlock(GregTech_API.sBlockCasings6, 10)) // Hermetic Casing X
-                    .addElement(
-                            'i',
-                            StructureUtility.ofChain(
-                                    GT_StructureUtility.ofHatchAdder(
-                                            TileEntityDysonSwarm::addClassicInputToMachineList, CASING_INDEX_LAUNCH, 2),
-                                    StructureUtility.ofBlock(
-                                            GSBlocks.DysonSwarmBlocks,
-                                            2))) // Dyson Swarm Module Deployment Unit Base Casing
-                    .addElement(
-                            'j',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 3)) // Dyson Swarm Module Deployment Unit Core
-                    .addElement('k', GT_StructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
-                    .addElement(
-                            'm',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks,
-                                    4)) // Dyson Swarm Module Deployment Unit Superconducting Magnet
-                    .addElement(
-                            'n',
+    private static final IStructureDefinition<TileEntityDysonSwarm> STRUCTURE_DEFINITION = StructureDefinition
+            .<TileEntityDysonSwarm>builder()
+            .addShape(
+                    STRUCTURE_PIECE_MAIN,
+                    StructureUtility.transpose(
+                            new String[][] {
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "         ---    ", "  ttt           ", "  ttt        k  ",
+                                            "  ttt       k k ", "             k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "  ttt    ---    ", " ttttt          ", " ttttt       k  ",
+                                            " ttttt      k k ", "  ttt        k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "  ttt    ---    ", " ttttt          ", " ttttt       k  ",
+                                            " ttttt      k k ", "  ttt        k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "  ttt    ---    ", " ttttt          ", " ttttt       k  ",
+                                            " ttttt      k k ", "  ttt        k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "         ---    ", "  ttt           ", "  tst        k  ",
+                                            "  ttt       k k ", "             k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----------", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "         ---    ", "                ", "   s         k  ",
+                                            "            k k ", "             k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----h-----", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "  ttt    ---    ", " t g t          ", " tgsgt       k  ",
+                                            " t g t      k k ", "  ttt        k  ", "                " },
+                                    { "         ---    ", "        -----   ", "       -------  ", "      --------- ",
+                                            "     -----------", "     -----f-----", "     -----------",
+                                            "      --------- ", "       -------  ", "        -----   ",
+                                            "         ---    ", "                ", "   s         k  ",
+                                            "            k k ", "             k  ", "                " },
+                                    { "         ddd    ", "        d---d   ", "       d-----d  ", "      d-------d ",
+                                            "     d---------d", "     d----f----d", "     d---------d",
+                                            "      d-------d ", "       d-----d  ", "        d---d   ",
+                                            "  ttt    ddd    ", " t g t          ", " tgsgt      kmk ",
+                                            " t g t      m m ", "  ttt       kmk ", "                " },
+                                    { "                ", "         ddd    ", "        ddddd   ", "       dd---dd  ",
+                                            "      dd-----dd ", "      dd--f--dd ", "      dd-----dd ",
+                                            "       dd---dd  ", "        ddddd   ", "         ddd    ",
+                                            "                ", "                ", "   s        kmk ",
+                                            "            m m ", "            kmk ", "                " },
+                                    { "                ", "                ", "                ", "         ddd    ",
+                                            "        ddddd   ", "        ddddd   ", "        ddddd   ",
+                                            "         ddd    ", "                ", "                ",
+                                            "  ttt           ", " t g t          ", " tgsgt      kmk ",
+                                            " t g t      m m ", "  ttt       kmk ", "                " },
+                                    { "                ", "                ", "                ", "                ",
+                                            "         f f    ", "                ", "         f f    ",
+                                            "                ", "                ", "                ",
+                                            "                ", "                ", "   s        kmk ",
+                                            "            m m ", "            kmk ", "                " },
+                                    { "                ", "                ", "                ", "                ",
+                                            "         f f    ", "                ", "         f f    ",
+                                            "                ", "                ", "                ",
+                                            "  ttt           ", " t g t          ", " tgsgt      kmk ",
+                                            " t g t      m m ", "  ttt       kmk ", "                " },
+                                    { "                ", "                ", "                ", "                ",
+                                            "         f f    ", "                ", "         f f    ",
+                                            "                ", "                ", "                ",
+                                            "                ", "                ", "   s        kmk ",
+                                            "            m m ", "            kmk ", "                " },
+                                    { "                ", "                ", "                ", "                ",
+                                            "         f f    ", "                ", "         f f    ",
+                                            "                ", "                ", "                ",
+                                            "                ", "                ", "   s        kmk ",
+                                            "            m m ", "            kmk ", "                " },
+                                    { "                ", "                ", "                ", "                ",
+                                            "         f f    ", "                ", "         f f    ",
+                                            "                ", "                ", "                ",
+                                            "  ppp           ", " p   p          ", " p s p      kmk ",
+                                            " p   p      m m ", "  ppp       kmk ", "                " },
+                                    { "                ", "                ", "                ", "        xxxxx   ",
+                                            "        xxxxx   ", "        xxxxx   ", "        xxxxx   ",
+                                            "        xxxxx   ", "                ", "yyyyyyy         ",
+                                            "yyyyyyy         ", "yypppyy    zzzzz", "yypypyy    zzzzz",
+                                            "yypppyy    zzjzz", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz" },
+                                    { "                ", "                ", "                ", "        xeeex   ",
+                                            "        eccce   ", "        eccce   ", "        eccce   ",
+                                            "        xeeex   ", "                ", "ooooooo         ",
+                                            "oyyyyyo         ", "oyyyyyo    ziiiz", "oyyyyyo    izzzi",
+                                            "oyyyyyo    izzzi", "oyyyyyo    izzzi", "ooooooo    ziiiz" },
+                                    { "                ", "                ", "                ", "        xx~xx   ",
+                                            "        xxxxx   ", "        xxxxx   ", "        xxxxx   ",
+                                            "        xxxxx   ", "                ", "yyyyyyy         ",
+                                            "yyyyyyy         ", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz",
+                                            "yyyyyyy    zzzzz", "yyyyyyy    zzzzz", "yyyyyyy    zzzzz" },
+                                    { "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
+                                            "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
+                                            "bbbbbbbbbbbbbbbb", "bbbbbbbnbbbbbbbb", "bbbbbbbbbbbbbbbb",
+                                            "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
+                                            "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb" } }))
+            .addElement('b', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 9)) // Dyson Swarm Ground Unit Ultra
+                                                                                     // High Strenght Concrete Floor
+            .addElement('c', StructureUtility.ofBlock(GregTech_API.sBlockCasings5, 8)) // Awakened Draconium Coil Block
+            .addElement('d', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 1)) // Dyson Swarm Energy Receiver Dish
+                                                                                     // Block
+            .addElement(
+                    'e',
+                    StructureUtility.ofChain(
                             GT_StructureUtility.ofHatchAdder(
-                                    TileEntityDysonSwarm::addClassicMaintenanceToMachineList, CASING_INDEX_FLOOR, 3))
-                    .addElement(
-                            'o',
-                            StructureUtility.ofChain(
-                                    GT_StructureUtility.ofHatchAdder(
-                                            TileEntityDysonSwarm::addDataConnectorToMachineList,
-                                            CASING_INDEX_COMMAND,
-                                            4),
-                                    StructureUtility.ofBlock(
-                                            GSBlocks.DysonSwarmBlocks, 5))) // Dyson Swarm Command Center Base Casing
-                    .addElement(
-                            'p',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 6)) // Dyson Swarm Command Center Primary Windings
-                    .addElement(
-                            's',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 7)) // Dyson Swarm Command Center Secondary Windings
-                    .addElement(
-                            't',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 8)) // Dyson Swarm Command Center Toroid Casing
-                    .addElement(
-                            'x',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 0)) // Dyson Swarm Energy Receiver Base Casing
-                    .addElement(
-                            'y',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 5)) // Dyson Swarm Command Center Base Casing
-                    .addElement(
-                            'z',
-                            StructureUtility.ofBlock(
-                                    GSBlocks.DysonSwarmBlocks, 2)) // Dyson Swarm Module Deployment Unit Base Casing
-                    .build();
+                                    TileEntityDysonSwarm::addDynamoToMachineList,
+                                    CASING_INDEX_RECEIVER,
+                                    1),
+                            StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0))) // Dyson Swarm Energy Receiver Base
+                                                                                     // Casing
+            .addElement('f', GT_StructureUtility.ofFrame(Materials.HSSS))
+            .addElement('g', GT_StructureUtility.ofFrame(Materials.Titanium))
+            .addElement('h', StructureUtility.ofBlock(GregTech_API.sBlockCasings6, 10)) // Hermetic Casing X
+            .addElement(
+                    'i',
+                    StructureUtility.ofChain(
+                            GT_StructureUtility.ofHatchAdder(
+                                    TileEntityDysonSwarm::addClassicInputToMachineList,
+                                    CASING_INDEX_LAUNCH,
+                                    2),
+                            StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2))) // Dyson Swarm Module Deployment
+                                                                                     // Unit Base Casing
+            .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 3)) // Dyson Swarm Module Deployment
+                                                                                     // Unit Core
+            .addElement('k', GT_StructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
+            .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 4)) // Dyson Swarm Module Deployment
+                                                                                     // Unit Superconducting Magnet
+            .addElement(
+                    'n',
+                    GT_StructureUtility.ofHatchAdder(
+                            TileEntityDysonSwarm::addClassicMaintenanceToMachineList,
+                            CASING_INDEX_FLOOR,
+                            3))
+            .addElement(
+                    'o',
+                    StructureUtility.ofChain(
+                            GT_StructureUtility.ofHatchAdder(
+                                    TileEntityDysonSwarm::addDataConnectorToMachineList,
+                                    CASING_INDEX_COMMAND,
+                                    4),
+                            StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5))) // Dyson Swarm Command Center Base
+                                                                                     // Casing
+            .addElement('p', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 6)) // Dyson Swarm Command Center
+                                                                                     // Primary Windings
+            .addElement('s', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 7)) // Dyson Swarm Command Center
+                                                                                     // Secondary Windings
+            .addElement('t', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 8)) // Dyson Swarm Command Center
+                                                                                     // Toroid Casing
+            .addElement('x', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0)) // Dyson Swarm Energy Receiver Base
+                                                                                     // Casing
+            .addElement('y', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5)) // Dyson Swarm Command Center Base
+                                                                                     // Casing
+            .addElement('z', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2)) // Dyson Swarm Module Deployment
+                                                                                     // Unit Base Casing
+            .build();
 
     private long euPerTick = 0;
     private double powerFactor = 0.0;
@@ -539,8 +266,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     public boolean checkMachine_EM(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        return structureCheck_EM(STRUCTURE_PIECE_MAIN, 10, 18, 3)
-                && mMaintenanceHatches.size() == 1
+        return structureCheck_EM(STRUCTURE_PIECE_MAIN, 10, 18, 3) && mMaintenanceHatches.size() == 1
                 && mInputBusses.size() > 0
                 && mInputHatches.size() > 0
                 && eInputData.size() > 0
@@ -561,8 +287,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             if (isValidMetaTileEntity(bus)) {
                 for (int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                     ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                    if (stack != null
-                            && stack.getItem() == GSItems.DysonSwarmItems
+                    if (stack != null && stack.getItem() == GSItems.DysonSwarmItems
                             && stack.getItemDamage() == 0
                             && moduleCount < (GSConfigCore.maxModules + 1)) {
                         moduleCount += stack.stackSize;
@@ -647,13 +372,12 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     @Override
-    public boolean onRightclick(
-            IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, byte aSide, float aX, float aY, float aZ) {
+    public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, byte aSide, float aX,
+            float aY, float aZ) {
         ItemStack heldItem = aPlayer.getHeldItem();
 
         // Check if the player is holding a plunger
-        if (heldItem == null
-                || heldItem.getItem() != GT_MetaGenerated_Tool_01.INSTANCE
+        if (heldItem == null || heldItem.getItem() != GT_MetaGenerated_Tool_01.INSTANCE
                 || heldItem.getItemDamage() != GT_MetaGenerated_Tool_01.PLUNGER) {
             return super.onRightclick(aBaseMetaTileEntity, aPlayer);
         }
@@ -689,30 +413,17 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
      * CLIENT STUFF *
      ****************/
     @Override
-    public ITexture[] getTexture(
-            IGregTechTileEntity aBaseMetaTileEntity,
-            byte aSide,
-            byte aFacing,
-            byte aColorIndex,
-            boolean aActive,
-            boolean aRedstone) {
+    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex,
+            boolean aActive, boolean aRedstone) {
         if (aSide == aFacing) {
-            if (aActive)
-                return new ITexture[] {
-                    BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER),
+            if (aActive) return new ITexture[] { BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER),
                     TextureFactory.of(OVERLAY_FRONT_ACTIVE),
-                    TextureFactory.builder()
-                            .addIcon(OVERLAY_FRONT_ACTIVE_GLOW)
-                            .glow()
-                            .build()
-                };
-            return new ITexture[] {
-                BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER),
-                TextureFactory.of(OVERLAY_FRONT),
-                TextureFactory.builder().addIcon(OVERLAY_FRONT_GLOW).glow().build()
-            };
+                    TextureFactory.builder().addIcon(OVERLAY_FRONT_ACTIVE_GLOW).glow().build() };
+            return new ITexture[] { BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER),
+                    TextureFactory.of(OVERLAY_FRONT),
+                    TextureFactory.builder().addIcon(OVERLAY_FRONT_GLOW).glow().build() };
         }
-        return new ITexture[] {BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER)};
+        return new ITexture[] { BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER) };
     }
 
     @Override
@@ -724,29 +435,30 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         String base_chance = getDecimalFormat().format(GSConfigCore.destroyModuleBase_chance);
 
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("Dyson Swarm")
-                .addInfo(ITALIC + LORE_TOOLTIP)
+        tt.addMachineType("Dyson Swarm").addInfo(ITALIC + LORE_TOOLTIP)
                 .addInfo("Controller Block for the Dyson Swarm Command Center")
                 .addInfo("Put Dyson Swarm Modules in the Input Bus(ses) to send them to the next star.")
                 .addInfo("Outputs " + eu_module + "*f EU/t, where f is a dimension-dependent factor.")
                 .addInfo("Each second, n of m Dyson Swarm Modules are destroyed according to this formula:")
-                .addInfo(" Each hour, n of m modules are destroyed according to this formula: n = (2 * " + base_chance
-                        + ") / (exp(-" + a + "* (m - 1))+exp(" + GSConfigCore.destroyModuleBase_chance + " * cps))"
-                        + ", where cps is computation per second.")
+                .addInfo(
+                        " Each hour, n of m modules are destroyed according to this formula: n = (2 * " + base_chance
+                                + ") / (exp(-"
+                                + a
+                                + "* (m - 1))+exp("
+                                + GSConfigCore.destroyModuleBase_chance
+                                + " * cps))"
+                                + ", where cps is computation per second.")
                 .addInfo("Requires " + fluid_amount + "L/h of " + fluid_name + ".")
                 .addInfo("R-Click with a Plunger to extract as many Modules to your inventory as possible.")
-                .addInfo("Sneaking will dump the rest on the ground.")
-                .addSeparator()
+                .addInfo("Sneaking will dump the rest on the ground.").addSeparator()
                 .beginStructureBlock(16, 20, 16, false)
-                .addStructureInfo(ITALIC
-                        + "This structure is too complex to describe, use the Multiblock Structure Hologram Projector!")
+                .addStructureInfo(
+                        ITALIC + "This structure is too complex to describe, use the Multiblock Structure Hologram Projector!")
                 .addDynamoHatch(
-                        "Can use Single- and/or Multi-Amp Dynamo Hatches and/or Laser Source Hatches (1 - 12)", 1)
-                .addMaintenanceHatch("1", 3)
-                .addInputBus("1 - 11", 2)
-                .addInputHatch("1 - 11", 2)
-                .addOtherStructurePart("Optical Slave Connector", "1 - 24", 4)
-                .addStructureInfo("")
+                        "Can use Single- and/or Multi-Amp Dynamo Hatches and/or Laser Source Hatches (1 - 12)",
+                        1)
+                .addMaintenanceHatch("1", 3).addInputBus("1 - 11", 2).addInputHatch("1 - 11", 2)
+                .addOtherStructurePart("Optical Slave Connector", "1 - 24", 4).addStructureInfo("")
                 .addStructureInfo(ITALIC + "Additionally needed:")
                 .addStructureInfo("Energy Receiver Base Casing: 53 - 64 (depending on the amount of Dynamo Hatches)")
                 .addStructureInfo("Energy Receiver Dish Block: 81")
@@ -760,10 +472,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 .addStructureInfo("Control Center Secondary Windings: 12")
                 .addStructureInfo("Control Center Toroid Casing: 128")
                 .addStructureInfo("Ultra High Strength Concrete Floor: 255")
-                .addStructureInfo("Awakened Draconium Coil Block: 9")
-                .addStructureInfo("Hermetic Casing X: 1")
-                .addStructureInfo("Titanium Frame Box: 16")
-                .addStructureInfo("HSS-S Frame Box: 23")
+                .addStructureInfo("Awakened Draconium Coil Block: 9").addStructureInfo("Hermetic Casing X: 1")
+                .addStructureInfo("Titanium Frame Box: 16").addStructureInfo("HSS-S Frame Box: 23")
                 .addStructureInfo("Superconductor Base UHV Frame Box: 64")
                 .toolTipFinisher(DARK_PURPLE + GalaxySpace.NAME);
         return tt;
@@ -771,22 +481,21 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     public String[] getInfoData() {
-        return new String[] {
-            LIGHT_PURPLE + "Operational Data:" + RESET,
-            "Modules: " + YELLOW + GT_Utility.formatNumbers(moduleCount) + RESET,
-            "Power Factor: " + (powerFactor < 1.0f ? RED : GREEN) + GT_Utility.formatNumbers(powerFactor * 100.0) + "%"
-                    + RESET,
-            "Theoretical Output: " + YELLOW
-                    + GT_Utility.formatNumbers(((long) moduleCount * GSConfigCore.euPerModule * powerFactor)) + RESET
-                    + " EU/t",
-            "Current Output: " + YELLOW + GT_Utility.formatNumbers(euPerTick) + RESET + " EU/t",
-            "Computation required: " + YELLOW + GT_Utility.formatNumbers(eRequiredData) + RESET + "/t",
-            "Maintenance Status: "
-                    + (getRepairStatus() == getIdealStatus()
-                            ? GREEN + "Working perfectly" + RESET
-                            : RED + "Has problems" + RESET),
-            "---------------------------------------------"
-        };
+        return new String[] { LIGHT_PURPLE + "Operational Data:" + RESET,
+                "Modules: " + YELLOW + GT_Utility.formatNumbers(moduleCount) + RESET,
+                "Power Factor: " + (powerFactor < 1.0f ? RED : GREEN)
+                        + GT_Utility.formatNumbers(powerFactor * 100.0)
+                        + "%"
+                        + RESET,
+                "Theoretical Output: " + YELLOW
+                        + GT_Utility.formatNumbers(((long) moduleCount * GSConfigCore.euPerModule * powerFactor))
+                        + RESET
+                        + " EU/t",
+                "Current Output: " + YELLOW + GT_Utility.formatNumbers(euPerTick) + RESET + " EU/t",
+                "Computation required: " + YELLOW + GT_Utility.formatNumbers(eRequiredData) + RESET + "/t",
+                "Maintenance Status: " + (getRepairStatus() == getIdealStatus() ? GREEN + "Working perfectly" + RESET
+                        : RED + "Has problems" + RESET),
+                "---------------------------------------------" };
     }
 
     /******************
@@ -796,7 +505,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         WorldProvider provider = this.getBaseMetaTileEntity().getWorld().provider;
         if (provider instanceof IOrbitDimension) {
             return powerFactors.getOrDefault(
-                    "SS_" + ((IOrbitDimension) provider).getPlanetToOrbit(), GSConfigCore.powerFactorDefault);
+                    "SS_" + ((IOrbitDimension) provider).getPlanetToOrbit(),
+                    GSConfigCore.powerFactorDefault);
         } else if (provider.getClass().getName().equals("zarkov.utilityworlds.UW_WorldProviderGarden")) {
             return powerFactors.getOrDefault("UW_Garden", GSConfigCore.powerFactorDefault);
         } else if (provider.getClass().getName().equals("zarkov.utilityworlds.UW_WorldProviderMining")) {
@@ -834,8 +544,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     public static void initCommon() {
-        GSItems.DysonSwarmController =
-                new TileEntityDysonSwarm(14001, "DysonSwarm", "Dyson Swarm Ground Unit").getStackForm(1);
+        GSItems.DysonSwarmController = new TileEntityDysonSwarm(14001, "DysonSwarm", "Dyson Swarm Ground Unit")
+                .getStackForm(1);
         powerFactors = new HashMap<>();
 
         // parse the powerFactors config entry from String[] to Map<String, Double>
@@ -853,8 +563,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         if (GSConfigCore.destroyModule_a > 0.0f) {
             moduleDestroyer = tile -> {
                 tile.moduleCount -= (2 * GSConfigCore.destroyModuleBase_chance)
-                        / (Math.exp(-GSConfigCore.destroyModule_a * (tile.moduleCount - 1))
-                                + Math.exp(GSConfigCore.destroyModule_b
+                        / (Math.exp(-GSConfigCore.destroyModule_a * (tile.moduleCount - 1)) + Math.exp(
+                                GSConfigCore.destroyModule_b
                                         * Math.min(tile.eAvailableData, (long) GSConfigCore.destroyModuleMaxCPS)));
 
                 if (tile.moduleCount < 0) {
@@ -864,7 +574,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
         } else {
             moduleDestroyer = tile -> {
-                /*NO-OP*/
+                /* NO-OP */
             };
         }
     }
@@ -882,13 +592,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     static {
-        String[] possibleLore = new String[] {
-            "Wait, this isn't an army of vacuum cleaners?",
-            "Number 9? Not quite.",
-            "Not the game.",
-            "Basically solar panels.",
-            "Invented by a free man."
-        };
+        String[] possibleLore = new String[] { "Wait, this isn't an army of vacuum cleaners?", "Number 9? Not quite.",
+                "Not the game.", "Basically solar panels.", "Invented by a free man." };
         LORE_TOOLTIP = possibleLore[XSTR.XSTR_INSTANCE.nextInt(possibleLore.length)];
     }
 }

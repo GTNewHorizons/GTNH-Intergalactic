@@ -1,11 +1,13 @@
 package galaxyspace.core.item.block;
 
-import galaxyspace.core.block.BlockDysonSwarmPart;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import galaxyspace.core.block.BlockDysonSwarmPart;
 
 public class ItemBlockDysonSwarmPart extends ItemBlock {
 
@@ -19,7 +21,7 @@ public class ItemBlockDysonSwarmPart extends ItemBlock {
         return "tile.DysonSwarm" + BlockDysonSwarmPart.names[stack.getItemDamage() % BlockDysonSwarmPart.names.length];
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean f3_h) {
         if (stack.getItemDamage() == 9) {

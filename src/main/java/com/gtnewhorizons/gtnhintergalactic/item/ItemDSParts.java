@@ -1,23 +1,19 @@
 package galaxyspace.core.item;
 
-import galaxyspace.GalaxySpace;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import galaxyspace.GalaxySpace;
+
 public class ItemDSParts extends Item {
 
-    private static final String[] names = new String[] {
-        "dysonSwarmModule",
-        "TaHfCNanofibers",
-        "NtNanofibers",
-        "UHTResistantMesh",
-        "TaHfNanoparticles",
-        "NtNanoparticles"
-    };
+    private static final String[] names = new String[] { "dysonSwarmModule", "TaHfCNanofibers", "NtNanofibers",
+            "UHTResistantMesh", "TaHfNanoparticles", "NtNanoparticles" };
     private static final IIcon[] icons = new IIcon[names.length];
 
     public ItemDSParts() {
@@ -31,7 +27,7 @@ public class ItemDSParts extends Item {
         return icons[meta % icons.length];
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List variants) {
         for (int i = 0; i < names.length; i++) {

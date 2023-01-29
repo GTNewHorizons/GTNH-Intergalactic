@@ -1,11 +1,13 @@
 package galaxyspace.core.block;
 
-import galaxyspace.GalaxySpace;
-import gregtech.api.GregTech_API;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
+
+import galaxyspace.GalaxySpace;
+import gregtech.api.GregTech_API;
 
 public class BlockMachineFrames extends Block implements ITerraformableBlock {
 

@@ -1,7 +1,7 @@
 package galaxyspace.core.block;
 
-import galaxyspace.GalaxySpace;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,21 +13,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import galaxyspace.GalaxySpace;
+
 public class BlockDysonSwarmPart extends Block {
 
     private IIcon[][] textures;
-    public static final String[] names = new String[] {
-        "ReceiverCasing",
-        "ReceiverDish",
-        "DeploymentUnitCasing",
-        "DeploymentUnitCore",
-        "DeploymentUnitMagnet",
-        "ControlCasing",
-        "ControlPrimary",
-        "ControlSecondary",
-        "ControlToroid",
-        "Floor"
-    };
+    public static final String[] names = new String[] { "ReceiverCasing", "ReceiverDish", "DeploymentUnitCasing",
+            "DeploymentUnitCore", "DeploymentUnitMagnet", "ControlCasing", "ControlPrimary", "ControlSecondary",
+            "ControlToroid", "Floor" };
 
     public BlockDysonSwarmPart() {
         super(Material.iron);
@@ -58,8 +51,8 @@ public class BlockDysonSwarmPart extends Block {
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
+            double explosionY, double explosionZ) {
         if (world.getBlockMetadata(x, y, z) == 9) {
             return 1500.0f;
         }
@@ -67,8 +60,8 @@ public class BlockDysonSwarmPart extends Block {
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity entity) { // this *should* not be called, but mods like WAWLA do it anyways. Since differentiating
+    public float getExplosionResistance(Entity entity) { // this *should* not be called, but mods like WAWLA do it
+                                                         // anyways. Since differentiating
         // between
         return 6.0f; // different meta values is not possible, we only return "the norm" and not "the exception" (meta
         // == 9)
