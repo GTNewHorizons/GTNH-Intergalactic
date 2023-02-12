@@ -290,8 +290,9 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                     if (stack != null && stack.getItem() == GSItems.DysonSwarmItems
                             && stack.getItemDamage() == 0
                             && moduleCount < (GSConfigCore.maxModules + 1)) {
-                        moduleCount += stack.stackSize;
-                        stack.stackSize = 0;
+                        int usedStackSize = Math.min(stack.stackSize, GSConfigCore.maxModules - moduleCount);
+                        moduleCount += usedStackSize;
+                        stack.stackSize -= usedStackSize;
                     }
                 }
             }
