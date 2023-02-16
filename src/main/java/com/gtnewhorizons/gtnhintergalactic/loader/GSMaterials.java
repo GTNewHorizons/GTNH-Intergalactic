@@ -6,7 +6,6 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff.Stats;
 import com.github.bartimaeusnek.bartworks.system.material.Werkstoff.Types;
 import com.github.bartimaeusnek.bartworks.util.BW_Util;
 
-import gregtech.api.enums.Element;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.enums.TextureSet;
 
@@ -19,9 +18,8 @@ public class GSMaterials implements Runnable {
             new short[] { 210, 230, 250 },
             "Liquid Helium",
             "He",
-            new Stats().setBoilingPoint(4).setGas(false).setMass(Element.He.getMass()).setMeltingPoint(1)
-                    .setProtons(Element.He.getProtons()),
-            Types.ELEMENT,
+            new Stats().setBoilingPoint(4).setGas(false).setMeltingPoint(1),
+            Types.MATERIAL,
             new GenerationFeatures().disable().addCells(),
             OFFSET,
             TextureSet.SET_FLUID);
