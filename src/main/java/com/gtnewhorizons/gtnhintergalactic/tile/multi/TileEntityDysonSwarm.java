@@ -536,12 +536,14 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     public void loadNBTData(NBTTagCompound aNBT) {
         super.loadNBTData(aNBT);
         moduleCount = aNBT.getInteger("moduleCount");
+        euPerTick = aNBT.getLong("euPerTick");
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         super.saveNBTData(aNBT);
         aNBT.setInteger("moduleCount", moduleCount);
+        aNBT.setLong("euPerTick", euPerTick);
     }
 
     public static void initCommon() {
