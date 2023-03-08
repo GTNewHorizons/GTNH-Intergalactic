@@ -184,8 +184,7 @@ public class CraftingRecipes {
                 true);
         RA.addAssemblerRecipe(
                 new ItemStack[] { new ItemStack(case1), new ItemStack(keyboard), new ItemStack(display),
-                        ItemList.Emitter_HV.get(1), ItemList.Sensor_HV.get(1),
-                        new ItemStack(MarsItems.marsItemBasic, 1, 3) },
+                        ItemList.Field_Generator_EV.get(2), new ItemStack(MarsItems.marsItemBasic, 1, 3) },
                 Materials.SolderingAlloy.getMolten(864),
                 new ItemStack(GSItems.ControlComputer, 1, 2),
                 600,
@@ -193,7 +192,7 @@ public class CraftingRecipes {
                 true);
         RA.addAssemblerRecipe(
                 new ItemStack[] { new ItemStack(case1), new ItemStack(keyboard), new ItemStack(display),
-                        ItemList.Emitter_EV.get(1), ItemList.Sensor_EV.get(1),
+                        ItemList.Emitter_IV.get(1), ItemList.Sensor_IV.get(1),
                         new ItemStack(AsteroidsItems.basicItem) },
                 Materials.SolderingAlloy.getMolten(1152),
                 new ItemStack(GSItems.ControlComputer, 1, 3),
