@@ -40,4 +40,8 @@ public class IG_UITextures {
 
     public static final UITexture PICTURE_SPACE_PROJECT_ASTEROID_OUTPOST = UITexture
             .fullImage(ASSET_PREFIX, "gui/solarsystem/space_project_asteroid_outpost.png");
+
+    // TODO: Proper texture
+    public static final UITexture PICTURE_SPACE_PROJECT_DYSON_SWARM = UITexture
+            .fullImage("galaxyspace", "textures/items/dysonSwarmModule.png");
 }

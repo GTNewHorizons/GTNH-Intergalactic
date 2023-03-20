@@ -16,6 +16,7 @@ import com.gtnewhorizons.gtnhintergalactic.spaceprojects.ProjectAsteroidOutpost;
 
 import cpw.mods.fml.common.Loader;
 import galaxyspace.core.register.GSBlocks;
+import galaxyspace.core.register.GSItems;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.TierEU;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
@@ -49,6 +50,7 @@ public class SpaceProjectRegistration implements Runnable {
     public void run() {
         registerAsteroidOutpost();
         registerPlanetScan();
+        registerDysonSwarm();
     }
 
     /**
@@ -115,5 +117,18 @@ public class SpaceProjectRegistration implements Runnable {
                 .setProjectFluidsCost(new FluidStack(solderLuV, 144 * 20));
 
         SpaceProjectManager.addProject(planetScan);
+    }
+
+    private void registerDysonSwarm() {
+        // TODO: Proper recipe
+        ISpaceProject dysonSwarm = new SpaceProject().setProjectName("DysonSwarm")
+                .setProjectUnlocalizedName("ig.spaceproject.dysonswarm").setProjectBuildTime(250 * 20)
+                .setProjectTexture(IG_UITextures.PICTURE_SPACE_PROJECT_DYSON_SWARM).setProjectStages(10)
+                .setProjectRequirements(new SP_Requirements().setSpaceBodyType(SolarSystem.Sol.getType()))
+                .setProjectVoltage(TierEU.RECIPE_UV).setProjectItemsCost(new ItemStack(GSItems.DysonSwarmItems, 64, 0));
+
+        // TODO: Upgrades
+
+        SpaceProjectManager.addProject(dysonSwarm);
     }
 }
