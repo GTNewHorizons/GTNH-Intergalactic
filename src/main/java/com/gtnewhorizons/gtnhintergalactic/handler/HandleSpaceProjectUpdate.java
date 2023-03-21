@@ -1,7 +1,11 @@
 package com.gtnewhorizons.gtnhintergalactic.handler;
 
+import micdoodle8.mods.galacticraft.core.client.SkyProviderOverworld;
+
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.common.DimensionManager;
 
 import com.gtnewhorizons.gtnhintergalactic.network.PacketHandler;
@@ -63,6 +67,14 @@ public class HandleSpaceProjectUpdate {
             return;
         }
         WorldProvider provider = world.provider;
-        provider.setSkyRenderer(new RenderSkyBox(provider.getSkyRenderer()));
+        if (provider instanceof WorldProviderSurface) {
+            if (!(provider.getSkyRenderer() instanceof RenderSkyBox)) {
+                provider.setSkyRenderer(new RenderSkyBox(new SkyProviderOverworld()));
+            }
+        } else if (!(provider instanceof WorldProviderEnd)) {
+            if (!(provider.getSkyRenderer() instanceof RenderSkyBox)) {
+                provider.setSkyRenderer(new RenderSkyBox(provider.getSkyRenderer()));
+            }
+        }
     }
 }
