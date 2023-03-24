@@ -85,6 +85,9 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
     /** Flag if the chunks of the machine are loaded by it */
     private boolean isLoadedChunk;
 
+    /** Flag if the extension for more modules is enabled */
+    private boolean isExtensionEnabled = false;
+
     /** Interval in which the modules will be supplied with power in ticks */
     private static final int MODULE_CHARGE_INTERVAL = 20;
     /** Multiplier for the internal EU buffer */
@@ -281,6 +284,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
     @Override
     public void loadNBTData(NBTTagCompound aNBT) {
         motorTier = aNBT.getInteger("motorTier");
+        isExtensionEnabled = aNBT.getBoolean("isExtensionEnabled");
         super.loadNBTData(aNBT);
     }
 
@@ -292,6 +296,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         aNBT.setInteger("motorTier", motorTier);
+        aNBT.setBoolean("isExtensionEnabled", isExtensionEnabled);
         super.saveNBTData(aNBT);
     }
 
@@ -371,7 +376,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
                 STRUCTURE_PIECE_MAIN_DEPTH_OFFSET,
                 stackSize,
                 hintsOnly);
-        if (stackSize.stackSize >= 3) {
+        if (isExtensionEnabled) {
             structureBuild_EM(
                     STRUCTURE_PIECE_EXTENDED,
                     STRUCTURE_PIECE_EXTENDED_HOR_OFFSET,
@@ -407,7 +412,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
                     actor,
                     false,
                     true);
-            if (stackSize.stackSize >= 3) {
+            if (isExtensionEnabled) {
                 consumedBudget += survivialBuildPiece(
                         STRUCTURE_PIECE_EXTENDED,
                         stackSize,
@@ -448,12 +453,17 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
             }
             return false;
         }
-        if (motorTier >= 2) {
-            structureCheck_EM(
+        if (motorTier > 2 && isExtensionEnabled) {
+            if (!structureCheck_EM(
                     STRUCTURE_PIECE_EXTENDED,
                     STRUCTURE_PIECE_EXTENDED_HOR_OFFSET,
                     STRUCTURE_PIECE_EXTENDED_VERT_OFFSET,
-                    STRUCTURE_PIECE_EXTENDED_DEPTH_OFFSET);
+                    STRUCTURE_PIECE_EXTENDED_DEPTH_OFFSET)) {
+                if (elevatorCable != null) {
+                    elevatorCable.setShouldRender(false);
+                }
+                return false;
+            }
         }
         // Check if the allowed module amount is exceeded. Motor tier 5 unlocks all module slots
         isMachineValid = ElevatorUtil.getModuleSlotsUnlocked(motorTier) >= mProjectModuleHatches.size();
@@ -815,6 +825,19 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
+
+        // Extension button
+        builder.widget(
+                new CycleButtonWidget().setToggle(() -> isExtensionEnabled, val -> isExtensionEnabled = val)
+                        .setPlayClickSound(true)
+                        .setVariableBackgroundGetter(
+                                (state) -> new UITexture[] {
+                                        state > 0 ? IG_UITextures.OVERLAY_BUTTON_SPACE_ELEVATOR_EXTENSION_ENABLED
+                                                : IG_UITextures.OVERLAY_BUTTON_SPACE_ELEVATOR_EXTENSION_DISABLED })
+                        .setPos(115, 155).setSize(16, 16)
+                        .addTooltip(StatCollector.translateToLocal("ig.button.extension"))
+                        .setTooltipShowUpDelay(TOOLTIP_DELAY));
+
         // Teleportation button
         builder.widget(new ButtonWidget().setOnClick((clickData, widget) -> {
             if (!widget.getContext().isClient()) {
@@ -851,7 +874,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
                 widget.getContext().openSyncedWindow(CONTRIBUTORS_WINDOW_ID);
             }
         }).addTooltip(StatCollector.translateToLocal("ig.structure.contributors"))
-                .setBackground(ModularUITextures.ICON_INFO).setPos(151, 136).setSize(16, 16));
+                .setBackground(ModularUITextures.ICON_INFO).setPos(133, 155).setSize(16, 16));
 
         // Contributor window
         buildContext.addSyncedWindow(CONTRIBUTORS_WINDOW_ID, (player) -> {
