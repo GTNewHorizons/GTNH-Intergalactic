@@ -543,6 +543,11 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
         if (elevatorCable != null) {
             elevatorCable.setShouldRender(false);
         }
+        if (mProjectModuleHatches != null && mProjectModuleHatches.size() > 0) {
+            for (TileEntityModuleBase projectModule : mProjectModuleHatches) {
+                projectModule.disconnect();
+            }
+        }
         super.onRemoval();
     }
 
@@ -585,9 +590,8 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
             }
 
             // Charge project modules
-            if (aTick % MODULE_CHARGE_INTERVAL == 0) {
-                fixAllIssues();
-                if (getBaseMetaTileEntity().isAllowedToWork()) {
+            if (getBaseMetaTileEntity().isAllowedToWork()) {
+                if (aTick % MODULE_CHARGE_INTERVAL == 0) {
                     if (mProjectModuleHatches.size() > 0) {
                         long tEnergy = getEUVar() / mProjectModuleHatches.size() * MODULE_CHARGE_INTERVAL;
                         for (TileEntityModuleBase projectModule : mProjectModuleHatches) {
@@ -604,8 +608,15 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
                         }
                     }
                 }
+            } else {
+                if (mProjectModuleHatches.size() > 0) {
+                    for (TileEntityModuleBase projectModule : mProjectModuleHatches) {
+                        projectModule.disconnect();
+                    }
+                }
             }
             if (mEfficiency < 0) mEfficiency = 0;
+            fixAllIssues();
         }
     }
 
