@@ -1,6 +1,6 @@
 package com.gtnewhorizons.gtnhintergalactic.network;
 
-import com.gtnewhorizon.gtnhintergalactic.Tags;
+import com.gtnewhorizons.gtnhintergalactic.Tags;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
