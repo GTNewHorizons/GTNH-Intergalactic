@@ -1,6 +1,7 @@
 package com.gtnewhorizons.gtnhintergalactic.proxy;
 
 import net.minecraft.util.IIcon;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.config.Config;
@@ -8,11 +9,13 @@ import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.loader.MachineLoader;
 import com.gtnewhorizons.gtnhintergalactic.loader.RecipeLoader;
 import com.gtnewhorizons.gtnhintergalactic.nei.IMCForNEI;
+import com.gtnewhorizons.gtnhintergalactic.network.PacketHandler;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IG_RecipeAdder;
 import com.gtnewhorizons.gtnhintergalactic.recipe.MachineRecipes;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceProjectRegistration;
 import com.gtnewhorizons.gtnhintergalactic.tile.TileEntitySpaceElevatorCable;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -31,6 +34,7 @@ public class CommonProxy {
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
+        PacketHandler.initPackets();
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
@@ -52,6 +56,16 @@ public class CommonProxy {
         new SpaceProjectRegistration().run();
         new MachineRecipes().run();
         IG_RecipeAdder.postInit();
+    }
+
+    /**
+     * Register an object as event handler
+     *
+     * @param obj Event handler
+     */
+    protected void registerEventHandler(Object obj) {
+        FMLCommonHandler.instance().bus().register(obj);
+        MinecraftForge.EVENT_BUS.register(obj);
     }
 
     /**
