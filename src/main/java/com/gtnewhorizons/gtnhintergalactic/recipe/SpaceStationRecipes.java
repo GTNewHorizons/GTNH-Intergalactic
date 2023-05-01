@@ -2,17 +2,16 @@ package galaxyspace.core.recipe;
 
 import java.util.HashMap;
 
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
-import micdoodle8.mods.galacticraft.api.recipe.SpaceStationRecipe;
-import micdoodle8.mods.galacticraft.api.world.SpaceStationType;
-import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import galaxyspace.core.config.GSConfigDimensions;
 import galaxyspace.core.register.GSBlocks;
 import gregtech.api.GregTech_API;
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.recipe.SpaceStationRecipe;
+import micdoodle8.mods.galacticraft.api.world.SpaceStationType;
+import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 
 public class SpaceStationRecipes {
 

@@ -11,13 +11,12 @@ import java.util.Locale.Category;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldProvider;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.github.technus.tectech.thing.metaTileEntity.multi.base.GT_MetaTileEntity_MultiblockBase_EM;
@@ -46,6 +45,7 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_StructureUtility;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
+import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 
 public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBase_EM {
 
@@ -373,8 +373,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     @Override
-    public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, byte aSide, float aX,
-            float aY, float aZ) {
+    public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, ForgeDirection side,
+            float aX, float aY, float aZ) {
         ItemStack heldItem = aPlayer.getHeldItem();
 
         // Check if the player is holding a plunger
@@ -414,9 +414,9 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
      * CLIENT STUFF *
      ****************/
     @Override
-    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex,
-            boolean aActive, boolean aRedstone) {
-        if (aSide == aFacing) {
+    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
+            int colorIndex, boolean aActive, boolean aRedstone) {
+        if (side == facing) {
             if (aActive) return new ITexture[] { BlockIcons.getCasingTextureForId(CASING_INDEX_RECEIVER),
                     TextureFactory.of(OVERLAY_FRONT_ACTIVE),
                     TextureFactory.builder().addIcon(OVERLAY_FRONT_ACTIVE_GLOW).glow().build() };
