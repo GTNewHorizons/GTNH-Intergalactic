@@ -11,6 +11,7 @@ import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -49,22 +50,22 @@ public class SpaceMiningRecipes {
 
         // Coal Asteroid
         addRecipesToDrones(
-            null,
-            null,
-            new int[] { 7000, 1000, 2000 },
-            new Materials[] { Materials.Coal, Materials.Lignite, Materials.Graphite },
-            OrePrefixes.oreEndstone,
-            50,
-            250,
-            1,
-            250,
-            20,
-            1,
-            10 * 20,
-            (int) VP[4],
-            ItemMiningDrones.DroneTiers.LV.ordinal(),
-            ItemMiningDrones.DroneTiers.IV.ordinal(),
-            200);
+                null,
+                null,
+                new int[] { 7000, 1000, 2000 },
+                new Materials[] { Materials.Coal, Materials.Lignite, Materials.Graphite },
+                OrePrefixes.oreEndstone,
+                50,
+                250,
+                1,
+                40,
+                20,
+                1,
+                10 * 20,
+                (int) VP[4],
+                ItemMiningDrones.DroneTiers.LV.ordinal(),
+                ItemMiningDrones.DroneTiers.IV.ordinal(),
+                200);
         // Salt Asteroid
         addRecipesToDrones(
                 null,
@@ -88,8 +89,8 @@ public class SpaceMiningRecipes {
                 null,
                 null,
                 new int[] { 4000, 2000, 1000, 1000, 500, 500 },
-                new Materials[] { Materials.Iron, Materials.Gold, Materials.Magnetite, Materials.Pyrite, Materials.BasalticMineralSand,
-                        Materials.GraniticMineralSand },
+                new Materials[] { Materials.Iron, Materials.Gold, Materials.Magnetite, Materials.Pyrite,
+                        Materials.BasalticMineralSand, Materials.GraniticMineralSand },
                 OrePrefixes.oreEndstone,
                 30,
                 150,
@@ -222,8 +223,9 @@ public class SpaceMiningRecipes {
                 null,
                 null,
                 new int[] { 1500, 1500, 1500, 1500, 750, 750, 1000, 500, 500, 400, 100 },
-                new Materials[] { Materials.Ruby, Materials.Emerald, Materials.Sapphire, Materials.GreenSapphire, Materials.Diamond,
-                        Materials.Opal, Materials.Topaz, Materials.BlueTopaz, Materials.Bauxite, Materials.Vinteum, Materials.NetherStar },
+                new Materials[] { Materials.Ruby, Materials.Emerald, Materials.Sapphire, Materials.GreenSapphire,
+                        Materials.Diamond, Materials.Opal, Materials.Topaz, Materials.BlueTopaz, Materials.Bauxite,
+                        Materials.Vinteum, Materials.NetherStar },
                 OrePrefixes.oreEndstone,
                 30,
                 160,
@@ -293,25 +295,6 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
-
-        // Mysterious Crystal Asteroid
-        addRecipesToDrones(
-                null,
-                null,
-                new int[] { 8000, 2000 },
-                new Materials[] { Materials.MysteriousCrystal, Materials.Mytryl, Materials.HeeEndium },
-                OrePrefixes.oreEndstone,
-                30,
-                60,
-                65,
-                120,
-                300,
-                1,
-                500,
-                (int) VP[7],
-                ItemMiningDrones.DroneTiers.IV.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
-                220);
 
         addRecipesToDrones(
                 null,
@@ -425,7 +408,8 @@ public class SpaceMiningRecipes {
                 null,
                 null,
                 new int[] { 2500, 2000, 2000, 2000, 1500 },
-                new Materials[] { Materials.Adamantium, Materials.Bismuth, Materials.Antimony, Materials.Gallium, Materials.Lithium },
+                new Materials[] { Materials.Adamantium, Materials.Bismuth, Materials.Antimony, Materials.Gallium,
+                        Materials.Lithium },
                 OrePrefixes.oreEndstone,
                 30,
                 120,
@@ -557,11 +541,11 @@ public class SpaceMiningRecipes {
         addRecipesToDrones(
                 null,
                 null,
-                new int[] { 3000, 3000, 3000, 500, 500 },
-                new Materials[] { Materials.Ledox, Materials.CallistoIce, Materials.Borax, Materials.Europium, Materials.Americium },
+                new int[] { 4000, 4000, 1500, 500 },
+                new Materials[] { Materials.Ledox, Materials.CallistoIce, Materials.Borax, Materials.Europium },
                 OrePrefixes.oreEndstone,
-                20,
-                90,
+                40,
+                120,
                 40,
                 60,
                 240,
@@ -615,8 +599,9 @@ public class SpaceMiningRecipes {
         addRecipesToDrones(
                 null,
                 null,
-                new int[] { 5000, 3000, 1500, 500 },
-                new Materials[] { Materials.ShadowIron, Materials.MeteoricIron, Materials.Ichorium, Materials.Desh },
+                new int[] { 4500, 3000, 1500, 500, 500 },
+                new Materials[] { Materials.ShadowIron, Materials.MeteoricIron, Materials.Ichorium, Materials.Desh,
+                        Materials.Americium },
                 OrePrefixes.oreEndstone,
                 30,
                 120,
@@ -647,26 +632,52 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
 
+        if (Loader.isModLoaded("HardcoreEnderExpansion")) {
+            // Mysterious Crystal Asteroid
+            addRecipesToDrones(
+                    null,
+                    null,
+                    new int[] { 7400, 2000, 500, 90, 10 },
+                    new ItemStack[] {
+                            GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.MysteriousCrystal, 64),
+                            GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Mytryl, 64),
+                            GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Oriharukon, 64),
+                            GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.HeeEndium, 64),
+                            GT_OreDictUnificator
+                                    .get(GameRegistry.findItem("HardcoreEnderExpansion", "end_powder_ore"), 64) },
+                    30,
+                    60,
+                    65,
+                    120,
+                    300,
+                    1,
+                    500,
+                    (int) VP[7],
+                    ItemMiningDrones.DroneTiers.IV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    220);
+        }
+
         if (Loader.isModLoaded("bartworks")) {
             // Uranium-Plutonium Asteroid
             addRecipesToDrones(
-                null,
-                null,
-                new int[] { 3000, 2472, 2500, 2000, 28 },
-                new Materials[] { Materials.Uranium, Materials.Uranium235, Materials.Plutonium,
-                    Materials.Plutonium241, WerkstoffLoader.Thorianit.getBridgeMaterial() },
-                OrePrefixes.oreEndstone,
-                20,
-                90,
-                30,
-                70,
-                120,
-                1,
-                20 * 20,
-                (int) VP[6],
-                ItemMiningDrones.DroneTiers.HV.ordinal(),
-                ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                150);
+                    null,
+                    null,
+                    new int[] { 3000, 2472, 2500, 2000, 14 },
+                    new Materials[] { Materials.Uranium, Materials.Uranium235, Materials.Plutonium,
+                            Materials.Plutonium241, WerkstoffLoader.Thorianit.getBridgeMaterial() },
+                    OrePrefixes.ore,
+                    40,
+                    180,
+                    30,
+                    70,
+                    120,
+                    1,
+                    20 * 20,
+                    (int) VP[6],
+                    ItemMiningDrones.DroneTiers.HV.ordinal(),
+                    ItemMiningDrones.DroneTiers.ZPM.ordinal(),
+                    150);
             // Holmium/Samarium Asteroid
             addRecipesToDrones(
                     null,
