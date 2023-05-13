@@ -637,7 +637,7 @@ public class SpaceMiningRecipes {
             addRecipesToDrones(
                     null,
                     null,
-                    new int[] { 7400, 2000, 500, 90, 10 },
+                    new int[] { 7400, 2000, 500, 98, 2 },
                     new ItemStack[] {
                             GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.MysteriousCrystal, 64),
                             GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Mytryl, 64),
