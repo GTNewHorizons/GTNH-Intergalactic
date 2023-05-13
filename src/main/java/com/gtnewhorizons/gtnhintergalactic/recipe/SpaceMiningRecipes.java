@@ -681,9 +681,9 @@ public class SpaceMiningRecipes {
             addRecipesToDrones(
                     null,
                     null,
-                    new int[] { 2000, 3000, 3000, 2000 },
+                    new int[] { 2000, 3000, 1000, 1000, 3000 },
                     new Materials[] { Materials.Holmium, Materials.Samarium,
-                            WerkstoffLoader.Tiberium.getBridgeMaterial(), Materials.Strontium },
+                            WerkstoffLoader.Tiberium.getBridgeMaterial(), Materials.Strontium, Materials.TengamRaw },
                     OrePrefixes.ore,
                     5,
                     25,
