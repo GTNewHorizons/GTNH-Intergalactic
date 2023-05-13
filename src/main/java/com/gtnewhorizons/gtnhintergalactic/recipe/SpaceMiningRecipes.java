@@ -55,8 +55,8 @@ public class SpaceMiningRecipes {
                 new int[] { 7000, 1000, 2000 },
                 new Materials[] { Materials.Coal, Materials.Lignite, Materials.Graphite },
                 OrePrefixes.oreEndstone,
-                50,
-                250,
+                30,
+                120,
                 1,
                 40,
                 20,
@@ -64,7 +64,7 @@ public class SpaceMiningRecipes {
                 10 * 20,
                 (int) VP[4],
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
-                ItemMiningDrones.DroneTiers.IV.ordinal(),
+                ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 200);
         // Salt Asteroid
         addRecipesToDrones(
@@ -643,8 +643,7 @@ public class SpaceMiningRecipes {
                             GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Mytryl, 64),
                             GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Oriharukon, 64),
                             GT_OreDictUnificator.get(OrePrefixes.oreEndstone, Materials.HeeEndium, 64),
-                            GT_OreDictUnificator
-                                    .get(GameRegistry.findItem("HardcoreEnderExpansion", "end_powder_ore"), 64) },
+                            new ItemStack(GameRegistry.findItem("HardcoreEnderExpansion", "end_powder_ore"), 64) },
                     30,
                     60,
                     65,
@@ -663,7 +662,7 @@ public class SpaceMiningRecipes {
             addRecipesToDrones(
                     null,
                     null,
-                    new int[] { 3000, 2472, 2500, 2000, 14 },
+                    new int[] { 3000, 2450, 2450, 2000, 100 },
                     new Materials[] { Materials.Uranium, Materials.Uranium235, Materials.Plutonium,
                             Materials.Plutonium241, WerkstoffLoader.Thorianit.getBridgeMaterial() },
                     OrePrefixes.ore,
