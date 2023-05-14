@@ -480,6 +480,37 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 250);
 
+        if (Loader.isModLoaded("miscutils")) {
+            // Everglades Asteroid
+            addRecipesToDrones(
+                    null,
+                    null,
+                    new int[] { 700, 500, 1500, 1500, 1000, 500, 1000, 500, 200, 1000, 1000, 1000 },
+                    new ItemStack[] { new ItemStack(GameRegistry.findItem("miscutils", "oreKoboldite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreCrocoite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreGadoliniteY"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreLepersonnite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreZircon"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreLautarite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreHoneaite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreAlburnite"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreRadioactiveMineralMix"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthI"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthII"), 64),
+                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthIII"), 64) },
+                    10,
+                    60,
+                    110,
+                    250,
+                    200,
+                    1,
+                    25 * 20,
+                    (int) VP[5],
+                    ItemMiningDrones.DroneTiers.ZPM.ordinal(),
+                    ItemMiningDrones.DroneTiers.UHV.ordinal(),
+                    100);
+        }
+
         // Draconic Asteroid
         addRecipesToDrones(
                 null,
