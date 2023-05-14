@@ -84,8 +84,8 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
     protected static String IS_WHITELISTED_NBT_TAG = "isWhitelisted";
     /** String of the NBT tag that saves the whitelist */
     protected static String WHITELIST_NBT_TAG = "whitelist";
-    /** Flag if the user modified the whitelist */
-    protected boolean wasWhitelistOpened;
+    /** Flag if the user modified the filter */
+    protected boolean wasFilterModified;
 
     protected static final ISpaceProject ASTEROID_OUTPOST = SpaceProjectManager.getProject("AsteroidOutput");
 
@@ -581,7 +581,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
                 .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
                     TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
                     isWhitelisted = !isWhitelisted;
-                    wasWhitelistOpened = true;
+                    wasFilterModified = true;
                 }).setPlayClickSound(false).setBackground(() -> {
                     List<UITexture> ret = new ArrayList<>();
                     ret.add(TecTechUITextures.BUTTON_STANDARD_16x16);
@@ -595,7 +595,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
                 // Clear list
                 .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
                     TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
-                    wasWhitelistOpened = true;
+                    wasFilterModified = true;
                     if (!widget.isClient()) {
                         if (whiteListHandler != null) {
                             for (int i = 0; i < whiteListHandler.getSlots(); i++) {
@@ -609,7 +609,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
                 // Configure from bus
                 .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
                     TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
-                    wasWhitelistOpened = true;
+                    wasFilterModified = true;
                     if (!widget.isClient()) {
                         int i = 0;
                         for (ItemStack itemStack : getStoredInputs()) {
@@ -628,7 +628,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
                 .widget(
                         SlotGroup.ofItemHandler(whiteListHandler, 8).startFromSlot(0).endAtSlot(WHITELIST_SIZE - 1)
                                 .applyForWidget(
-                                        slotWidget -> slotWidget.setChangeListener(() -> wasWhitelistOpened = true))
+                                        slotWidget -> slotWidget.setChangeListener(() -> wasFilterModified = true))
                                 .phantom(true).background(getGUITextureSet().getItemSlot()).build().setPos(7, 27))
                 .build();
     }
@@ -707,8 +707,8 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase {
         if (!super.checkMachine_EM(aBaseMetaTileEntity, aStack)) {
             return false;
         }
-        if (wasWhitelistOpened) {
-            wasWhitelistOpened = false;
+        if (wasFilterModified) {
+            wasFilterModified = false;
             generateOreConfigurationList();
         }
         if (SpaceProjectManager.teamHasProject(getBaseMetaTileEntity().getOwnerUuid(), ASTEROID_OUTPOST)) {
