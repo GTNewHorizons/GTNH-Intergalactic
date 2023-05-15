@@ -335,8 +335,9 @@ public class SpaceMiningRecipes {
         addRecipesToDrones(
                 null,
                 null,
-                new int[] { 1500, 1500, 1500, 5500 },
-                new Materials[] { Materials.Tellurium, Materials.Thulium, Materials.Tantalum, Materials.Redstone },
+                new int[] { 1500, 1000, 1500, 500, 5500 },
+                new Materials[] { Materials.Tellurium, Materials.Thulium, Materials.Tantalum, Materials.Lutetium,
+                        Materials.Redstone },
                 OrePrefixes.oreEndstone,
                 20,
                 80,
