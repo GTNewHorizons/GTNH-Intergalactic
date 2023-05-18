@@ -486,7 +486,7 @@ public class SpaceMiningRecipes {
             addRecipesToDrones(
                     null,
                     null,
-                    new int[] { 700, 500, 1500, 1500, 1000, 500, 1000, 700, 1000, 1000, 1000 },
+                    new int[] { 600, 400, 1500, 1500, 1000, 400, 1000, 600, 1000, 1000, 1000 },
                     new ItemStack[] { new ItemStack(GameRegistry.findItem("miscutils", "oreKoboldite"), 64),
                             new ItemStack(GameRegistry.findItem("miscutils", "oreCrocoite"), 64),
                             new ItemStack(GameRegistry.findItem("miscutils", "oreGadoliniteY"), 64),
