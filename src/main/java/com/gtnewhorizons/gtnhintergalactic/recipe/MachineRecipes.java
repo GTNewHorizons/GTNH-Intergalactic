@@ -2,6 +2,7 @@ package com.gtnewhorizons.gtnhintergalactic.recipe;
 
 import static gregtech.api.enums.GT_Values.RA;
 import static gregtech.api.enums.GT_Values.VP;
+import static gregtech.api.enums.TickTime.MINUTE;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -116,7 +117,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 5760), Materials.UUMatter.getFluid(16000),
                         Materials.Lubricant.getFluid(32000), Materials.Neutronium.getMolten(1440) },
                 IGItems.SpaceElevatorController,
-                36000,
+                5 * MINUTE,
                 (int) VP[9]);
 
         // Nanotube spool
@@ -216,7 +217,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 5760), Materials.UUMatter.getFluid(8000),
                         Materials.Naquadria.getMolten(1440), Materials.Lubricant.getFluid(16000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 0),
-                2400,
+                1 * MINUTE,
                 (int) VP[8]);
 
         // Space Elevator Motor MK-II
@@ -235,7 +236,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 5760), Materials.UUMatter.getFluid(8000),
                         Materials.Naquadria.getMolten(1440), Materials.Lubricant.getFluid(16000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 1),
-                2400,
+                1 * MINUTE,
                 (int) VP[9]);
 
         // Space Elevator Motor MK-III
@@ -254,7 +255,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
                         Materials.Naquadria.getMolten(1440), Materials.Lubricant.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 2),
-                2400,
+                1 * MINUTE,
                 (int) VP[10]);
 
         // Space Elevator Motor MK-IV
@@ -273,7 +274,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
                         Materials.Naquadria.getMolten(1440), Materials.Lubricant.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 3),
-                2400,
+                1 * MINUTE,
                 (int) VP[11]);
 
         // Space Elevator Motor MK-V
@@ -292,7 +293,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
                         Materials.Naquadria.getMolten(1440), Materials.Lubricant.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 4),
-                2400,
+                1 * MINUTE,
                 (int) VP[11]);
 
         // Space Elevator Modules
@@ -312,7 +313,7 @@ public class MachineRecipes implements Runnable {
                         GT_OreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 32), },
                 new FluidStack[] { new FluidStack(solderUEV, 1296), Materials.Infinity.getMolten(576) },
                 IGItems.SpaceElevatorModulePumpT1,
-                6000,
+                2 * MINUTE,
                 (int) VP[10]);
 
         // Pump Module MK-II
@@ -332,7 +333,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 4608),
                         MaterialsUEVplus.TranscendentMetal.getMolten(2304) },
                 IGItems.SpaceElevatorModulePumpT2,
-                600 * 20,
+                2 * MINUTE,
                 (int) VP[11]);
 
         // Pump Module MK-II - Assembler alt
@@ -346,7 +347,7 @@ public class MachineRecipes implements Runnable {
                         GT_OreDictUnificator.get(OrePrefixes.plateDouble, MaterialsUEVplus.TranscendentMetal, 16), },
                 new FluidStack(solderUEV, 4608),
                 IGItems.SpaceElevatorModulePumpT2,
-                1200 * 20,
+                2 * MINUTE,
                 (int) VP[11],
                 false);
 
@@ -370,7 +371,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 1296), Materials.Naquadria.getMolten(1296),
                         Materials.Lubricant.getFluid(16000) },
                 IGItems.SpaceElevatorModuleAssemblerT1,
-                600 * 20,
+                2 * MINUTE,
                 (int) VP[10]);
 
         // Assembler Module MK-II
@@ -391,7 +392,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 1296), Materials.Infinity.getMolten(1296),
                         Materials.UUMatter.getFluid(16000) },
                 IGItems.SpaceElevatorModuleAssemblerT2,
-                600 * 20,
+                2 * MINUTE,
                 (int) VP[11]);
 
         // Assembler Module MK-III
@@ -420,7 +421,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 5184), MaterialsUEVplus.BlackDwarfMatter.getMolten(1296),
                         MaterialsUEVplus.WhiteDwarfMatter.getMolten(1296), MaterialsUEVplus.SpaceTime.getMolten(1296) },
                 IGItems.SpaceElevatorModuleAssemblerT3,
-                600 * 20,
+                2 * MINUTE,
                 (int) VP[13]);
 
         // Research Module
@@ -441,7 +442,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 4608), Materials.Infinity.getMolten(2304),
                         Materials.UUMatter.getFluid(8000), Materials.SuperCoolant.getFluid(4000) },
                 IGItems.SpaceElevatorModuleResearch,
-                600 * 20,
+                2 * MINUTE,
                 (int) VP[10]);
 
         // Project Manager Module
@@ -463,7 +464,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 4608), Materials.Iridium.getMolten(2304),
                         Materials.UUMatter.getFluid(2000) },
                 IGItems.SpaceElevatorModuleManager,
-                300 * 20,
+                2 * MINUTE,
                 (int) VP[9]);
 
         // Miner Module MK-I
@@ -482,7 +483,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 2880), Materials.Naquadria.getMolten(1440),
                         Materials.Lubricant.getFluid(8000) },
                 IGItems.SpaceElevatorModuleMinerT1,
-                4500,
+                2 * MINUTE,
                 (int) VP[9]);
         // Miner Module MK-II
         TT_recipeAdder.addResearchableAssemblylineRecipe(
@@ -499,7 +500,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderLuV, 2880), Materials.Naquadria.getMolten(2880),
                         Materials.Lubricant.getFluid(16000) },
                 IGItems.SpaceElevatorModuleMinerT2,
-                9000,
+                2 * MINUTE,
                 (int) VP[10]);
         // Miner Module MK-III
         TT_recipeAdder.addResearchableAssemblylineRecipe(
@@ -516,7 +517,7 @@ public class MachineRecipes implements Runnable {
                 new FluidStack[] { new FluidStack(solderUEV, 2880), MaterialsUEVplus.TranscendentMetal.getMolten(1440),
                         Materials.UUMatter.getFluid(2000) },
                 IGItems.SpaceElevatorModuleMinerT3,
-                18000,
+                2 * MINUTE,
                 (int) VP[11]);
 
         // Mining drones
