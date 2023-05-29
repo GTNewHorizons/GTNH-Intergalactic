@@ -65,6 +65,16 @@ achievement.item.MiningDroneUHV=Mining Drone MK-IX
 achievement.item.MiningDroneUHV.desc=Devourer of planets
 achievement.item.MiningDroneUEV=Mining Drone MK-X
 achievement.item.MiningDroneUEV.desc=Devourer of star systems
+achievement.item.MiningDroneUIV=Mining Drone MK-XI
+achievement.item.MiningDroneUIV.desc=Devourer of constellations
+achievement.item.MiningDroneUMV=Mining Drone MK-XII
+achievement.item.MiningDroneUMV.desc=Devourer of galaxies
+achievement.item.MiningDroneUXV=Mining Drone MK-XIII
+achievement.item.MiningDroneUXV.desc=Devourer of the known universe
+achievement.item.MiningDroneMAX=Mining Drone MK-XIV
+achievement.item.MiningDroneMAX.desc=Devourer of everything that has been and ever will be
+
+
 
 # Items
 item.nanotubeSpool.name=Nanotube Spool
