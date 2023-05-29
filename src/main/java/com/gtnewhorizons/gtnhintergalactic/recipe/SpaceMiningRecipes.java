@@ -259,6 +259,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 170);
 
+        // Thaumium Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -276,6 +277,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 150);
+
         // Basic Magic Asteroid
         addRecipesToDrones(
                 null,
@@ -297,6 +299,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
 
+        // Niobium Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -315,6 +318,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 160);
 
+        // Quartz Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -334,6 +338,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 230);
 
+        // Lutetium Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -353,6 +358,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 100);
 
+        // Silicon Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -371,6 +377,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
 
+        // Phosphate Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -389,6 +396,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
 
+        // Lead Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -407,6 +415,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
                 220);
 
+        // Adamantium Asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -649,6 +658,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
 
+        // Clay asteroid
         addRecipesToDrones(
                 null,
                 null,
@@ -711,6 +721,7 @@ public class SpaceMiningRecipes {
                     ItemMiningDrones.DroneTiers.HV.ordinal(),
                     ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                     150);
+
             // Holmium/Samarium Asteroid
             addRecipesToDrones(
                     null,
@@ -752,6 +763,7 @@ public class SpaceMiningRecipes {
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     60);
 
+            // Magnesium Asteroid
             addRecipesToDrones(
                     null,
                     null,
@@ -773,6 +785,7 @@ public class SpaceMiningRecipes {
         }
 
         if (Loader.isModLoaded("GoodGenerator")) {
+            // Lanthanum Asteroid
             addRecipesToDrones(
                     null,
                     null,
@@ -792,6 +805,7 @@ public class SpaceMiningRecipes {
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     150);
 
+            // Tengam Asteroid
             addRecipesToDrones(
                     null,
                     null,
