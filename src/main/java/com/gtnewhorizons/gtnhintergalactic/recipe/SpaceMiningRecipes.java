@@ -1,6 +1,6 @@
 package com.gtnewhorizons.gtnhintergalactic.recipe;
 
-import static gregtech.api.enums.GT_Values.VP;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -16,6 +16,7 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.enums.TierEU;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 
@@ -61,8 +62,8 @@ public class SpaceMiningRecipes {
                 40,
                 20,
                 1,
-                10 * 20,
-                (int) VP[4],
+                10 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 200);
@@ -79,8 +80,8 @@ public class SpaceMiningRecipes {
                 250,
                 20,
                 1,
-                10 * 20,
-                (int) VP[4],
+                10 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 300);
@@ -98,8 +99,8 @@ public class SpaceMiningRecipes {
                 180,
                 10,
                 1,
-                10 * 20,
-                (int) VP[4],
+                10 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 600);
@@ -117,8 +118,8 @@ public class SpaceMiningRecipes {
                 12,
                 10,
                 1,
-                10 * 20,
-                (int) VP[4],
+                10 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 500);
@@ -137,7 +138,7 @@ public class SpaceMiningRecipes {
                 10,
                 1,
                 50,
-                (int) VP[5],
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 400);
@@ -156,7 +157,7 @@ public class SpaceMiningRecipes {
                 20,
                 1,
                 50,
-                (int) VP[5],
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.MV.ordinal(),
                 ItemMiningDrones.DroneTiers.EV.ordinal(),
                 120);
@@ -175,7 +176,7 @@ public class SpaceMiningRecipes {
                 20,
                 1,
                 50,
-                (int) VP[5],
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 170);
@@ -194,7 +195,7 @@ public class SpaceMiningRecipes {
                 40,
                 1,
                 50,
-                (int) VP[6],
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.MV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 100);
@@ -213,7 +214,7 @@ public class SpaceMiningRecipes {
                 60,
                 1,
                 50,
-                (int) VP[6],
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 130);
@@ -234,7 +235,7 @@ public class SpaceMiningRecipes {
                 60,
                 1,
                 100,
-                (int) VP[6],
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 180);
@@ -253,7 +254,7 @@ public class SpaceMiningRecipes {
                 120,
                 2,
                 500,
-                (int) VP[6],
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 170);
@@ -270,8 +271,8 @@ public class SpaceMiningRecipes {
                 70,
                 120,
                 1,
-                30 * 20,
-                (int) VP[6],
+                30 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 150);
@@ -291,7 +292,7 @@ public class SpaceMiningRecipes {
                 120,
                 1,
                 100,
-                (int) VP[6],
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
@@ -308,8 +309,8 @@ public class SpaceMiningRecipes {
                 160,
                 120,
                 1,
-                25 * 20,
-                (int) VP[6],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 160);
@@ -327,8 +328,8 @@ public class SpaceMiningRecipes {
                 120,
                 50,
                 1,
-                25 * 20,
-                (int) VP[5],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.MV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 230);
@@ -346,8 +347,8 @@ public class SpaceMiningRecipes {
                 240,
                 90,
                 1,
-                25 * 20,
-                (int) VP[6],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 100);
@@ -364,8 +365,8 @@ public class SpaceMiningRecipes {
                 250,
                 60,
                 2,
-                25 * 20,
-                (int) VP[6],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
@@ -382,8 +383,8 @@ public class SpaceMiningRecipes {
                 250,
                 60,
                 1,
-                25 * 20,
-                (int) VP[6],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
@@ -400,8 +401,8 @@ public class SpaceMiningRecipes {
                 150,
                 20,
                 1,
-                25 * 20,
-                (int) VP[4],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
                 220);
@@ -419,8 +420,8 @@ public class SpaceMiningRecipes {
                 120,
                 20,
                 1,
-                25 * 20,
-                (int) VP[4],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_EV,
                 ItemMiningDrones.DroneTiers.EV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 300);
@@ -439,8 +440,8 @@ public class SpaceMiningRecipes {
                 200,
                 120,
                 1,
-                25 * 20,
-                (int) VP[6],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 100);
@@ -458,8 +459,8 @@ public class SpaceMiningRecipes {
                 200,
                 60,
                 1,
-                25 * 20,
-                (int) VP[5],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.HV.ordinal(),
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
                 250);
@@ -477,8 +478,8 @@ public class SpaceMiningRecipes {
                 120,
                 60,
                 1,
-                25 * 20,
-                (int) VP[5],
+                25 * SECONDS,
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.MV.ordinal(),
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 250);
@@ -506,8 +507,8 @@ public class SpaceMiningRecipes {
                     230,
                     200,
                     1,
-                    25 * 20,
-                    (int) VP[5],
+                    25 * SECONDS,
+                    (int) TierEU.RECIPE_IV,
                     ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                     ItemMiningDrones.DroneTiers.UHV.ordinal(),
                     100);
@@ -526,8 +527,8 @@ public class SpaceMiningRecipes {
                 200,
                 360,
                 2,
-                30 * 20,
-                (int) VP[6],
+                30 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 190);
@@ -545,8 +546,8 @@ public class SpaceMiningRecipes {
                 200,
                 240,
                 2,
-                50 * 20,
-                (int) VP[7],
+                50 * SECONDS,
+                (int) TierEU.RECIPE_ZPM,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 10);
@@ -564,8 +565,8 @@ public class SpaceMiningRecipes {
                 100,
                 180,
                 1,
-                50 * 20,
-                (int) VP[5],
+                50 * SECONDS,
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.EV.ordinal(),
                 ItemMiningDrones.DroneTiers.UHV.ordinal(),
                 150);
@@ -583,8 +584,8 @@ public class SpaceMiningRecipes {
                 60,
                 240,
                 2,
-                50 * 20,
-                (int) VP[7],
+                50 * SECONDS,
+                (int) TierEU.RECIPE_ZPM,
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
@@ -604,7 +605,7 @@ public class SpaceMiningRecipes {
                 240,
                 2,
                 500,
-                (int) VP[8],
+                (int) TierEU.RECIPE_UV,
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 170);
@@ -623,7 +624,7 @@ public class SpaceMiningRecipes {
                 320,
                 2,
                 1000,
-                (int) VP[8],
+                (int) TierEU.RECIPE_UV,
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
@@ -643,7 +644,7 @@ public class SpaceMiningRecipes {
                 320,
                 3,
                 1000,
-                (int) VP[8],
+                (int) TierEU.RECIPE_UV,
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
                 150);
@@ -659,8 +660,8 @@ public class SpaceMiningRecipes {
                 100,
                 30,
                 1,
-                40 * 20,
-                (int) VP[5],
+                40 * SECONDS,
+                (int) TierEU.RECIPE_IV,
                 ItemMiningDrones.DroneTiers.LV.ordinal(),
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
@@ -684,7 +685,7 @@ public class SpaceMiningRecipes {
                     300,
                     1,
                     500,
-                    (int) VP[7],
+                    (int) TierEU.RECIPE_ZPM,
                     ItemMiningDrones.DroneTiers.IV.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     220);
@@ -705,8 +706,8 @@ public class SpaceMiningRecipes {
                     70,
                     120,
                     1,
-                    20 * 20,
-                    (int) VP[6],
+                    20 * SECONDS,
+                    (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.HV.ordinal(),
                     ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                     150);
@@ -724,8 +725,8 @@ public class SpaceMiningRecipes {
                     80,
                     260,
                     2,
-                    25 * 20,
-                    (int) VP[6],
+                    25 * SECONDS,
+                    (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.UV.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     75);
@@ -746,7 +747,7 @@ public class SpaceMiningRecipes {
                     360,
                     3,
                     500,
-                    (int) VP[7],
+                    (int) TierEU.RECIPE_ZPM,
                     ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     60);
@@ -764,8 +765,8 @@ public class SpaceMiningRecipes {
                     200,
                     60,
                     1,
-                    20 * 20,
-                    (int) VP[5],
+                    20 * SECONDS,
+                    (int) TierEU.RECIPE_IV,
                     ItemMiningDrones.DroneTiers.EV.ordinal(),
                     ItemMiningDrones.DroneTiers.UHV.ordinal(),
                     250);
@@ -785,8 +786,8 @@ public class SpaceMiningRecipes {
                     230,
                     120,
                     2,
-                    25 * 20,
-                    (int) VP[6],
+                    25 * SECONDS,
+                    (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.IV.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     150);
@@ -804,8 +805,8 @@ public class SpaceMiningRecipes {
                     100,
                     120,
                     3,
-                    25 * 20,
-                    (int) VP[6],
+                    25 * SECONDS,
+                    (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     50);
@@ -825,8 +826,8 @@ public class SpaceMiningRecipes {
                     150,
                     240,
                     1,
-                    50 * 20,
-                    (int) VP[6],
+                    50 * SECONDS,
+                    (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.IV.ordinal(),
                     ItemMiningDrones.DroneTiers.UV.ordinal(),
                     200);
@@ -847,8 +848,8 @@ public class SpaceMiningRecipes {
                     200,
                     1000,
                     3,
-                    100 * 20,
-                    (int) VP[10],
+                    100 * SECONDS,
+                    (int) TierEU.RECIPE_UEV,
                     ItemMiningDrones.DroneTiers.UHV.ordinal(),
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
                     1);
