@@ -78,6 +78,10 @@ item.MiningDroneZPM.name=Mining Drone MK-VII
 item.MiningDroneUV.name=Mining Drone MK-VIII
 item.MiningDroneUHV.name=Mining Drone MK-IX
 item.MiningDroneUEV.name=Mining Drone MK-X
+item.MiningDroneUIV.name=Mining Drone MK-XI
+item.MiningDroneUMV.name=Mining Drone MK-XII
+item.MiningDroneUXV.name=Mining Drone MK-XIII
+item.MiningDroneMAX.name=Mining Drone MK-XIV
 
 # Blocks
 gt.blockcasings.ig.0.name=Space Elevator Base Casing
