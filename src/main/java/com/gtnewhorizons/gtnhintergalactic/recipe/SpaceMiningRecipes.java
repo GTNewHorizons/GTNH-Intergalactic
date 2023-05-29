@@ -393,7 +393,7 @@ public class SpaceMiningRecipes {
                 25 * SECONDS,
                 (int) TierEU.RECIPE_LuV,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UIV.ordinal(),
                 150);
 
         // Lead Asteroid
@@ -558,7 +558,7 @@ public class SpaceMiningRecipes {
                 50 * SECONDS,
                 (int) TierEU.RECIPE_ZPM,
                 ItemMiningDrones.DroneTiers.IV.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
                 10);
 
         // Ardite/Cobalt Asteroid
@@ -596,7 +596,7 @@ public class SpaceMiningRecipes {
                 50 * SECONDS,
                 (int) TierEU.RECIPE_ZPM,
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
                 150);
 
         // Cosmic Asteroid
@@ -616,7 +616,7 @@ public class SpaceMiningRecipes {
                 500,
                 (int) TierEU.RECIPE_UV,
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
                 170);
 
         // Infinity Catalyst Asteroid
@@ -635,7 +635,7 @@ public class SpaceMiningRecipes {
                 1000,
                 (int) TierEU.RECIPE_UV,
                 ItemMiningDrones.DroneTiers.UV.ordinal(),
-                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
                 150);
 
         // Ichorium
@@ -654,8 +654,8 @@ public class SpaceMiningRecipes {
                 3,
                 1000,
                 (int) TierEU.RECIPE_UV,
-                ItemMiningDrones.DroneTiers.UV.ordinal(),
                 ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
                 150);
 
         // Clay asteroid
@@ -697,7 +697,7 @@ public class SpaceMiningRecipes {
                     500,
                     (int) TierEU.RECIPE_ZPM,
                     ItemMiningDrones.DroneTiers.IV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UXV.ordinal(),
                     220);
         }
 
@@ -739,7 +739,7 @@ public class SpaceMiningRecipes {
                     25 * SECONDS,
                     (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.UV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UXV.ordinal(),
                     75);
 
             // PlatLine Pure Asteroid
@@ -802,7 +802,7 @@ public class SpaceMiningRecipes {
                     25 * SECONDS,
                     (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.IV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UIV.ordinal(),
                     150);
 
             // Tengam Asteroid
@@ -822,7 +822,7 @@ public class SpaceMiningRecipes {
                     25 * SECONDS,
                     (int) TierEU.RECIPE_LuV,
                     ItemMiningDrones.DroneTiers.UEV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UXV.ordinal(),
                     50);
 
             // Naquadah Asteroid
@@ -865,7 +865,7 @@ public class SpaceMiningRecipes {
                     100 * SECONDS,
                     (int) TierEU.RECIPE_UEV,
                     ItemMiningDrones.DroneTiers.UHV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                    ItemMiningDrones.DroneTiers.UIV.ordinal(),
                     1);
         }
     }

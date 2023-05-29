@@ -71,9 +71,9 @@ public class ItemMiningDrones extends Item {
         UV(Materials.Naquadah),
         UHV(Materials.NaquadahAlloy),
         UEV(Materials.Neutronium),
-        UIV(Materials.DraconiumAwakened),
+        UIV(Materials.CosmicNeutronium),
         UMV(Materials.Infinity),
-        UXV(MaterialsUEVplus.SpaceTime);
+        UXV(MaterialsUEVplus.TranscendentMetal);
 
         /** Material for this drone tier */
         private final Materials mat;
