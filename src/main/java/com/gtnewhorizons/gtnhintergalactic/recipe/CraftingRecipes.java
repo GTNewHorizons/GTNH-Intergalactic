@@ -24,10 +24,8 @@ import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.objects.GT_ItemStack;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
-import gregtech.api.util.GT_Recipe.GT_Recipe_Map;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Item_01;
 import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
@@ -495,7 +493,7 @@ public class CraftingRecipes {
         RA.addPlasmaArcFurnaceRecipe(
                 GSMaterials.tantalumCarbideHafniumCarbideMixture.get(OrePrefixes.dust),
                 Materials.Nitrogen.getPlasma(2),
-                new ItemStack[] { GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.nugget, 9) },
+                new ItemStack[] { GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.ingot, 1) },
                 Materials.Nitrogen.getGas(1),
                 new int[] { 10000 },
                 5,
@@ -668,14 +666,6 @@ public class CraftingRecipes {
                 new int[] { 10000 },
                 300,
                 2);
-        GT_Recipe_Map.sMaceratorRecipes.mRecipeItemMap
-                .remove(new GT_ItemStack(GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.nugget)));
-        RA.addPulveriserRecipe(
-                GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.nugget, 9),
-                new ItemStack[] { GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.dust) },
-                new int[] { 10000 },
-                100,
-                480);
         RA.addPulveriserRecipe(
                 GSMaterials.tantalumHafniumCarbide.get(OrePrefixes.dust),
                 new ItemStack[] { new ItemStack(GSItems.DysonSwarmItems, 1, 4) },
