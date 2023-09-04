@@ -190,7 +190,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                     'i',
                     StructureUtility.ofChain(
                             GT_StructureUtility.ofHatchAdder(
-                                    TileEntityDysonSwarm::addClassicInputToMachineList,
+                                    TileEntityDysonSwarm::addInputHatchToMachineList,
                                     CASING_INDEX_LAUNCH,
                                     2),
                             StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2))) // Dyson Swarm Module Deployment
