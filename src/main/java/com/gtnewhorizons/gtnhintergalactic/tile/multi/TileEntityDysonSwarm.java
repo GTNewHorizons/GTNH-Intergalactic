@@ -189,10 +189,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             .addElement(
                     'i',
                     StructureUtility.ofChain(
-                            GT_StructureUtility.ofHatchAdder(
-                                    TileEntityDysonSwarm::addInputHatchToMachineList,
-                                    CASING_INDEX_LAUNCH,
-                                    2),
+                            GT_StructureUtility
+                                    .ofHatchAdder(TileEntityDysonSwarm::addInputToMachineList, CASING_INDEX_LAUNCH, 2),
                             StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2))) // Dyson Swarm Module Deployment
                                                                                      // Unit Base Casing
             .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 3)) // Dyson Swarm Module Deployment
@@ -442,7 +440,8 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 .addInfo("Outputs " + eu_module + "*f EU/t, where f is a dimension-dependent factor.")
                 .addInfo("Each second, n of m Dyson Swarm Modules are destroyed according to this formula:")
                 .addInfo(
-                        " Each hour, n of m modules are destroyed according to this formula: n = (2 * " + base_chance
+                        " Each hour, n of m modules are destroyed according to this formula: n = m * (2 * "
+                                + base_chance
                                 + ") / (exp(-"
                                 + a
                                 + "* (m - 1))+exp("
@@ -565,7 +564,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         // If the Module Destruction chance is zero or less, always return true.
         if (GSConfigCore.destroyModule_a > 0.0f) {
             moduleDestroyer = tile -> {
-                tile.moduleCount -= (2 * GSConfigCore.destroyModuleBase_chance)
+                tile.moduleCount -= tile.moduleCount * (2 * GSConfigCore.destroyModuleBase_chance)
                         / (Math.exp(-GSConfigCore.destroyModule_a * (tile.moduleCount - 1)) + Math.exp(
                                 GSConfigCore.destroyModule_b
                                         * Math.min(tile.eAvailableData, (long) GSConfigCore.destroyModuleMaxCPS)));
