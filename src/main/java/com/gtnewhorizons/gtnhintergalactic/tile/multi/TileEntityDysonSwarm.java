@@ -1,5 +1,6 @@
 package galaxyspace.core.tile.machine.multi;
 
+import static gregtech.api.util.GT_Utility.filterValidMTEs;
 import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
 import static net.minecraft.util.EnumChatFormatting.GREEN;
 import static net.minecraft.util.EnumChatFormatting.ITALIC;
@@ -44,7 +45,6 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Dynamo;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_InputBus;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_MultiBlockBase;
 import gregtech.api.objects.XSTR;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -287,17 +287,15 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
      **********/
     @Override
     public boolean checkRecipe_EM(ItemStack aStack) {
-        for (GT_MetaTileEntity_Hatch_InputBus bus : mInputBusses) {
-            if (isValidMetaTileEntity(bus)) {
-                for (int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
-                    ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                    if (stack != null && stack.getItem() == GSItems.DysonSwarmItems
-                            && stack.getItemDamage() == 0
-                            && moduleCount < (GSConfigCore.maxModules + 1)) {
-                        int usedStackSize = Math.min(stack.stackSize, GSConfigCore.maxModules - moduleCount);
-                        moduleCount += usedStackSize;
-                        stack.stackSize -= usedStackSize;
-                    }
+        for (GT_MetaTileEntity_Hatch_InputBus bus : filterValidMTEs(mInputBusses)) {
+            for (int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
+                ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
+                if (stack != null && stack.getItem() == GSItems.DysonSwarmItems
+                        && stack.getItemDamage() == 0
+                        && moduleCount < (GSConfigCore.maxModules + 1)) {
+                    int usedStackSize = Math.min(stack.stackSize, GSConfigCore.maxModules - moduleCount);
+                    moduleCount += usedStackSize;
+                    stack.stackSize -= usedStackSize;
                 }
             }
         }
@@ -338,37 +336,33 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         }
         long euVar = EU * Amperes;
         long diff;
-        for (GT_MetaTileEntity_Hatch_Dynamo tHatch : mDynamoHatches) {
-            if (GT_MetaTileEntity_MultiBlockBase.isValidMetaTileEntity(tHatch)) {
-                if (tHatch.maxEUOutput() < euVar && !allowMixedVoltages) {
-                    explodeMultiblock();
-                }
-                diff = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity().getStoredEU();
-                if (diff > 0) {
-                    if (euVar > diff) {
-                        tHatch.setEUVar(tHatch.maxEUStore());
-                        euVar -= diff;
-                    } else if (euVar <= diff) {
-                        tHatch.setEUVar(tHatch.getBaseMetaTileEntity().getStoredEU() + euVar);
-                        return true;
-                    }
+        for (GT_MetaTileEntity_Hatch_Dynamo tHatch : filterValidMTEs(mDynamoHatches)) {
+            if (tHatch.maxEUOutput() < euVar && !allowMixedVoltages) {
+                explodeMultiblock();
+            }
+            diff = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity().getStoredEU();
+            if (diff > 0) {
+                if (euVar > diff) {
+                    tHatch.setEUVar(tHatch.maxEUStore());
+                    euVar -= diff;
+                } else if (euVar <= diff) {
+                    tHatch.setEUVar(tHatch.getBaseMetaTileEntity().getStoredEU() + euVar);
+                    return true;
                 }
             }
         }
-        for (GT_MetaTileEntity_Hatch_DynamoMulti tHatch : eDynamoMulti) {
-            if (GT_MetaTileEntity_MultiBlockBase.isValidMetaTileEntity(tHatch)) {
-                if (tHatch.maxEUOutput() < euVar && !allowMixedVoltages) {
-                    explodeMultiblock();
-                }
-                diff = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity().getStoredEU();
-                if (diff > 0) {
-                    if (euVar > diff) {
-                        tHatch.setEUVar(tHatch.maxEUStore());
-                        euVar -= diff;
-                    } else if (euVar <= diff) {
-                        tHatch.setEUVar(tHatch.getBaseMetaTileEntity().getStoredEU() + euVar);
-                        return true;
-                    }
+        for (GT_MetaTileEntity_Hatch_DynamoMulti tHatch : filterValidMTEs(eDynamoMulti)) {
+            if (tHatch.maxEUOutput() < euVar && !allowMixedVoltages) {
+                explodeMultiblock();
+            }
+            diff = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity().getStoredEU();
+            if (diff > 0) {
+                if (euVar > diff) {
+                    tHatch.setEUVar(tHatch.maxEUStore());
+                    euVar -= diff;
+                } else if (euVar <= diff) {
+                    tHatch.setEUVar(tHatch.getBaseMetaTileEntity().getStoredEU() + euVar);
+                    return true;
                 }
             }
         }
