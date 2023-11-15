@@ -27,7 +27,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.github.technus.tectech.thing.metaTileEntity.multi.base.GT_MetaTileEntity_MultiblockBase_EM;
+import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
+import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
 
@@ -36,6 +38,7 @@ import galaxyspace.core.config.GSConfigCore;
 import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
 import gregtech.api.GregTech_API;
+import gregtech.api.enums.GT_HatchElement;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures.BlockIcons;
 import gregtech.api.enums.Textures.BlockIcons.CustomIcon;
@@ -53,7 +56,8 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 
-public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBase_EM {
+public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBase_EM
+        implements ISurvivalConstructable {
 
     private static Consumer<TileEntityDysonSwarm> moduleDestroyer;
     private static IIconContainer OVERLAY_FRONT_GLOW;
@@ -206,10 +210,9 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                                                                                      // Unit Superconducting Magnet
             .addElement(
                     'n',
-                    GT_StructureUtility.ofHatchAdder(
-                            TileEntityDysonSwarm::addClassicMaintenanceToMachineList,
-                            CASING_INDEX_FLOOR,
-                            3))
+                    GT_StructureUtility.buildHatchAdder(TileEntityDysonSwarm.class).atLeast(GT_HatchElement.Maintenance)
+                            .dot(3).casingIndex(CASING_INDEX_FLOOR)
+                            .adder(TileEntityDysonSwarm::addClassicMaintenanceToMachineList).build())
             .addElement(
                     'o',
                     StructureUtility.ofChain(
@@ -266,6 +269,12 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     @Override
     public IStructureDefinition<? extends GT_MetaTileEntity_MultiblockBase_EM> getStructure_EM() {
         return STRUCTURE_DEFINITION;
+    }
+
+    @Override
+    public int survivalConstruct(ItemStack stackSize, int elementBudget, ISurvivalBuildEnvironment env) {
+        if (this.mMachine) return -1;
+        return this.survivialBuildPiece(STRUCTURE_PIECE_MAIN, stackSize, 10, 18, 3, elementBudget, env, true, true);
     }
 
     @Override
