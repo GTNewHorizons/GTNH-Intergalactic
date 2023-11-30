@@ -1,6 +1,8 @@
 package galaxyspace.core.recipe;
 
 import static gregtech.api.enums.GT_Values.RA;
+import static gregtech.api.enums.Mods.NewHorizonsCoreMod;
+import static gregtech.api.enums.Mods.OpenModularTurrets;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 import net.minecraft.init.Blocks;
@@ -37,8 +39,12 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 public class CraftingRecipes {
 
     public static void loadRecipes() {
-        Fluid moltenRhugnor = FluidRegistry.getFluid("molten.rhugnor"); // GTPP
-        Fluid moltenRadoxPolymer = FluidRegistry.getFluid("molten.radoxpoly"); // dreamcraft
+        Fluid moltenRhugnor = FluidRegistry.getFluid("molten.rhugnor") != null
+                ? FluidRegistry.getFluid("molten.rhugnor") // GTPP
+                : Materials.Radon.mGas;
+        Fluid moltenRadoxPolymer = FluidRegistry.getFluid("molten.radoxpoly") != null
+                ? FluidRegistry.getFluid("molten.radoxpoly") // dreamcraft
+                : Materials.Polybenzimidazole.mStandardMoltenFluid;
         Item ocItem = GameRegistry.findItem("OpenComputers", "item");
         Item case1 = GameRegistry.findItem("OpenComputers", "case1");
         Item case2 = GameRegistry.findItem("OpenComputers", "case2");
@@ -58,10 +64,10 @@ public class CraftingRecipes {
         Item irradiantReinforcedBedrockiumPlate = GameRegistry
                 .findItem("dreamcraft", "item.IrradiantReinforcedBedrockiumPlate");
         Fluid solderUEV = FluidRegistry.getFluid("molten.mutatedlivingsolder") != null
-                ? FluidRegistry.getFluid("molten.mutatedlivingsolder")
+                ? FluidRegistry.getFluid("molten.mutatedlivingsolder") // GTPP
                 : FluidRegistry.getFluid("molten.solderingalloy");
         Fluid solderLuV = FluidRegistry.getFluid("molten.indalloy140") != null
-                ? FluidRegistry.getFluid("molten.indalloy140")
+                ? FluidRegistry.getFluid("molten.indalloy140") // GTPP
                 : FluidRegistry.getFluid("molten.solderingalloy");
 
         // Assembler
@@ -706,33 +712,37 @@ public class CraftingRecipes {
         addDecorativeMetalBlockRecipe(7, new ItemStack(GSItems.CompressedPlates, 1, 8));
         addDecorativeMetalBlockRecipe(8, new ItemStack(GSItems.CompressedPlates, 1, 9));
         addDecorativeMetalBlockRecipe(9, new ItemStack(GCItems.basicItem, 1, 6));
-        RecipeUtil.addRecipe(
-                new ItemStack(GSBlocks.MachineFrames),
-                new Object[] { "MWM", "CTC", "MWM", 'M', new ItemStack(GSItems.CompressedPlates, 1, 5), 'W', waferT3,
-                        'C', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'T',
-                        new ItemStack(GregTech_API.sBlockCasings4) });
-        RecipeUtil.addRecipe(
-                new ItemStack(GSBlocks.StorageModuleT3),
-                new Object[] { "CEC", "WFW", "CEC", 'C', new ItemStack(GSItems.CompressedPlates, 1, 9), 'E',
-                        new ItemStack(GCBlocks.machineTiered, 1, 8), 'W', waferT3, 'F',
-                        new ItemStack(GSBlocks.MachineFrames) });
-        RecipeUtil.addRecipe(
-                new ItemStack(GSBlocks.OxStorageModuleT2),
-                new Object[] { "SCS", "PFP", "SWS", 'S', new ItemStack(GCBlocks.machineBase2, 1, 8), 'C',
-                        new ItemStack(GCItems.oxygenConcentrator), 'P', new ItemStack(GCBlocks.oxygenPipe), 'F',
-                        new ItemStack(GSBlocks.MachineFrames), 'W', waferT3 });
+        if (NewHorizonsCoreMod.isModLoaded()) {
+            RecipeUtil.addRecipe(
+                    new ItemStack(GSBlocks.MachineFrames),
+                    new Object[] { "MWM", "CTC", "MWM", 'M', new ItemStack(GSItems.CompressedPlates, 1, 5), 'W',
+                            waferT3, 'C', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'T',
+                            new ItemStack(GregTech_API.sBlockCasings4) });
+            RecipeUtil.addRecipe(
+                    new ItemStack(GSBlocks.StorageModuleT3),
+                    new Object[] { "CEC", "WFW", "CEC", 'C', new ItemStack(GSItems.CompressedPlates, 1, 9), 'E',
+                            new ItemStack(GCBlocks.machineTiered, 1, 8), 'W', waferT3, 'F',
+                            new ItemStack(GSBlocks.MachineFrames) });
+            RecipeUtil.addRecipe(
+                    new ItemStack(GSBlocks.OxStorageModuleT2),
+                    new Object[] { "SCS", "PFP", "SWS", 'S', new ItemStack(GCBlocks.machineBase2, 1, 8), 'C',
+                            new ItemStack(GCItems.oxygenConcentrator), 'P', new ItemStack(GCBlocks.oxygenPipe), 'F',
+                            new ItemStack(GSBlocks.MachineFrames), 'W', waferT3 });
+        }
         RecipeUtil.addRecipe(
                 new ItemStack(GSBlocks.SolarWindPanel),
                 new Object[] { "TFT", "APA", "MWS", 'T', new ItemStack(AsteroidsItems.basicItem, 1, 6), 'F',
                         new ItemStack(GSItems.SolarFlares, 1, 1), 'A', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'P',
                         new ItemStack(GCItems.flagPole), 'M', ItemList.Electric_Motor_LV.get(1), 'W',
                         new ItemStack(GCItems.basicItem, 1, 14), 'S', ItemList.Sensor_LV.get(1) });
-        RecipeUtil.addRecipe(
-                new ItemStack(GSBlocks.SolarPanel),
-                new Object[] { "DSD", "AFA", "MWs", 'D', new ItemStack(GSItems.CompressedPlates, 1, 2), 'S',
-                        new ItemStack(GCItems.basicItem, 1, 1), 'A', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'F',
-                        new ItemStack(GSBlocks.MachineFrames), 'M', ItemList.Electric_Motor_MV.get(1), 'W', waferT3,
-                        's', ItemList.Sensor_MV.get(1) });
+        if (NewHorizonsCoreMod.isModLoaded()) {
+            RecipeUtil.addRecipe(
+                    new ItemStack(GSBlocks.SolarPanel),
+                    new Object[] { "DSD", "AFA", "MWs", 'D', new ItemStack(GSItems.CompressedPlates, 1, 2), 'S',
+                            new ItemStack(GCItems.basicItem, 1, 1), 'A', new ItemStack(GCBlocks.aluminumWire, 1, 1),
+                            'F', new ItemStack(GSBlocks.MachineFrames), 'M', ItemList.Electric_Motor_MV.get(1), 'W',
+                            waferT3, 's', ItemList.Sensor_MV.get(1) });
+        }
         RecipeUtil.addRecipe(
                 new ItemStack(BRBlocks.BarnardaCPlanks, 4),
                 new Object[] { "L", 'L', new ItemStack(BRBlocks.BarnardaCLog) }); // GT replaces this recipe
@@ -742,12 +752,15 @@ public class CraftingRecipes {
                 new Object[] { "ABA", "ADA", "CDC", 'A', new ItemStack(GSItems.CompressedSDHD120), 'B',
                         new ItemStack(GSItems.LeadBoots), 'D', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'C',
                         new ItemStack(GSItems.CompressedPlates, 1, 2) });
-        RecipeUtil.addRecipe(
-                new ItemStack(GSItems.QuantBow),
-                new Object[] { "LMS", "m S", "LMS", 'L',
-                        GT_OreDictUnificator.get(OrePrefixes.stickLong, Materials.Lead, 1), 'M',
-                        getGTNHItem("MytrylCrystal"), 'S', GT_ModHandler.getModItem("TConstruct", "bowstring", 1, 2),
-                        'm', getGTNHItem("MysteriousCrystal") });
+        if (NewHorizonsCoreMod.isModLoaded()) {
+            RecipeUtil.addRecipe(
+                    new ItemStack(GSItems.QuantBow),
+                    new Object[] { "LMS", "m S", "LMS", 'L',
+                            GT_OreDictUnificator.get(OrePrefixes.stickLong, Materials.Lead, 1), 'M',
+                            getGTNHItem("MytrylCrystal"), 'S',
+                            GT_ModHandler.getModItem("TConstruct", "bowstring", 1, 2), 'm',
+                            getGTNHItem("MysteriousCrystal") });
+        }
         RecipeUtil.addRecipe(
                 new ItemStack(GSItems.LeadHelmet),
                 new Object[] { "LLL", "LHL", "D D", 'L', new ItemStack(GSItems.CompressedPlates, 1, 3), 'H',
@@ -869,18 +882,22 @@ public class CraftingRecipes {
                         new ItemStack(GT_MetaGenerated_Item_01.INSTANCE, 1, 32602), 'R',
                         GT_OreDictUnificator.get(OrePrefixes.stickLong, Materials.StainlessSteel, 1), 'A',
                         ItemList.Robot_Arm_HV.get(1), 'P', ItemList.Electric_Piston_HV.get(1), 'C', "circuitData" });
-        RecipeUtil.addRecipe(
-                new ItemStack(GCBlocks.nasaWorkbench),
-                new Object[] { "RRR", "CDC", "WAW", 'R', new ItemStack(GSItems.RobotArm), 'C', "circuitElite", 'D',
-                        display, 'W', GT_ModHandler.getModItem("openmodularturrets", "hardWallTierFour", 1), 'A',
-                        new ItemStack(GregTech_API.sBlockMachines, 1, 213) });
-        RecipeUtil.addRecipe(
-                getGTNHItem("RawSDHCAlloy"),
-                new Object[] { "SDS", "BCA", "SHS", 'S',
-                        GT_OreDictUnificator.get(OrePrefixes.screw, Materials.StainlessSteel, 1), 'D',
-                        "craftingToolScrewDriver", 'B', new ItemStack(GSItems.CompressedDualBronze), 'C',
-                        new ItemStack(GSItems.CompressedCoal), 'A', new ItemStack(GSItems.CompressedDualAluminium), 'H',
-                        "craftingToolHardHammer" });
+        if (OpenModularTurrets.isModLoaded() && NewHorizonsCoreMod.isModLoaded()) {
+            RecipeUtil.addRecipe(
+                    new ItemStack(GCBlocks.nasaWorkbench),
+                    new Object[] { "RRR", "CDC", "WAW", 'R', new ItemStack(GSItems.RobotArm), 'C', "circuitElite", 'D',
+                            display, 'W', GT_ModHandler.getModItem("openmodularturrets", "hardWallTierFour", 1), 'A',
+                            new ItemStack(GregTech_API.sBlockMachines, 1, 213) });
+        }
+        if (NewHorizonsCoreMod.isModLoaded()) {
+            RecipeUtil.addRecipe(
+                    getGTNHItem("RawSDHCAlloy"),
+                    new Object[] { "SDS", "BCA", "SHS", 'S',
+                            GT_OreDictUnificator.get(OrePrefixes.screw, Materials.StainlessSteel, 1), 'D',
+                            "craftingToolScrewDriver", 'B', new ItemStack(GSItems.CompressedDualBronze), 'C',
+                            new ItemStack(GSItems.CompressedCoal), 'A', new ItemStack(GSItems.CompressedDualAluminium),
+                            'H', "craftingToolHardHammer" });
+        }
     }
 
     private static void addDyedFutureGlassRecipe(int meta, String color) {
