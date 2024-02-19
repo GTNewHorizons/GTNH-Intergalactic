@@ -18,9 +18,9 @@ import galaxyspace.GalaxySpace;
 public class BlockDysonSwarmPart extends Block {
 
     private IIcon[][] textures;
-    public static final String[] names = new String[] { "ReceiverCasing", "ReceiverDish", "DeploymentUnitCasing",
-            "DeploymentUnitCore", "DeploymentUnitMagnet", "ControlCasing", "ControlPrimary", "ControlSecondary",
-            "ControlToroid", "Floor" };
+    public static final String[] names = { "ReceiverCasing", "ReceiverDish", "DeploymentUnitCasing",
+        "DeploymentUnitCore", "DeploymentUnitMagnet", "ControlCasing", "ControlPrimary", "ControlSecondary",
+        "ControlToroid", "Floor" };
 
     public BlockDysonSwarmPart() {
         super(Material.iron);
@@ -44,7 +44,7 @@ public class BlockDysonSwarmPart extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List variants) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> variants) {
         for (int i = 0; i < names.length; i++) {
             variants.add(new ItemStack(item, 1, i));
         }
@@ -52,7 +52,7 @@ public class BlockDysonSwarmPart extends Block {
 
     @Override
     public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
-            double explosionY, double explosionZ) {
+        double explosionY, double explosionZ) {
         if (world.getBlockMetadata(x, y, z) == 9) {
             return 1500.0f;
         }

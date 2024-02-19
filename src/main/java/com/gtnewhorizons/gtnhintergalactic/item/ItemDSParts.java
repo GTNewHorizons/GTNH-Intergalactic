@@ -12,8 +12,8 @@ import galaxyspace.GalaxySpace;
 
 public class ItemDSParts extends Item {
 
-    private static final String[] names = new String[] { "dysonSwarmModule", "TaHfCNanofibers", "NtNanofibers",
-            "UHTResistantMesh", "TaHfNanoparticles", "NtNanoparticles" };
+    private static final String[] names = { "dysonSwarmModule", "TaHfCNanofibers", "NtNanofibers", "UHTResistantMesh",
+        "TaHfNanoparticles", "NtNanoparticles" };
     private static final IIcon[] icons = new IIcon[names.length];
 
     public ItemDSParts() {
