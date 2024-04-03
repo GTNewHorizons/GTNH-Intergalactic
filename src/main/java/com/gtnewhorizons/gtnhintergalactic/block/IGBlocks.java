@@ -15,13 +15,16 @@ public class IGBlocks {
     public static BlockCasingSpaceElevator SpaceElevatorCasing;
     public static BlockCasingSpaceElevatorMotor SpaceElevatorMotor;
 
-    /**
-     * Initialize the blocks of this mod
-     */
-    public static void init() {
+    static {
+        // Initialize the blocks of this mod
         SpaceElevatorCable = new BlockSpaceElevatorCable();
         GameRegistry.registerBlock(SpaceElevatorCable, ItemBlockSpaceElevatorCable.class, "spaceelevatorcable");
         SpaceElevatorCasing = new BlockCasingSpaceElevator();
         SpaceElevatorMotor = new BlockCasingSpaceElevatorMotor();
     }
+
+    /**
+     * For explicit loading of this class.
+     */
+    public static void init() {}
 }

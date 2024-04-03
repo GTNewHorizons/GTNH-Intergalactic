@@ -36,15 +36,18 @@ public class IGItems {
     public static ItemStack SpaceElevatorModuleManager;
     public static ItemStack SpaceElevatorModuleResearch;
 
-    /**
-     * Initialize the items of this mod
-     */
-    public static void init() {
+    static {
+        // Initialize the items of this mod
         SpaceElevatorItems = new ItemSpaceElevatorParts();
         MiningDrones = new ItemMiningDrones();
         registerItem(SpaceElevatorItems);
         registerItem(MiningDrones);
     }
+
+    /**
+     * For explicit loading of this class.
+     */
+    public static void init() {}
 
     /**
      * Register an item in the game registry, using its unlocalized name
