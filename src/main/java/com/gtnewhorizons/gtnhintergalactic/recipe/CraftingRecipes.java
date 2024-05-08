@@ -545,7 +545,7 @@ public class CraftingRecipes {
             2);
         RA.addCompressorRecipe(
             new ItemStack(GSItems.GlowstoneDusts, 4, 3),
-            new ItemStack(GSBlocks.ProteusBlocks),
+            new ItemStack(GSBlocks.ProteusGlowStone),
             300,
             2);
         RA.addCompressorRecipe(
