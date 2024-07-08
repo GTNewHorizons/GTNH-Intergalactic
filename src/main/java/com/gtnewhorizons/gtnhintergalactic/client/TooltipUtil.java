@@ -57,5 +57,6 @@ public class TooltipUtil {
                         DARK_BLUE + OBFUSCATED));
 
         addItemTooltip(IGItems.PlanetaryGasSiphon, AUTHOR_GLOWREDMAN);
+        addItemTooltip(IGItems.DysonSwarmController,AUTHOR_GLOWREDMAN);
     }
 }
