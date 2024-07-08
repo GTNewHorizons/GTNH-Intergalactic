@@ -24,10 +24,12 @@ public class IGBlocks {
     public static void init() {
         SpaceElevatorCable = new BlockSpaceElevatorCable();
         DysonSwarmBlocks = new BlockDysonSwarmPart();
+        MachineFrames = new BlockMachineFrames();
         GameRegistry.registerBlock(SpaceElevatorCable, ItemBlockSpaceElevatorCable.class, "spaceelevatorcable");
         GameRegistry.registerBlock(DysonSwarmBlocks, ItemBlockDysonSwarmPart.class, "dysonswarmparts");
+        GameRegistry.registerBlock(MachineFrames, "machineframes");
         SpaceElevatorCasing = new BlockCasingSpaceElevator();
         SpaceElevatorMotor = new BlockCasingSpaceElevatorMotor();
-        MachineFrames = new BlockMachineFrames();
+
     }
 }
