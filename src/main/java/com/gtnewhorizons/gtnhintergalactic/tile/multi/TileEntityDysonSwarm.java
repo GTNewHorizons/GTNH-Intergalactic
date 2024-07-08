@@ -592,7 +592,6 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     }
 
     public static void initClient() {
-        initCommon();
         BlockIcons.setCasingTextureForId(CASING_INDEX_RECEIVER, TextureFactory.of(IGBlocks.DysonSwarmBlocks, 0));
         BlockIcons.setCasingTextureForId(CASING_INDEX_LAUNCH, TextureFactory.of(IGBlocks.DysonSwarmBlocks, 2));
         BlockIcons.setCasingTextureForId(CASING_INDEX_COMMAND, TextureFactory.of(IGBlocks.DysonSwarmBlocks, 5));
