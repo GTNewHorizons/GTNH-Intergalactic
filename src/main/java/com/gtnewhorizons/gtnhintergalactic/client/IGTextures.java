@@ -1,6 +1,7 @@
 package com.gtnewhorizons.gtnhintergalactic.client;
 
-import galaxyspace.core.register.GSBlocks;
+import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
+
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.IIconContainer;
 import gregtech.api.interfaces.ITexture;
@@ -29,6 +30,6 @@ public class IGTextures implements Runnable {
         SIPHON_OVERLAY_FRONT_ACTIVE_GLOW = new Textures.BlockIcons.CustomIcon(
                 "iconsets/OVERLAY_FRONT_PLANETARYSIPHON_ACTIVE_GLOW");
         Textures.BlockIcons
-                .setCasingTextureForId(ADVANCED_MACHINE_FRAME_INDEX, TextureFactory.of(GSBlocks.MachineFrames));
+                .setCasingTextureForId(ADVANCED_MACHINE_FRAME_INDEX, TextureFactory.of(IGBlocks.MachineFrames));
     }
 }

@@ -1,10 +1,11 @@
-package galaxyspace.core.block;
+package com.gtnewhorizons.gtnhintergalactic.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
-import galaxyspace.GalaxySpace;
+import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
+
 import gregtech.api.GregTech_API;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 
@@ -16,8 +17,8 @@ public class BlockMachineFrames extends Block implements ITerraformableBlock {
         this.setHardness(2.0f);
         this.setStepSound(soundTypeStone);
         this.setHarvestLevel("pickaxe", 3);
-        this.setCreativeTab(GalaxySpace.tabBlocks);
-        this.setBlockTextureName(GalaxySpace.ASSET_PREFIX + ":overworld/machine");
+        this.setCreativeTab(GTNHIntergalactic.tab);
+        this.setBlockTextureName(GTNHIntergalactic.ASSET_PREFIX + ":overworld/machine");
         GregTech_API.registerMachineBlock(this, -1);
     }
 

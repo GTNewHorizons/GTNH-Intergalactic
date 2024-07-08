@@ -1,4 +1,4 @@
-package galaxyspace.core.recipe;
+package com.gtnewhorizons.gtnhintergalactic.recipe;
 
 import java.util.HashMap;
 
@@ -23,10 +23,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitAdvanced", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 13), 1); // HV Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDMarsOrbit,
-                    ConfigManagerMars.dimensionIDMars,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDMarsOrbit,
+                            ConfigManagerMars.dimensionIDMars,
+                            new SpaceStationRecipe(inputMap)));
         }
         if (GSConfigDimensions.enableJupiterSS) {
             HashMap<Object, Integer> inputMap = new HashMap<>();
@@ -35,10 +35,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitData", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 14), 1); // EV Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDJupiterOrbit,
-                    GSConfigDimensions.dimensionIDJupiter,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDJupiterOrbit,
+                            GSConfigDimensions.dimensionIDJupiter,
+                            new SpaceStationRecipe(inputMap)));
         }
         if (GSConfigDimensions.enableVenusSS) {
             HashMap<Object, Integer> inputMap = new HashMap<>();
@@ -47,10 +47,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitElite", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 15), 1); // IV Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDVenusOrbit,
-                    GSConfigDimensions.dimensionIDVenus,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDVenusOrbit,
+                            GSConfigDimensions.dimensionIDVenus,
+                            new SpaceStationRecipe(inputMap)));
         }
         if (GSConfigDimensions.enableSaturnSS) {
             HashMap<Object, Integer> inputMap = new HashMap<>();
@@ -59,10 +59,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitMaster", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 16), 1); // LuV Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDSaturnOrbit,
-                    GSConfigDimensions.dimensionIDSaturn,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDSaturnOrbit,
+                            GSConfigDimensions.dimensionIDSaturn,
+                            new SpaceStationRecipe(inputMap)));
         }
         if (GSConfigDimensions.enableUranusSS) {
             HashMap<Object, Integer> inputMap = new HashMap<>();
@@ -71,10 +71,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitMaster", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 16), 1); // LuV Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDUranusOrbit,
-                    GSConfigDimensions.dimensionIDUranus,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDUranusOrbit,
+                            GSConfigDimensions.dimensionIDUranus,
+                            new SpaceStationRecipe(inputMap)));
         }
         if (GSConfigDimensions.enableNeptuneSS) {
             HashMap<Object, Integer> inputMap = new HashMap<>();
@@ -83,10 +83,10 @@ public class SpaceStationRecipes {
             inputMap.put("circuitUltimate", 4);
             inputMap.put(new ItemStack(GregTech_API.sBlockMachines, 1, 17), 1); // ZPM Machine Hull
             GalacticraftRegistry.registerSpaceStation(
-                new SpaceStationType(
-                    GSConfigDimensions.dimensionIDNeptuneOrbit,
-                    GSConfigDimensions.dimensionIDNeptune,
-                    new SpaceStationRecipe(inputMap)));
+                    new SpaceStationType(
+                            GSConfigDimensions.dimensionIDNeptuneOrbit,
+                            GSConfigDimensions.dimensionIDNeptune,
+                            new SpaceStationRecipe(inputMap)));
         }
     }
 }

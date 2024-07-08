@@ -9,6 +9,7 @@ import com.gtnewhorizons.gtnhintergalactic.client.TooltipUtil;
 import com.gtnewhorizons.gtnhintergalactic.nei.NEI_IG_Config;
 import com.gtnewhorizons.gtnhintergalactic.render.RenderSpaceElevatorCable;
 import com.gtnewhorizons.gtnhintergalactic.tile.TileEntitySpaceElevatorCable;
+import com.gtnewhorizons.gtnhintergalactic.tile.multi.TileEntityDysonSwarm;
 import com.mitchej123.hodgepodge.textures.IPatchedTextureAtlasSprite;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -55,6 +56,7 @@ public class ClientProxy extends CommonProxy {
                 .bindTileEntitySpecialRenderer(TileEntitySpaceElevatorCable.class, new RenderSpaceElevatorCable());
         new IGTextures().run();
         MinecraftForge.EVENT_BUS.register(new NEI_IG_Config());
+        TileEntityDysonSwarm.initClient();
     }
 
     /**

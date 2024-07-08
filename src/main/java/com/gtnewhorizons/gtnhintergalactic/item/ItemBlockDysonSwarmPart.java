@@ -1,4 +1,4 @@
-package galaxyspace.core.item.block;
+package com.gtnewhorizons.gtnhintergalactic.item;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import galaxyspace.core.block.BlockDysonSwarmPart;
+import com.gtnewhorizons.gtnhintergalactic.block.BlockDysonSwarmPart;
 
 public class ItemBlockDysonSwarmPart extends ItemBlock {
 

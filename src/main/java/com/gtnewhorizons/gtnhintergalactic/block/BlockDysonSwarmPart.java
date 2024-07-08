@@ -1,4 +1,4 @@
-package galaxyspace.core.block;
+package com.gtnewhorizons.gtnhintergalactic.block;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import galaxyspace.GalaxySpace;
+import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
 
 public class BlockDysonSwarmPart extends Block {
 
     private IIcon[][] textures;
     public static final String[] names = { "ReceiverCasing", "ReceiverDish", "DeploymentUnitCasing",
-        "DeploymentUnitCore", "DeploymentUnitMagnet", "ControlCasing", "ControlPrimary", "ControlSecondary",
-        "ControlToroid", "Floor" };
+            "DeploymentUnitCore", "DeploymentUnitMagnet", "ControlCasing", "ControlPrimary", "ControlSecondary",
+            "ControlToroid", "Floor" };
 
     public BlockDysonSwarmPart() {
         super(Material.iron);
         setBlockName("DysonSwarmPart");
-        setCreativeTab(GalaxySpace.tabBlocks);
+        setCreativeTab(GTNHIntergalactic.tab);
         setHarvestLevel("pickaxe", 2);
     }
 
@@ -33,8 +33,9 @@ public class BlockDysonSwarmPart extends Block {
     public void registerBlockIcons(IIconRegister register) {
         textures = new IIcon[names.length][2];
         for (int i = 0; i < names.length; i++) {
-            textures[i][0] = register.registerIcon(GalaxySpace.ASSET_PREFIX + ":dysonSwarm/" + names[i] + "_Side");
-            textures[i][1] = register.registerIcon(GalaxySpace.ASSET_PREFIX + ":dysonSwarm/" + names[i]);
+            textures[i][0] = register
+                    .registerIcon(GTNHIntergalactic.ASSET_PREFIX + ":dysonSwarm/" + names[i] + "_Side");
+            textures[i][1] = register.registerIcon(GTNHIntergalactic.ASSET_PREFIX + ":dysonSwarm/" + names[i]);
         }
     }
 
@@ -52,7 +53,7 @@ public class BlockDysonSwarmPart extends Block {
 
     @Override
     public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
-        double explosionY, double explosionZ) {
+            double explosionY, double explosionZ) {
         if (world.getBlockMetadata(x, y, z) == 9) {
             return 1500.0f;
         }

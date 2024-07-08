@@ -55,7 +55,6 @@ import com.gtnewhorizons.modularui.common.widget.TextWidget;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import galaxyspace.core.register.GSBlocks;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -238,7 +237,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
                     0,
                     TileEntitySpaceElevator::setMotorTier,
                     TileEntitySpaceElevator::getMotorTier)) // Motors
-            .addElement('A', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 9)) // Concrete
+            .addElement('A', StructureUtility.ofBlock(IGBlocks.DysonSwarmBlocks, 9)) // Concrete
             .addElement('D', StructureUtility.ofBlock(IGBlocks.SpaceElevatorCasing, 0)) // Base Casing
             .addElement(
                 'I',

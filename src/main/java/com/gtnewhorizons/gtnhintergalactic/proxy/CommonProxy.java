@@ -2,16 +2,21 @@ package com.gtnewhorizons.gtnhintergalactic.proxy;
 
 import net.minecraft.util.IIcon;
 
+import com.github.bartimaeusnek.bartworks.API.WerkstoffAdderRegistry;
 import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.config.Config;
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
+import com.gtnewhorizons.gtnhintergalactic.loader.GSMaterials;
 import com.gtnewhorizons.gtnhintergalactic.loader.MachineLoader;
 import com.gtnewhorizons.gtnhintergalactic.loader.RecipeLoader;
+import com.gtnewhorizons.gtnhintergalactic.recipe.CraftingRecipes;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IG_RecipeAdder;
 import com.gtnewhorizons.gtnhintergalactic.recipe.MachineRecipes;
 import com.gtnewhorizons.gtnhintergalactic.recipe.ResultNoSpaceProject;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceProjectRegistration;
+import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceStationRecipes;
 import com.gtnewhorizons.gtnhintergalactic.tile.TileEntitySpaceElevatorCable;
+import com.gtnewhorizons.gtnhintergalactic.tile.multi.TileEntityDysonSwarm;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -32,6 +37,7 @@ public class CommonProxy {
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
+        WerkstoffAdderRegistry.addWerkstoffAdder(new GSMaterials());
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
@@ -44,11 +50,14 @@ public class CommonProxy {
         new MachineLoader().run();
         IG_RecipeAdder.init();
         GameRegistry.registerTileEntity(TileEntitySpaceElevatorCable.class, "Space Elevator Cable");
+        TileEntityDysonSwarm.initCommon();
         CheckRecipeResultRegistry.register(new ResultNoSpaceProject("", ""));
     }
 
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     public void postInit(FMLPostInitializationEvent event) {
+        CraftingRecipes.loadRecipes();
+        SpaceStationRecipes.loadRecipes();
         new RecipeLoader().run();
         new SpaceProjectRegistration().run();
         new MachineRecipes().run();

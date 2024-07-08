@@ -1,4 +1,4 @@
-package galaxyspace.core.item;
+package com.gtnewhorizons.gtnhintergalactic.item;
 
 import java.util.List;
 
@@ -8,16 +8,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import galaxyspace.GalaxySpace;
+import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
 
 public class ItemDSParts extends Item {
 
     private static final String[] names = { "dysonSwarmModule", "TaHfCNanofibers", "NtNanofibers", "UHTResistantMesh",
-        "TaHfNanoparticles", "NtNanoparticles" };
+            "TaHfNanoparticles", "NtNanoparticles" };
     private static final IIcon[] icons = new IIcon[names.length];
 
     public ItemDSParts() {
-        setCreativeTab(GalaxySpace.tabItems);
+        setCreativeTab(GTNHIntergalactic.tab);
         setHasSubtypes(true);
         setUnlocalizedName("DysonSwarmParts");
     }
@@ -43,7 +43,7 @@ public class ItemDSParts extends Item {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (int i = 0; i < names.length; i++) {
-            icons[i] = iconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":" + names[i]);
+            icons[i] = iconRegister.registerIcon(GTNHIntergalactic.ASSET_PREFIX + ":" + names[i]);
         }
     }
 }
