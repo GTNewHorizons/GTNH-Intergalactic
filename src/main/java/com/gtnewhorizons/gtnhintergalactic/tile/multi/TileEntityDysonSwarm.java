@@ -35,9 +35,9 @@ import com.gtnewhorizon.structurelib.structure.StructureUtility;
 import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
+import com.gtnewhorizons.gtnhintergalactic.config.Config;
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 
-import galaxyspace.core.config.GSConfigCore;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_HatchElement;
 import gregtech.api.enums.Materials;
@@ -303,17 +303,17 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                 ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
                 if (stack != null && stack.getItem() == IGItems.DysonSwarmItems
                         && stack.getItemDamage() == 0
-                        && moduleCount < GSConfigCore.maxModules + 1) {
-                    int usedStackSize = Math.min(stack.stackSize, GSConfigCore.maxModules - moduleCount);
+                        && moduleCount < Config.maxModules + 1) {
+                    int usedStackSize = Math.min(stack.stackSize, Config.maxModules - moduleCount);
                     moduleCount += usedStackSize;
                     stack.stackSize -= usedStackSize;
                 }
             }
         }
 
-        euPerTick = (long) ((long) moduleCount * GSConfigCore.euPerModule * powerFactor);
+        euPerTick = (long) ((long) moduleCount * Config.euPerModule * powerFactor);
 
-        if (moduleCount > 0 && depleteInput(GSConfigCore.coolantFluid)) {
+        if (moduleCount > 0 && depleteInput(Config.coolantFluid)) {
             // With a certain chance (configurable), the size of the ItemStack(s) is reduced.
             // This has the effect that the player must constantly replace "broken" Modules.
             moduleDestroyer.accept(this);
@@ -436,11 +436,11 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
-        String eu_module = getDecimalFormat().format(GSConfigCore.euPerModule);
-        String a = getDecimalFormat().format(GSConfigCore.destroyModule_a);
-        String fluid_amount = getDecimalFormat().format(GSConfigCore.coolantConsumption);
-        String fluid_name = GSConfigCore.coolantFluid.getLocalizedName();
-        String base_chance = getDecimalFormat().format(GSConfigCore.destroyModuleBase_chance);
+        String eu_module = getDecimalFormat().format(Config.euPerModule);
+        String a = getDecimalFormat().format(Config.destroyModule_a);
+        String fluid_amount = getDecimalFormat().format(Config.coolantConsumption);
+        String fluid_name = Config.coolantFluid.getLocalizedName();
+        String base_chance = getDecimalFormat().format(Config.destroyModuleBase_chance);
 
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("Dyson Swarm").addInfo(ITALIC + LORE_TOOLTIP)
@@ -454,7 +454,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                                 + ") / (exp(-"
                                 + a
                                 + "* (m - 1))+exp("
-                                + GSConfigCore.destroyModuleBase_chance
+                                + Config.destroyModuleBase_chance
                                 + " * cps))"
                                 + ", where cps is computation per second.")
                 .addInfo("Requires " + fluid_amount + "L/h of " + fluid_name + ".")
@@ -496,7 +496,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                         + "%"
                         + RESET,
                 "Theoretical Output: " + YELLOW
-                        + GT_Utility.formatNumbers((long) moduleCount * GSConfigCore.euPerModule * powerFactor)
+                        + GT_Utility.formatNumbers((long) moduleCount * Config.euPerModule * powerFactor)
                         + RESET
                         + " EU/t",
                 "Current Output: " + YELLOW + GT_Utility.formatNumbers(euPerTick) + RESET + " EU/t",
@@ -512,19 +512,18 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
     public double getPowerFactor() {
         WorldProvider provider = this.getBaseMetaTileEntity().getWorld().provider;
         if (provider instanceof IOrbitDimension) {
-            return powerFactors.getOrDefault(
-                    "SS_" + ((IOrbitDimension) provider).getPlanetToOrbit(),
-                    GSConfigCore.powerFactorDefault);
+            return powerFactors
+                    .getOrDefault("SS_" + ((IOrbitDimension) provider).getPlanetToOrbit(), Config.powerFactorDefault);
         }
         if ("zarkov.utilityworlds.UW_WorldProviderGarden".equals(provider.getClass().getName())) {
-            return powerFactors.getOrDefault("UW_Garden", GSConfigCore.powerFactorDefault);
+            return powerFactors.getOrDefault("UW_Garden", Config.powerFactorDefault);
         }
         if ("zarkov.utilityworlds.UW_WorldProviderMining".equals(provider.getClass().getName())) {
-            return powerFactors.getOrDefault("UW_Mining", GSConfigCore.powerFactorDefault);
+            return powerFactors.getOrDefault("UW_Mining", Config.powerFactorDefault);
         } else if ("zarkov.utilityworlds.UW_WorldProviderVoid".equals(provider.getClass().getName())) {
-            return powerFactors.getOrDefault("UW_Void", GSConfigCore.powerFactorDefault);
+            return powerFactors.getOrDefault("UW_Void", Config.powerFactorDefault);
         } else {
-            return powerFactors.getOrDefault(String.valueOf(provider.dimensionId), GSConfigCore.powerFactorDefault);
+            return powerFactors.getOrDefault(String.valueOf(provider.dimensionId), Config.powerFactorDefault);
         }
     }
 
@@ -561,7 +560,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         powerFactors = new HashMap<>();
 
         // parse the powerFactors config entry from String[] to Map<String, Double>
-        for (String s : GSConfigCore.powerFactors) {
+        for (String s : Config.powerFactors) {
             String[] parts = s.split(":");
             try {
                 powerFactors.put(parts[0], Double.parseDouble(parts[1]));
@@ -572,12 +571,12 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         }
         // If the Module Destruction chance is greater than zero is, initialize the method to randomly destroy modules.
         // If the Module Destruction chance is zero or less, always return true.
-        if (GSConfigCore.destroyModule_a > 0.0f) {
+        if (Config.destroyModule_a > 0.0f) {
             moduleDestroyer = tile -> {
-                tile.moduleCount -= tile.moduleCount * (2 * GSConfigCore.destroyModuleBase_chance)
-                        / (Math.exp(-GSConfigCore.destroyModule_a * (tile.moduleCount - 1)) + Math.exp(
-                                GSConfigCore.destroyModule_b
-                                        * Math.min(tile.eAvailableData, (long) GSConfigCore.destroyModuleMaxCPS)));
+                tile.moduleCount -= tile.moduleCount * (2 * Config.destroyModuleBase_chance)
+                        / (Math.exp(-Config.destroyModule_a * (tile.moduleCount - 1)) + Math.exp(
+                                Config.destroyModule_b
+                                        * Math.min(tile.eAvailableData, (long) Config.destroyModuleMaxCPS)));
 
                 if (tile.moduleCount < 0) {
                     tile.moduleCount = 0;
