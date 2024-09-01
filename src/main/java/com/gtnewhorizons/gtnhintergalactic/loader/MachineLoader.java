@@ -1,5 +1,19 @@
 package com.gtnewhorizons.gtnhintergalactic.loader;
 
+import static gregtech.api.enums.MetaTileEntityIDs.PlanetaryGasSiphonController;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorController;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT1;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT2;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT3;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleManager;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT1;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT2;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT3;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT1;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT2;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT3;
+import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleResearch;
+
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.tile.multi.TileEntityPlanetaryGasSiphon;
 import com.gtnewhorizons.gtnhintergalactic.tile.multi.elevator.TileEntitySpaceElevator;
@@ -11,20 +25,6 @@ import com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules.TileEntity
 
 import gregtech.api.enums.ItemList;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-
-import static gregtech.api.enums.MetaTileEntityIDs.PlanetaryGasSiphonController;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT1;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT2;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleMinerT3;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorController;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT1;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT2;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleAssemblerT3;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleManager;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT1;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT2;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModulePumpT3;
-import static gregtech.api.enums.MetaTileEntityIDs.SpaceElevatorModuleResearch;
 
 /**
  * Loader for all machines
@@ -64,15 +64,15 @@ public class MachineLoader implements Runnable {
                 GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.assembler.t3.name")).getStackForm(1);
 
         IGItems.SpaceElevatorModuleMinerT1 = new TileEntityModuleMiner.TileEntityModuleMinerT1(
-            SpaceElevatorModuleMinerT1.ID,
+                SpaceElevatorModuleMinerT1.ID,
                 "ProjectModuleMinerT1",
                 GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.miner.t1.name")).getStackForm(1);
         IGItems.SpaceElevatorModuleMinerT2 = new TileEntityModuleMiner.TileEntityModuleMinerT2(
-            SpaceElevatorModuleMinerT2.ID,
+                SpaceElevatorModuleMinerT2.ID,
                 "ProjectModuleMinerT2",
                 GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.miner.t2.name")).getStackForm(1);
         IGItems.SpaceElevatorModuleMinerT3 = new TileEntityModuleMiner.TileEntityModuleMinerT3(
-            SpaceElevatorModuleMinerT3.ID,
+                SpaceElevatorModuleMinerT3.ID,
                 "ProjectModuleMinerT3",
                 GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.miner.t3.name")).getStackForm(1);
 
