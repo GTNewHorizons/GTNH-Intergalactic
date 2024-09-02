@@ -1,6 +1,7 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 
 import gregtech.api.util.GTStructureUtility;
+import gregtech.api.util.shutdown.ShutDownReasonRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;

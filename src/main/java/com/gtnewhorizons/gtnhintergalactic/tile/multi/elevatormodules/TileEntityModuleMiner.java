@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.ParallelHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -355,7 +356,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         }
 
         // Randomly generate ore stacks with the given chances, ores and size
-        Map<GT_Utility.ItemId, Long> outputs = new HashMap<>();
+        Map<GTUtility.ItemId, Long> outputs = new HashMap<>();
         int totalChance = Arrays.stream(tRecipe.mChances).sum();
         try {
             for (int i = 0; i < tRecipe.maxSize * parallels; i++) {
@@ -373,7 +374,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
                             if (configuredOres == null || configuredOres.isEmpty()
                                     || isWhitelisted == configuredOres.contains(getOreString(generatedOre))) {
                                 outputs.merge(
-                                        GT_Utility.ItemId.createNoCopy(generatedOre),
+                                        GTUtility.ItemId.createNoCopy(generatedOre),
                                         (long) generatedOre.stackSize,
                                         Long::sum);
                             }
@@ -392,8 +393,8 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
 
         // Assign recipe parameters
         ArrayList<ItemStack> outputItems = new ArrayList<>();
-        for (Map.Entry<GT_Utility.ItemId, Long> entry : outputs.entrySet()) {
-            GT_ParallelHelper.addItemsLong(outputItems, entry.getKey().getItemStack(), entry.getValue());
+        for (Map.Entry<GTUtility.ItemId, Long> entry : outputs.entrySet()) {
+            ParallelHelper.addItemsLong(outputItems, entry.getKey().getItemStack(), entry.getValue());
         }
         mOutputItems = outputItems.toArray(new ItemStack[0]);
 
