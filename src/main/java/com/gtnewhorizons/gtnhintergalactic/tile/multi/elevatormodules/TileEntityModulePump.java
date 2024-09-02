@@ -5,8 +5,6 @@ import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
 import java.util.ArrayList;
 import java.util.List;
 
-import gregtech.api.metatileentity.implementations.MTEHatchOutput;
-import gregtech.common.tileentities.machines.MTEHatchOutputME;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -17,10 +15,6 @@ import net.minecraftforge.fluids.FluidStack;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
-import tectech.thing.metaTileEntity.multi.base.INameFunction;
-import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
-import tectech.thing.metaTileEntity.multi.base.LedStatus;
-import tectech.thing.metaTileEntity.multi.base.Parameters;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpacePumpingRecipes;
 import com.gtnewhorizons.gtnhintergalactic.tile.multi.elevator.TileEntitySpaceElevator;
@@ -36,10 +30,16 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.implementations.MTEHatchOutput;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.common.tileentities.machines.MTEHatchOutputME;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import tectech.thing.metaTileEntity.multi.base.INameFunction;
+import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
+import tectech.thing.metaTileEntity.multi.base.LedStatus;
+import tectech.thing.metaTileEntity.multi.base.Parameters;
 import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
 import tectech.thing.metaTileEntity.multi.base.render.TTRenderedExtendedFacingTexture;
 
@@ -298,8 +298,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),
                     new TTRenderedExtendedFacingTexture(
-                            aActive ? TTMultiblockBase.ScreenON
-                                    : TTMultiblockBase.ScreenOFF) };
+                            aActive ? TTMultiblockBase.ScreenON : TTMultiblockBase.ScreenOFF) };
         } else if (facing.getRotation(ForgeDirection.UP) == side || facing.getRotation(ForgeDirection.DOWN) == side) {
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),

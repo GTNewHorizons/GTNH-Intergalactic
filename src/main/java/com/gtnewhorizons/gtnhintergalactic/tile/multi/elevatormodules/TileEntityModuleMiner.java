@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.ParallelHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,12 +23,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import tectech.TecTech;
-import tectech.thing.gui.TecTechUITextures;
-import tectech.thing.metaTileEntity.multi.base.INameFunction;
-import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
-import tectech.thing.metaTileEntity.multi.base.LedStatus;
-import tectech.thing.metaTileEntity.multi.base.Parameters;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IGRecipeMaps;
@@ -65,11 +57,19 @@ import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.api.util.ParallelHelper;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
 import gregtech.common.misc.spaceprojects.enums.SolarSystem;
 import gregtech.common.misc.spaceprojects.interfaces.ISpaceProject;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import tectech.TecTech;
+import tectech.thing.gui.TecTechUITextures;
+import tectech.thing.metaTileEntity.multi.base.INameFunction;
+import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
+import tectech.thing.metaTileEntity.multi.base.LedStatus;
+import tectech.thing.metaTileEntity.multi.base.Parameters;
 import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
 import tectech.thing.metaTileEntity.multi.base.render.TTRenderedExtendedFacingTexture;
 
@@ -718,8 +718,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),
                     new TTRenderedExtendedFacingTexture(
-                            aActive ? TTMultiblockBase.ScreenON
-                                    : TTMultiblockBase.ScreenOFF) };
+                            aActive ? TTMultiblockBase.ScreenON : TTMultiblockBase.ScreenOFF) };
         } else if (facing.getRotation(ForgeDirection.UP) == side || facing.getRotation(ForgeDirection.DOWN) == side) {
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),

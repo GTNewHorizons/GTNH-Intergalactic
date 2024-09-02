@@ -1,14 +1,16 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevator;
 
 import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
-import static net.minecraft.util.EnumChatFormatting.*;
+import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
+import static net.minecraft.util.EnumChatFormatting.GREEN;
+import static net.minecraft.util.EnumChatFormatting.ITALIC;
+import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
+import static net.minecraft.util.EnumChatFormatting.RED;
+import static net.minecraft.util.EnumChatFormatting.RESET;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import gregtech.api.util.GTStructureUtility;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.HatchElementBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -63,6 +65,9 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.objects.GTChunkManager;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
+import gregtech.api.util.GTStructureUtility;
+import gregtech.api.util.GTUtility;
+import gregtech.api.util.HatchElementBuilder;
 import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
@@ -729,8 +734,7 @@ public class TileEntitySpaceElevator extends GT_MetaTileEntity_EnhancedMultiBloc
         if (side == facing) {
             return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(CASING_INDEX_BASE),
                     new TTRenderedExtendedFacingTexture(
-                            aActive ? TTMultiblockBase.ScreenON
-                                    : TTMultiblockBase.ScreenOFF) };
+                            aActive ? TTMultiblockBase.ScreenON : TTMultiblockBase.ScreenOFF) };
         }
         return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(CASING_INDEX_BASE) };
     }

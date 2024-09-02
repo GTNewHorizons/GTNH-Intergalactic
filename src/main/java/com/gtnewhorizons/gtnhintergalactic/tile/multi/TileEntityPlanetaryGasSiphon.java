@@ -1,23 +1,18 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi;
 
-import static net.minecraft.util.EnumChatFormatting.*;
+import static net.minecraft.util.EnumChatFormatting.BLUE;
+import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
+import static net.minecraft.util.EnumChatFormatting.GREEN;
+import static net.minecraft.util.EnumChatFormatting.ITALIC;
+import static net.minecraft.util.EnumChatFormatting.LIGHT_PURPLE;
+import static net.minecraft.util.EnumChatFormatting.RED;
 import static net.minecraft.util.EnumChatFormatting.RESET;
+import static net.minecraft.util.EnumChatFormatting.YELLOW;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
-import bartworks.client.textures.PrefixTextureLinker;
-import bartworks.system.material.BWTileEntityMetaGeneratedBlocksCasingAdvanced;
-import bartworks.system.material.WerkstoffLoader;
-import com.gtnewhorizon.structurelib.structure.StructureUtility;
-import gregtech.api.metatileentity.implementations.MTEHatchInputBus;
-import gregtech.api.util.GTModHandler;
-import gregtech.api.util.GTStructureUtility;
-import gregtech.api.metatileentity.implementations.MTEEnhancedMultiBlockBase;
-import gregtech.api.objects.GTChunkManager;
-import gregtech.api.util.GTUtility;
-import gregtech.common.blocks.BlockCasings1;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -38,11 +33,15 @@ import com.gtnewhorizon.structurelib.StructureLibAPI;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.IStructureElement;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.gtnewhorizon.structurelib.structure.StructureUtility;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.client.IGTextures;
 import com.gtnewhorizons.gtnhintergalactic.client.lore.LoreHolder;
 import com.gtnewhorizons.gtnhintergalactic.recipe.GasSiphonRecipes;
 
+import bartworks.client.textures.PrefixTextureLinker;
+import bartworks.system.material.BWTileEntityMetaGeneratedBlocksCasingAdvanced;
+import bartworks.system.material.WerkstoffLoader;
 import cpw.mods.fml.common.Loader;
 import galaxyspace.core.register.GSBlocks;
 import gregtech.api.enums.ItemList;
@@ -53,11 +52,18 @@ import gregtech.api.interfaces.IChunkLoader;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.implementations.MTEEnhancedMultiBlockBase;
+import gregtech.api.metatileentity.implementations.MTEHatchInputBus;
+import gregtech.api.objects.GTChunkManager;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
 import gregtech.api.render.TextureFactory;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTStructureUtility;
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.common.blocks.BlockCasings1;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 

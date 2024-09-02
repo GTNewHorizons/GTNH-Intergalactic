@@ -9,12 +9,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
 
-import tectech.thing.metaTileEntity.multi.base.INameFunction;
-import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
-import tectech.thing.metaTileEntity.multi.base.LedStatus;
-import tectech.thing.metaTileEntity.multi.base.Parameters;
-import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
-import tectech.thing.metaTileEntity.multi.base.render.TTRenderedExtendedFacingTexture;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IGRecipeMaps;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IG_Recipe;
@@ -34,9 +28,15 @@ import gregtech.api.objects.overclockdescriber.OverclockDescriber;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
-import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.api.util.GTRecipe;
+import gregtech.api.util.MultiblockTooltipBuilder;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import tectech.thing.metaTileEntity.multi.base.INameFunction;
+import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
+import tectech.thing.metaTileEntity.multi.base.LedStatus;
+import tectech.thing.metaTileEntity.multi.base.Parameters;
+import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
+import tectech.thing.metaTileEntity.multi.base.render.TTRenderedExtendedFacingTexture;
 
 /**
  * Space Assembler project module of the Space Elevator
@@ -177,8 +177,7 @@ public abstract class TileEntityModuleAssembler extends TileEntityModuleBase imp
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),
                     new TTRenderedExtendedFacingTexture(
-                            aActive ? TTMultiblockBase.ScreenON
-                                    : TTMultiblockBase.ScreenOFF) };
+                            aActive ? TTMultiblockBase.ScreenON : TTMultiblockBase.ScreenOFF) };
         } else if (facing.getRotation(ForgeDirection.UP) == side || facing.getRotation(ForgeDirection.DOWN) == side) {
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),

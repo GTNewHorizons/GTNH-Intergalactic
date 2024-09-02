@@ -2,9 +2,6 @@ package com.gtnewhorizons.gtnhintergalactic.block;
 
 import java.util.List;
 
-import gregtech.api.objects.GTCopiedBlockTexture;
-import gregtech.common.blocks.BlockCasingsAbstract;
-import gregtech.common.blocks.MaterialCasings;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -19,7 +16,10 @@ import com.gtnewhorizons.gtnhintergalactic.item.ItemCasingSpaceElevatorMotor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.enums.Textures;
+import gregtech.api.objects.GTCopiedBlockTexture;
 import gregtech.api.util.GTLanguageManager;
+import gregtech.common.blocks.BlockCasingsAbstract;
+import gregtech.common.blocks.MaterialCasings;
 
 /**
  * Motors used to construct the Space Elevator

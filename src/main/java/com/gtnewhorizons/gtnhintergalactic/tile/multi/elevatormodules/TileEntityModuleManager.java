@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
-import gregtech.api.enums.GTValues;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
@@ -19,7 +18,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import tectech.thing.gui.TecTechUITextures;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.modularui.api.drawable.FluidDrawable;
@@ -42,6 +40,7 @@ import com.gtnewhorizons.modularui.common.widget.MultiChildWidget;
 import com.gtnewhorizons.modularui.common.widget.Scrollable;
 import com.gtnewhorizons.modularui.common.widget.TextWidget;
 
+import gregtech.api.enums.GTValues;
 import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
@@ -50,13 +49,14 @@ import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
-import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.api.util.GTRecipe;
+import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
 import gregtech.common.misc.spaceprojects.SpaceProjectWorldSavedData;
 import gregtech.common.misc.spaceprojects.interfaces.ISpaceBody;
 import gregtech.common.misc.spaceprojects.interfaces.ISpaceProject;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import tectech.thing.gui.TecTechUITextures;
 
 /**
  * Module that allows the user to manage their space projects

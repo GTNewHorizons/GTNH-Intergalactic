@@ -3,9 +3,9 @@ package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import gregtech.api.enums.GTValues;
 import net.minecraft.util.EnumChatFormatting;
 
+import gregtech.api.enums.GTValues;
 import gregtech.api.objects.overclockdescriber.EUNoOverclockDescriber;
 import gregtech.api.util.GTRecipe;
 import gregtech.api.util.MethodsReturnNonnullByDefault;

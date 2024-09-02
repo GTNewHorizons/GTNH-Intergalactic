@@ -3,7 +3,6 @@ package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 import static gregtech.api.enums.GTValues.V;
 import static net.minecraft.util.EnumChatFormatting.DARK_PURPLE;
 
-import gregtech.api.util.GTRecipe;
 import net.minecraft.util.EnumChatFormatting;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +19,7 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
+import gregtech.api.util.GTRecipe;
 import gregtech.api.util.MultiblockTooltipBuilder;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 

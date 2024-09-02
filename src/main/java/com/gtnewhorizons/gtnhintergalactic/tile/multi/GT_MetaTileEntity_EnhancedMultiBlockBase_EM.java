@@ -3,7 +3,6 @@ package com.gtnewhorizons.gtnhintergalactic.tile.multi;
 import java.util.HashMap;
 import java.util.Map;
 
-import gregtech.api.util.MultiblockTooltipBuilder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -17,6 +16,7 @@ import com.gtnewhorizon.structurelib.alignment.enumerable.Flip;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 
 import gregtech.api.interfaces.ISecondaryDescribable;
+import gregtech.api.util.MultiblockTooltipBuilder;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
 

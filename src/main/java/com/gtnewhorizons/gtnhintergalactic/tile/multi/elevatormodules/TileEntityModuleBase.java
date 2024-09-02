@@ -1,15 +1,9 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 
-import gregtech.api.util.GTStructureUtility;
-import gregtech.api.util.shutdown.ShutDownReasonRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import tectech.thing.metaTileEntity.multi.base.INameFunction;
-import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
-import tectech.thing.metaTileEntity.multi.base.LedStatus;
-import tectech.thing.metaTileEntity.multi.base.Parameters;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
@@ -27,8 +21,14 @@ import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.util.GTStructureUtility;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.shutdown.ShutDownReasonRegistry;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import tectech.thing.metaTileEntity.multi.base.INameFunction;
+import tectech.thing.metaTileEntity.multi.base.IStatusFunction;
+import tectech.thing.metaTileEntity.multi.base.LedStatus;
+import tectech.thing.metaTileEntity.multi.base.Parameters;
 import tectech.thing.metaTileEntity.multi.base.TTMultiblockBase;
 import tectech.thing.metaTileEntity.multi.base.render.TTRenderedExtendedFacingTexture;
 
@@ -365,8 +365,7 @@ public abstract class TileEntityModuleBase extends GT_MetaTileEntity_EnhancedMul
             return new ITexture[] {
                     Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE),
                     new TTRenderedExtendedFacingTexture(
-                            aActive ? TTMultiblockBase.ScreenON
-                                    : TTMultiblockBase.ScreenOFF) };
+                            aActive ? TTMultiblockBase.ScreenON : TTMultiblockBase.ScreenOFF) };
         }
         return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(TileEntitySpaceElevator.CASING_INDEX_BASE) };
     }

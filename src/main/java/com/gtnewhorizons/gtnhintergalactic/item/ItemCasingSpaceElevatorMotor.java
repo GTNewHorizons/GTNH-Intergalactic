@@ -2,7 +2,6 @@ package com.gtnewhorizons.gtnhintergalactic.item;
 
 import java.util.List;
 
-import gregtech.common.blocks.ItemCasingsAbstract;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,6 +9,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 import com.gtnewhorizons.gtnhintergalactic.tile.multi.elevator.ElevatorUtil;
 
+import gregtech.common.blocks.ItemCasingsAbstract;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 /**
