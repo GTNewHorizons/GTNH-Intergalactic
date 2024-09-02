@@ -7,6 +7,17 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
+import bartworks.client.textures.PrefixTextureLinker;
+import bartworks.system.material.BWTileEntityMetaGeneratedBlocksCasingAdvanced;
+import bartworks.system.material.WerkstoffLoader;
+import com.gtnewhorizon.structurelib.structure.StructureUtility;
+import gregtech.api.metatileentity.implementations.MTEHatchInputBus;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTStructureUtility;
+import gregtech.api.metatileentity.implementations.MTEEnhancedMultiBlockBase;
+import gregtech.api.objects.GTChunkManager;
+import gregtech.api.util.GTUtility;
+import gregtech.common.blocks.BlockCasings1;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -23,14 +34,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.github.bartimaeusnek.bartworks.client.textures.PrefixTextureLinker;
-import com.github.bartimaeusnek.bartworks.system.material.BW_MetaGeneratedBlocks_CasingAdvanced_TE;
-import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.gtnewhorizon.structurelib.StructureLibAPI;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.IStructureElement;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.gtnewhorizon.structurelib.structure.StructureUtility;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.client.IGTextures;
 import com.gtnewhorizons.gtnhintergalactic.client.lore.LoreHolder;
@@ -46,18 +53,11 @@ import gregtech.api.interfaces.IChunkLoader;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_InputBus;
-import gregtech.api.objects.GT_ChunkManager;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_ModHandler;
-import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_StructureUtility;
-import gregtech.api.util.GT_Utility;
-import gregtech.common.blocks.GT_Block_Casings1;
+import gregtech.api.util.MultiblockTooltipBuilder;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
@@ -66,7 +66,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
  *
  * @author glowredman
  */
-public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMultiBlockBase<TileEntityPlanetaryGasSiphon>
+public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<TileEntityPlanetaryGasSiphon>
         implements IChunkLoader {
 
     /** Lore string, which will be randomly picked from a selection each time the resources are reloaded */
@@ -86,23 +86,23 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
                             new String[][] { { "   ", " f ", "   " }, { "   ", " f ", "   " }, { "   ", " f ", "   " },
                                     { " f ", "fcf", " f " }, { " f ", "fcf", " f " }, { " f ", "fcf", " f " },
                                     { "b~b", "bcb", "bbb" } }))
-            .addElement('f', GT_StructureUtility.ofFrame(Materials.TungstenSteel)).addElement('c', ofReboltedCasing())
+            .addElement('f', GTStructureUtility.ofFrame(Materials.TungstenSteel)).addElement('c', ofReboltedCasing())
             .addElement(
                     'b',
                     StructureUtility.ofChain(
-                            GT_StructureUtility.ofHatchAdder(
+                            GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addMaintenanceToMachineList,
                                     IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
                                     1),
-                            GT_StructureUtility.ofHatchAdder(
+                            GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addEnergyInputToMachineList,
                                     IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
                                     1),
-                            GT_StructureUtility.ofHatchAdder(
+                            GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addInputToMachineList,
                                     IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
                                     1),
-                            GT_StructureUtility.ofHatchAdder(
+                            GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addOutputToMachineList,
                                     IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
                                     1),
@@ -171,8 +171,8 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
      * @return Tooltip builder for this machine
      */
     @Override
-    protected GT_Multiblock_Tooltip_Builder createTooltip() {
-        final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
+    protected MultiblockTooltipBuilder createTooltip() {
+        final MultiblockTooltipBuilder tt = new MultiblockTooltipBuilder();
         tt.addMachineType(GCCoreUtil.translate("gt.blockmachines.multimachine.ig.siphon.type"))
                 .addInfo(loreTooltip != null ? ITALIC + loreTooltip : "")
                 .addInfo(GCCoreUtil.translate("gt.blockmachines.multimachine.ig.siphon.desc1"))
@@ -283,7 +283,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
             return CheckRecipeResultRegistry.NO_RECIPE;
         }
 
-        GT_MetaTileEntity_Hatch_InputBus bus = mInputBusses.get(0);
+        MTEHatchInputBus bus = mInputBusses.get(0);
         int numPipes = 0;
 
         // count mining pipes, get depth
@@ -296,7 +296,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
                 depth = stack.getItemDamage();
                 continue;
             }
-            if (Objects.equals(stack.getItem(), GT_ModHandler.getIC2Item("miningPipe", 0).getItem())) {
+            if (Objects.equals(stack.getItem(), GTModHandler.getIC2Item("miningPipe", 0).getItem())) {
                 numPipes += stack.stackSize;
             }
         }
@@ -310,7 +310,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
                 depth = stack.getItemDamage();
                 continue;
             }
-            if (Objects.equals(stack.getItem(), GT_ModHandler.getIC2Item("miningPipe", 0).getItem())) {
+            if (Objects.equals(stack.getItem(), GTModHandler.getIC2Item("miningPipe", 0).getItem())) {
                 numPipes += stack.stackSize;
             }
         }
@@ -466,10 +466,10 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
             float x, float y, float z) {
         if (side == getBaseMetaTileEntity().getFrontFacing()) {
             mChunkLoadingEnabled = !mChunkLoadingEnabled;
-            GT_Utility.sendChatToPlayer(
+            GTUtility.sendChatToPlayer(
                     player,
-                    mChunkLoadingEnabled ? GT_Utility.trans("502", "Mining chunk loading enabled")
-                            : GT_Utility.trans("503", "Mining chunk loading disabled"));
+                    mChunkLoadingEnabled ? GTUtility.trans("502", "Mining chunk loading enabled")
+                            : GTUtility.trans("503", "Mining chunk loading disabled"));
             return true;
         }
         return super.onSolderingToolRightClick(side, wrenchingSide, player, x, y, z);
@@ -477,8 +477,6 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
 
     /**
      * Reset the stats of the siphon
-     *
-     * @param resetDepth should depth be reset too?
      */
     private void resetMachine() {
         mEUt = 0;
@@ -490,7 +488,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
      */
     @Override
     public void onRemoval() {
-        if (mChunkLoadingEnabled) GT_ChunkManager.releaseTicket((TileEntity) getBaseMetaTileEntity());
+        if (mChunkLoadingEnabled) GTChunkManager.releaseTicket((TileEntity) getBaseMetaTileEntity());
         super.onRemoval();
     }
 
@@ -507,7 +505,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
                 && !mWorkChunkNeedsReload
                 && !baseMetaTileEntity.isAllowedToWork()) {
             // if machine has stopped, stop chunk loading
-            GT_ChunkManager.releaseTicket((TileEntity) baseMetaTileEntity);
+            GTChunkManager.releaseTicket((TileEntity) baseMetaTileEntity);
             mWorkChunkNeedsReload = true;
         }
     }
@@ -519,7 +517,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
     public String[] getInfoData() {
         return new String[] { LIGHT_PURPLE + "Operational Data:" + RESET, "Depth: " + YELLOW + depth + RESET,
                 "Fluid: " + YELLOW + fluid.amount + RESET + "L/s " + BLUE + fluid.getLocalizedName() + RESET,
-                "EU/t required: " + YELLOW + GT_Utility.formatNumbers(-mEUt) + RESET + " EU/t",
+                "EU/t required: " + YELLOW + GTUtility.formatNumbers(-mEUt) + RESET + " EU/t",
                 "Maintenance Status: " + (getRepairStatus() == getIdealStatus() ? GREEN + "Working perfectly" + RESET
                         : RED + "Has problems" + RESET),
                 "---------------------------------------------" };
@@ -534,7 +532,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
         return new IStructureElement<T>() {
 
             private final boolean isBartworksLoaded = Loader.isModLoaded("bartworks");
-            private final Block fallBackBlock = GT_Block_Casings1.getBlockById(0);
+            private final Block fallBackBlock = BlockCasings1.getBlockById(0);
             private final int fallbackBlockMeta = 0;
             private IIcon[] icons;
 
@@ -584,7 +582,7 @@ public class TileEntityPlanetaryGasSiphon extends GT_MetaTileEntity_EnhancedMult
             public boolean check(T t, World world, int x, int y, int z) {
                 if (isBartworksLoaded) {
                     TileEntity tile = world.getTileEntity(x, y, z);
-                    if (tile instanceof BW_MetaGeneratedBlocks_CasingAdvanced_TE tileCasingAdvanced) {
+                    if (tile instanceof BWTileEntityMetaGeneratedBlocksCasingAdvanced tileCasingAdvanced) {
                         if (tileCasingAdvanced.isInvalid()) return false;
                         return tileCasingAdvanced.mMetaData == WerkstoffLoader.LuVTierMaterial.getmID();
                     }

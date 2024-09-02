@@ -4,11 +4,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.StatCollector;
 
-import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.modularui.common.internal.network.NetworkUtils;
 
 import gregtech.api.recipe.check.CheckRecipeResult;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Check recipe error that will be displayed when the user doesn't have the right space project

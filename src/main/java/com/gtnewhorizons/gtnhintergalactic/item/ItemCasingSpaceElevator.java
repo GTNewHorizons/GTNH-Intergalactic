@@ -2,12 +2,12 @@ package com.gtnewhorizons.gtnhintergalactic.item;
 
 import java.util.List;
 
+import gregtech.common.blocks.ItemCasingsAbstract;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import gregtech.common.blocks.GT_Item_Casings_Abstract;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 /**
@@ -15,7 +15,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
  *
  * @author minecraft7771
  */
-public class ItemCasingSpaceElevator extends GT_Item_Casings_Abstract {
+public class ItemCasingSpaceElevator extends ItemCasingsAbstract {
 
     /**
      * Create a new item for the casing blocks
