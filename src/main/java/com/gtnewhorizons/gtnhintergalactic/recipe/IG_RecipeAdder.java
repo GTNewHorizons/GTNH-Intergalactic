@@ -2,7 +2,6 @@ package com.gtnewhorizons.gtnhintergalactic.recipe;
 
 import java.util.Arrays;
 
-import gregtech.common.RecipeAdder;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -10,6 +9,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTOreDictUnificator;
+import gregtech.common.RecipeAdder;
 
 /**
  * GT recipe adder of GTNH-Intergalactic

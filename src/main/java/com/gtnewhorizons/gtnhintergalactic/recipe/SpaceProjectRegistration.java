@@ -9,11 +9,10 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import bartworks.common.loaders.ItemRegistry;
-import tectech.thing.CustomItemList;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.spaceprojects.ProjectAsteroidOutpost;
 
+import bartworks.common.loaders.ItemRegistry;
 import cpw.mods.fml.common.Loader;
 import galaxyspace.core.register.GSBlocks;
 import gregtech.api.enums.ItemList;
@@ -24,6 +23,7 @@ import gregtech.common.misc.spaceprojects.base.SPUpgrade;
 import gregtech.common.misc.spaceprojects.base.SpaceProject;
 import gregtech.common.misc.spaceprojects.enums.SolarSystem;
 import gregtech.common.misc.spaceprojects.interfaces.ISpaceProject;
+import tectech.thing.CustomItemList;
 
 /**
  * All space projects of this mod

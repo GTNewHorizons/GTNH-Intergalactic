@@ -3,8 +3,6 @@ package com.gtnewhorizons.gtnhintergalactic.nei;
 import java.awt.Rectangle;
 import java.util.Map;
 
-import gregtech.api.gui.modularui.GTUITextures;
-import gregtech.api.util.GTUtility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -25,6 +23,8 @@ import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import gregtech.api.gui.modularui.GTUITextures;
+import gregtech.api.util.GTUtility;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 
 /**

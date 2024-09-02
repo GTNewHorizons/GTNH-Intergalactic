@@ -6,10 +6,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import bartworks.system.material.WerkstoffLoader;
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 
+import bartworks.system.material.WerkstoffLoader;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import goodgenerator.items.GGMaterial;
@@ -682,8 +682,7 @@ public class SpaceMiningRecipes {
                     null,
                     null,
                     new int[] { 7400, 2000, 500, 98, 2 },
-                    new ItemStack[] {
-                            GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.MysteriousCrystal, 64),
+                    new ItemStack[] { GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.MysteriousCrystal, 64),
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Mytryl, 64),
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Oriharukon, 64),
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.HeeEndium, 64),

@@ -6,7 +6,6 @@ import java.util.Map;
 import net.minecraftforge.fluids.FluidStack;
 
 import bartworks.system.material.WerkstoffLoader;
-
 import cpw.mods.fml.common.Loader;
 import galaxyspace.SolarSystem.SolarSystemPlanets;
 import gregtech.api.enums.Materials;

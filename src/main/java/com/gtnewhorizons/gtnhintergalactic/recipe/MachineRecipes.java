@@ -10,14 +10,11 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import bartworks.common.loaders.ItemRegistry;
-import tectech.recipe.TTRecipeAdder;
-import tectech.thing.CustomItemList;
-import tectech.thing.casing.TTCasingsContainer;
 import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 
+import bartworks.common.loaders.ItemRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import goodgenerator.items.GGMaterial;
@@ -35,6 +32,9 @@ import micdoodle8.mods.galacticraft.core.items.GCItems;
 import micdoodle8.mods.galacticraft.core.util.RecipeUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
+import tectech.recipe.TTRecipeAdder;
+import tectech.thing.CustomItemList;
+import tectech.thing.casing.TTCasingsContainer;
 
 public class MachineRecipes implements Runnable {
 
