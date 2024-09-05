@@ -233,7 +233,8 @@ public class MachineRecipes implements Runnable {
                         GTOreDictUnificator.get(OrePrefixes.screw, MaterialsUEVplus.TranscendentMetal, 16),
                         GTOreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 16), },
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
-                        Materials.Naquadria.getMolten(1440), MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
+                        Materials.Naquadria.getMolten(1440),
+                        MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 2),
                 1 * MINUTE,
                 (int) TierEU.RECIPE_UEV);
@@ -252,7 +253,8 @@ public class MachineRecipes implements Runnable {
                         GTOreDictUnificator.get(OrePrefixes.screw, MaterialsUEVplus.SpaceTime, 16),
                         GTOreDictUnificator.get(OrePrefixes.plate, MaterialsUEVplus.ProtoHalkonite, 16), },
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
-                        Materials.Naquadria.getMolten(1440), MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
+                        Materials.Naquadria.getMolten(1440),
+                        MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 3),
                 1 * MINUTE,
                 (int) TierEU.RECIPE_UIV);
@@ -271,7 +273,8 @@ public class MachineRecipes implements Runnable {
                         GTOreDictUnificator.get(OrePrefixes.screw, MaterialsUEVplus.Universium, 16),
                         GTOreDictUnificator.get(OrePrefixes.plate, Materials.Osmiridium, 16), },
                 new FluidStack[] { new FluidStack(solderUEV, 2880), Materials.UUMatter.getFluid(8000),
-                        Materials.Naquadria.getMolten(1440), MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
+                        Materials.Naquadria.getMolten(1440),
+                        MaterialsUEVplus.DimensionallyShiftedSuperfluid.getFluid(24000) },
                 new ItemStack(IGBlocks.SpaceElevatorMotor, 1, 4),
                 1 * MINUTE,
                 (int) TierEU.RECIPE_UIV);
