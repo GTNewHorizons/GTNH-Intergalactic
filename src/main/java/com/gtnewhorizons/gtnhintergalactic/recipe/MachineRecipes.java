@@ -764,7 +764,7 @@ public class MachineRecipes implements Runnable {
                         GTModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier8", 64),
                         GTModHandler.getModItem("dreamcraft", "item.HeavyDutyRocketEngineTier4", 64),
                         ItemList.Sensor_UXV.get(8) },
-                new FluidStack[] { MaterialsUEVplus.Space.getFluid(576), MaterialsUEVplus.Universium.getFluid(576),
+                new FluidStack[] { MaterialsUEVplus.Space.getMolten(576), MaterialsUEVplus.Universium.getMolten(576),
                         new FluidStack(FluidRegistry.getFluid("liquid_drillingfluid"), 512000) },
                 new ItemStack(IGItems.MiningDrones, 1, ItemMiningDrones.DroneTiers.UXV.ordinal()),
                 1 * MINUTE,
