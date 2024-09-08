@@ -63,8 +63,6 @@ public class MachineRecipes implements Runnable {
         ItemStack highComputationStationT4_32 = ItemRefer.HiC_T4.get(32);
         ItemStack highComputationStationT5_32 = ItemRefer.HiC_T5.get(32);
         ItemStack metaStableOgScrew_64 = GGMaterial.metastableOganesson.get(OrePrefixes.screw, 64);
-        ItemStack shirabonGear_8 = GGMaterial.shirabon.get(OrePrefixes.gearGt, 8);
-        ItemStack shirabonGearSmall_16 = GGMaterial.shirabon.get(OrePrefixes.gearGtSmall, 16);
         ItemStack titaniumBetaCScrew_64 = GGMaterial.titaniumBetaC.get(OrePrefixes.screw, 64);
 
         ItemStack voidMiner = ItemRegistry.voidminer[2];
@@ -422,12 +420,13 @@ public class MachineRecipes implements Runnable {
                                 OrePrefixes.gearGt,
                                 MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
                                 8),
-                        shirabonGear_8,
+                        GTOreDictUnificator.get(OrePrefixes.gearGt, MaterialsUEVplus.MagMatter, 8),
                         GTOreDictUnificator.get(
                                 OrePrefixes.gearGtSmall,
                                 MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter,
                                 16),
-                        shirabonGearSmall_16, ItemList.Robot_Arm_UXV.get(8), ItemList.Conveyor_Module_UXV.get(16),
+                        GTOreDictUnificator.get(OrePrefixes.gearGtSmall, MaterialsUEVplus.MagMatter, 16),
+                        ItemList.Robot_Arm_UXV.get(8), ItemList.Conveyor_Module_UXV.get(16),
                         highComputationStationT5_32, new ItemStack(quantumCircuit, 16),
                         GTOreDictUnificator.get(OrePrefixes.frameGt, MaterialsUEVplus.Universium, 8),
                         GTOreDictUnificator.get(OrePrefixes.screw, MaterialsUEVplus.Universium, 32) },
