@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
+import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IGRecipeMaps;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IG_Recipe;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceMiningRecipes;
