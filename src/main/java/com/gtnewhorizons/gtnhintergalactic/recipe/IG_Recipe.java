@@ -161,6 +161,9 @@ public class IG_Recipe extends GTRecipe {
         }
 
         public int hashCode() {
+            // XXX: If building the spacemining recipemap and non cached lookups are too expensive and noticably harm
+            // performance, then we can require that the asteroidName be unique per weighted output set, so we could
+            // just compare name and first item input
             int res = 0;
             res = 31 * res + minDistance;
             res = 31 * res + maxDistance;
