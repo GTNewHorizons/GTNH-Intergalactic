@@ -17,6 +17,7 @@ public class RecipeLoader implements Runnable {
     @Override
     public void run() {
         SpaceMiningRecipes.addAsteroids();
+        SpaceMiningRecipes.setupAsteroidTables();
         SpacePumpingRecipes.addPumpingRecipes();
         GasSiphonRecipes.addPumpingRecipes();
     }
