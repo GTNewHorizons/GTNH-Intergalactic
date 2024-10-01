@@ -2,29 +2,17 @@ package com.gtnewhorizons.gtnhintergalactic.recipe;
 
 import static gregtech.api.util.GTRecipeBuilder.SECONDS;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.function.Function;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.github.bsideup.jabel.Desugar;
-import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
 import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 
@@ -55,8 +43,6 @@ public class SpaceMiningRecipes {
     private static final ItemStack[] MINING_RODS = new ItemStack[ItemMiningDrones.DroneMaterials.values().length];
     /** Map from mining drones back to tiers */
     private static final Map<GTUtility.ItemId, Integer> DRONE_TIERS = new HashMap<>();
-    /** Used to look up asteroids by miner tier, distance, and available drones more efficiently */
-    private static final AsteroidTable[] ASTEROID_TABLES = new AsteroidTable[3];
 
     static {
         for (ItemMiningDrones.DroneTiers droneTier : ItemMiningDrones.DroneTiers.values()) {
@@ -937,6 +923,10 @@ public class SpaceMiningRecipes {
         }
     }
 
+    /**
+     * Returns the drone (not consumed) and other items used for mining operations with a given drone tier. NB: the
+     * first entry in the result is the drone, which has stack size zero
+     */
     public static ItemStack[] getTieredInputs(int tier) {
         return new ItemStack[] { MINING_DRONES[tier], MINING_DRILLS[tier], MINING_RODS[tier] };
     }
@@ -1012,178 +1002,37 @@ public class SpaceMiningRecipes {
         }
     }
 
-    @Desugar
-    public record WeightedAsteroidList(List<IG_Recipe.IG_SpaceMiningRecipe> recipes, int total_weight,
-            int total_timedensity) {}
-
-    private static class AsteroidTable {
-
-        @Desugar
-        private record Scanline(int idx, boolean isActive) {}
-
-        @Desugar
-        private record DistanceInterval(int minDistance, int ubDistance) implements Comparable<DistanceInterval> {
-
-            public int compareTo(DistanceInterval other) {
-                return Integer.compare(minDistance(), other.minDistance());
-            }
-        }
-
-        private TreeMap<DistanceInterval, WeightedAsteroidList[]> table;
-
-        /**
-         * Create a table of asteroids (for a fixed miner tier) indexed by distance and drone tier. The most important
-         * step for this is identifying the maximal distance intervals which are either entirely inside or entirely
-         * outside of the intervals for all recipes. We do this using a scanline algorithm. The distance of the scanline
-         * starts at -1, and when it encounters the minDistance of some recipe, it adds that recipe to the active set
-         * and updates the distance. When the scanline encounters the maxDistance + 1 of some recipe, it removes that
-         * recipe from the active set and updates the distance. Every time both the distance of the scanline and the
-         * active set change, the active set is first saved to a mapping from distance intervals to lists of recipes in
-         * the active set on those intervals.
-         */
-        public AsteroidTable(List<IG_Recipe.IG_SpaceMiningRecipe> recipes) {
-            /*
-             * get the distance of an interval to compare to the scanline. For "inactive" intervals we haven't visited,
-             * this is their min distance. For "active" intervals, this is their max distance + 1, aka their upper bound
-             * distance
-             */
-            ToIntFunction<Scanline> getScanlineSortingKey = sl -> sl.isActive() ? recipes.get(sl.idx()).maxDistance + 1
-                    : recipes.get(sl.idx()).minDistance;
-            /*
-             * take in a list of recipe indexes into `recipes` and construct a array of `WeightedAsteroidList`s with
-             * actual references to the recipes. Note that this does not create tons of copies of the recipes, just tons
-             * of references to them, which is fine. The returned array is indexed by drone tier
-             */
-            Function<List<Integer>, WeightedAsteroidList[]> transformSubtable = idxs -> {
-                Map<Integer, List<IG_Recipe.IG_SpaceMiningRecipe>> recipesByDrone = idxs.stream().map(recipes::get)
-                        .collect(Collectors.groupingBy(r -> getTierFromDrone(r.mInputs[0]).get()));
-                WeightedAsteroidList[] res = new WeightedAsteroidList[recipesByDrone.keySet().stream()
-                        .max(Integer::compare).orElse(-1) + 1];
-                for (Map.Entry<Integer, List<IG_Recipe.IG_SpaceMiningRecipe>> ent : recipesByDrone.entrySet()) {
-                    List<IG_Recipe.IG_SpaceMiningRecipe> interval_recipes = ent.getValue();
-                    int total_weight = 0;
-                    int total_timedensity = 0;
-                    for (IG_Recipe.IG_SpaceMiningRecipe recipe : interval_recipes) {
-                        total_weight += recipe.recipeWeight;
-                        total_timedensity += recipe.recipeWeight * recipe.mDuration;
-                    }
-                    res[ent.getKey()] = new WeightedAsteroidList(interval_recipes, total_weight, total_timedensity);
-                }
-                return res;
-            };
-            /*
-             * Create a heap of distance intervals for all space mining recipes, we will scan over this to generate the
-             * interval tree for efficient lookup
-             */
-            PriorityQueue<Scanline> scanlines = IntStream.range(0, recipes.size()).mapToObj(i -> new Scanline(i, false))
-                    .collect(
-                            Collectors.toCollection(
-                                    () -> new PriorityQueue<>(
-                                            Comparator.comparing(getScanlineSortingKey::applyAsInt))));
-            // Create an empty interval tree, whose values are just recipe lists (later we will sort these further by
-            // drone tier)
-            TreeMap<DistanceInterval, List<Integer>> uniformIntervals = new TreeMap<>();
-            Set<Integer> activeRecipes = new HashSet<>();
-            int currDist = -1;
-            while (!scanlines.isEmpty()) {
-                Scanline sl = scanlines.poll(); // The so called (by everyone besides java) heap.pop() operation
-                int dist = getScanlineSortingKey.applyAsInt(sl);
-                /*
-                 * We have visited all interval starts/ends at or before the current distance, so add an interval to the
-                 * interval tree containing all currently active recipes
-                 */
-                if (dist > currDist) {
-                    if (!activeRecipes.isEmpty()) {
-                        uniformIntervals.put(new DistanceInterval(currDist, dist), new ArrayList<>(activeRecipes));
-                    }
-                    currDist = dist;
-                }
-                // Switch the active state of the recipe corresponding to the current interval we just pulled from the
-                // heap
-                if (sl.isActive()) {
-                    activeRecipes.remove(sl.idx());
-                } else {
-                    activeRecipes.add(sl.idx());
-                    scanlines.add(new Scanline(sl.idx(), true));
-                }
-            }
-            /*
-             * Convert the interval tree of unsorted recipes to one whose values are `WeightedAsteroidList` arrays
-             * indexed by drone tier and assign it to this `AsteroidTable` record's `table` property
-             */
-            table = uniformIntervals.entrySet().stream()
-                    .collect(Collectors.toMap(Map.Entry::getKey, v -> transformSubtable.apply(v.getValue()), (a, b) -> {
-                        throw new IllegalStateException(
-                                "Duplicate key in spacemining map (something went wrong computing uniform intervals)");
-                    }, TreeMap::new));
-        }
-
-        public Stream<WeightedAsteroidList> findWeightedAsteroidLists(int distance, int activeDroneMask) {
-            Map.Entry<DistanceInterval, WeightedAsteroidList[]> ent = table
-                    .floorEntry(new DistanceInterval(distance, distance + 1));
-            if (ent == null) {
-                return Stream.of();
-            }
-            return IntStream.range(0, Math.min(32, ent.getValue().length))
-                    .filter(i -> (activeDroneMask & (1 << i)) != 0).mapToObj(Arrays.asList(ent.getValue())::get);
-        }
-    }
-
     /**
-     * Create tables of recipes for efficient lookup by miner tier, distance, and available drone tier
+     * A list of space mining recipes with precomputed total weight and total "time density", usually cached in the
+     * space mining module
+     * 
+     * @author hacatu
      */
-    public static void setupAsteroidTables() {
-        GTNHIntergalactic.LOG.info("Setting up asteroid tables");
-        List<IG_Recipe.IG_SpaceMiningRecipe> recipes = IGRecipeMaps.spaceMiningRecipes.getAllRecipes().stream()
-                .filter(IG_Recipe.IG_SpaceMiningRecipe.class::isInstance)
-                .map(IG_Recipe.IG_SpaceMiningRecipe.class::cast).distinct().collect(Collectors.toList());
-        GTNHIntergalactic.LOG.info("Got all space mining recipes");
-        for (int i = 1; i <= 3; ++i) {
-            int tier = i; // create a copy so it can into the lambda
-            ASTEROID_TABLES[tier - 1] = new AsteroidTable(
-                    recipes.stream().filter(r -> r.mSpecialValue <= tier).collect(Collectors.toList()));
-        }
-    }
+    public static class WeightedAsteroidList {
 
-    @Desugar
-    public record AsteroidLookupResult(List<WeightedAsteroidList> lists, int total_weight, int total_timedensity) {
+        public List<IG_Recipe.IG_SpaceMiningRecipe> recipes;
+        public int totalWeight;
+        public int totalTimedensity;
+
+        public WeightedAsteroidList(Stream<IG_Recipe.IG_SpaceMiningRecipe> inRecipes) {
+            recipes = inRecipes.collect(Collectors.toList());
+            for (IG_Recipe.IG_SpaceMiningRecipe recipe : recipes) {
+                totalWeight += recipe.recipeWeight;
+                totalTimedensity += recipe.recipeWeight * recipe.mDuration;
+            }
+        }
 
         public IG_Recipe.IG_SpaceMiningRecipe getRandom() {
             int i = 0;
-            // XXX: Can we use Random.randInt or something here?
-            double r = Math.random() * total_weight();
-            while (i < lists().size() - 1) {
-                int w = lists().get(i).total_weight();
-                if (r <= w) {
+            double r = Math.random() * totalWeight;
+            while (i < recipes.size() - 1) {
+                int weight = recipes.get(i).recipeWeight;
+                if (r <= weight) {
                     break;
                 }
-                r -= w;
-                ++i;
+                r -= weight;
             }
-            WeightedAsteroidList list = lists().get(i);
-            int j = 0;
-            while (j < list.recipes().size() - 1) {
-                int w = list.recipes().get(j).recipeWeight;
-                if (r <= w) {
-                    break;
-                }
-                r -= w;
-                ++j;
-            }
-            return list.recipes().get(j);
+            return recipes.get(i);
         }
-    }
-
-    /**
-     * Get all weighted asteroid lists with a given miner tier, distance, and active drones
-     */
-    public static AsteroidLookupResult findWeightedAsteroidLists(int distance, int activeDroneMasks, int minerTier) {
-        AsteroidTable table = ASTEROID_TABLES[minerTier - 1];
-        // if table is null, then setupAsteroidTables was never called and the caller will get NPE
-        List<WeightedAsteroidList> lists = table.findWeightedAsteroidLists(distance, activeDroneMasks)
-                .collect(Collectors.toList());
-        int total_weight = lists.stream().mapToInt(WeightedAsteroidList::total_weight).sum();
-        int total_timedensity = lists.stream().mapToInt(WeightedAsteroidList::total_timedensity).sum();
-        return new AsteroidLookupResult(lists, total_weight, total_timedensity);
     }
 }

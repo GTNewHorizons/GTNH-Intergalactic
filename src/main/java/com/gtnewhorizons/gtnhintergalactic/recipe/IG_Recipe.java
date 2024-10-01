@@ -160,10 +160,12 @@ public class IG_Recipe extends GTRecipe {
             return recipeWeight;
         }
 
-        public int hashCode() {
-            // XXX: If building the spacemining recipemap and non cached lookups are too expensive and noticably harm
-            // performance, then we can require that the asteroidName be unique per weighted output set, so we could
-            // just compare name and first item input
+        /**
+         * Compute most of the hash code. The default `IG_SpaceMiningRecipe.hashCode` makes some unchecked assumptions
+         * (asteroidName is unique for output set), so `fullHashCode` exists to bypass these assumptions in case we want
+         * to verify they hold
+         */
+        private int baseHashCode() {
             int res = 0;
             res = 31 * res + minDistance;
             res = 31 * res + maxDistance;
@@ -174,6 +176,24 @@ public class IG_Recipe extends GTRecipe {
             res = 31 * res + mSpecialValue;
             res = 31 * res + mDuration;
             res = 31 * res + mEUt;
+            return res;
+        }
+
+        /**
+         * Compute the hash code, assuming that asteroidName is the same if and only if output item sets are the same.
+         * Even if this is false, it is still correct for two objects that are not `.equals` to have the same hash code.
+         */
+        public int hashCode() {
+            return 31 * 31 * baseHashCode() + 31 * GTUtility.ItemId.createWithoutNBT(mInputs[0]).hashCode()
+                    + asteroidName.hashCode();
+        }
+
+        /**
+         * Compute the hash code, including an order-invariant hash of the output item set. ONLY USE THIS IF YOU ARE
+         * TESTING RECIPE GENERATION OR SOMETHING. It is unnecessarily expensive most of the time, just use `.hashCode`
+         */
+        public int fullHashCode() {
+            int res = baseHashCode();
             res = 31 * res + GTUtility.ItemId.createWithoutNBT(mInputs[0]).hashCode();
             // We don't care about the order of the output items, so we compute the first five sums
             // of powers of the hashes of the items. This is obviously order invariant, but highly sensitive
@@ -198,7 +218,12 @@ public class IG_Recipe extends GTRecipe {
             return res;
         }
 
-        public boolean equals(Object _other) {
+        /**
+         * Determine if two recipes are possibly equal. The default `IG_SpaceMiningRecipe.equals` makes some unchecked
+         * assumptions (asteroidName is unique for output set), so `fullEquals` exists to bypass these assumptions in
+         * case we want to verify they hold
+         */
+        private boolean baseEquals(Object _other) {
             if (!(_other instanceof IG_SpaceMiningRecipe)) {
                 return false;
             }
@@ -212,6 +237,32 @@ public class IG_Recipe extends GTRecipe {
                     || mEUt != other.mEUt) {
                 return false;
             }
+            return true;
+        }
+
+        /**
+         * Check if two space mining recipes are equal, assuming that asteroidName is the same if and only if output
+         * item sets are the same. This should always be the case.
+         */
+        public boolean equals(Object _other) {
+            if (!baseEquals(_other)) {
+                return false;
+            }
+            IG_SpaceMiningRecipe other = (IG_SpaceMiningRecipe) _other;
+            return asteroidName.equals(other.asteroidName)
+                    && GTUtility.ItemId.createWithoutNBT(mInputs[0]).equals(other.mInputs[0]);
+        }
+
+        /**
+         * Check if two space mining recipes are equal, including an order-invariant comparison of the output item set.
+         * ONLY USE THIS IF YOU ARE TESTING RECIPE GENERATION OR SOMETHING. It is unnecessarily expensive most of the
+         * time, just use `.equals`
+         */
+        public boolean fullEquals(Object _other) {
+            if (!baseEquals(_other)) {
+                return false;
+            }
+            IG_SpaceMiningRecipe other = (IG_SpaceMiningRecipe) _other;
             Collector<ItemStack, ?, Map<GTUtility.ItemId, Long>> collector = Collectors
                     .toMap(GTUtility.ItemId::createNoCopy, input -> (long) input.stackSize, (a, b) -> a + b);
             if (!Arrays.stream(mInputs).filter(Objects::nonNull).collect(collector)
