@@ -274,3 +274,4 @@ public class IG_Recipe extends GTRecipe {
         }
     }
 }
+
