@@ -426,30 +426,26 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                                 IGConfig.dysonSwarm.getCoolantStack().getLocalizedName()))
                 .addInfo(translateToLocal("gt.blockmachines.multimachine.ig.dyson.desc6"))
                 .addInfo(translateToLocal("gt.blockmachines.multimachine.ig.dyson.desc7"))
-
-                // todo translations
-                .beginStructureBlock(16, 20, 16, false)
-                .addDynamoHatch(
-                        "Can use Single- and/or Multi-Amp Dynamo Hatches and/or Laser Source Hatches (1 - 12)",
-                        1)
+                .beginStructureBlock(16, 20, 16, false).addDynamoHatch(translateToLocal("ig.dyson.structure.dynamo"), 1)
                 .addInputBus("1 - 11", 2).addInputHatch("1 - 11", 2)
-                .addOtherStructurePart("Optical Slave Connector", "1 - 24", 4).addStructureInfo("")
-                .addStructureInfo(ITALIC + "Additionally needed:")
-                .addStructureInfo("Energy Receiver Base Casing: 53 - 64 (depending on the amount of Dynamo Hatches)")
-                .addStructureInfo("Energy Receiver Dish Block: 81")
-                .addStructureInfo(
-                        "Module Deployment Unit Base Casing: 62 - 72 (depending on the amount of Input Busses & Hatches)")
-                .addStructureInfo("Module Deployment Unit Core: 1")
-                .addStructureInfo("Module Deployment Unit Superconducting Magnet: 32")
-                .addStructureInfo(
-                        "Control Center Base Casing: 115 - 138 (depending on the amount of Optical Slave Connectors)")
-                .addStructureInfo("Control Center Primary Windings: 20")
-                .addStructureInfo("Control Center Secondary Windings: 12")
-                .addStructureInfo("Control Center Toroid Casing: 128")
-                .addStructureInfo("Ultra High Strength Concrete Floor: 255")
-                .addStructureInfo("Awakened Draconium Coil Block: 9").addStructureInfo("Hermetic Casing X: 1")
-                .addStructureInfo("Titanium Frame Box: 16").addStructureInfo("HSS-S Frame Box: 23")
-                .addStructureInfo("Superconductor Base UHV Frame Box: 64").toolTipFinisher();
+                .addOtherStructurePart(translateToLocal("ig.dyson.structure.optical"), "1 - 24", 4).addStructureInfo("")
+                .addStructureInfo(ITALIC + translateToLocal("ig.dyson.structure.additionally"))
+                .addCasingInfoRange(translateToLocal("ig.dyson.structure.receiver.base"), 53, 64, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.receiver.dish"), 81, false)
+                .addCasingInfoRange(translateToLocal("ig.dyson.structure.deployment.base"), 62, 72, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.deployment.core"), 1, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.deployment.magnet"), 32, false)
+                .addCasingInfoRange(translateToLocal("ig.dyson.structure.control.base"), 115, 138, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.control.primary"), 20, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.control.secondary"), 12, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.control.toroid"), 128, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.floor"), 256, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.coil"), 9, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.hermetic"), 1, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.frameTitanium"), 16, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.frameHSSS"), 23, false)
+                .addCasingInfoExactly(translateToLocal("ig.dyson.structure.base.frameUHVBase"), 64, false)
+                .toolTipFinisher();
         return tt;
     }
 
