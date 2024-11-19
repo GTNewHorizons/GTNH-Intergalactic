@@ -27,7 +27,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
         version = Tags.VERSION,
         name = Tags.MODNAME,
         acceptedMinecraftVersions = "[1.7.10]",
-        guiFactory = "com.gtnewhorizons.gtnhintergalactic.config.IGGUIFactory",
         dependencies = "required-after:GalacticraftCore@[3.0.36,);" + "required-after:GalacticraftMars;"
                 + "required-after:gregtech;"
                 + "required-after:gtnhlib@[0.3.3,);"
