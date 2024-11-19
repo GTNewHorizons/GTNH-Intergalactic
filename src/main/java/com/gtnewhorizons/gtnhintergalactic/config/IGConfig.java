@@ -12,7 +12,7 @@ public class IGConfig {
     @Config.Comment("Space Elevator section")
     public static class SpaceElevator {
 
-        @Config.Comment("If the Space Elevator should use it's fancy renderer, or simple block renderer")
+        @Config.Comment("If true, the Space Elevator will use it's fancy renderer, otherwise a simple block renderer")
         @Config.DefaultBoolean(true)
         public boolean isCableRenderingEnabled;
     }
