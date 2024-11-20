@@ -95,6 +95,8 @@ achievement.tile.DysonSwarmDeploymentUnitCasing=Dyson Swarm Module Deployment Un
 achievement.tile.DysonSwarmDeploymentUnitCasing.desc=Pickup this item to see the recipe in NEI
 achievement.gt.blockmachines.dysonswarm=Dyson Swarm Ground Unit
 achievement.gt.blockmachines.dysonswarm.desc=Pickup this item to see the recipe in NEI
+achievement.item.dysonSwarmModule=Dyson Swarm Module
+achievement.item.dysonSwarmModule.desc=Pickup this item to see the recipe in NEI
 
 
 # Items
