@@ -28,8 +28,8 @@ import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.client.IGTextures;
 import com.gtnewhorizons.gtnhintergalactic.client.lore.LoreHolder;
 import com.gtnewhorizons.gtnhintergalactic.config.IGConfig;
+import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 
-import galaxyspace.core.register.GSItems;
 import gregtech.api.GregTechAPI;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
@@ -172,7 +172,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         .addElement(
             'o',
             StructureUtility.ofChain(
-                GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, IGTextures.CASING_INDEX_COMMAND, 4),
+                GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataInputToMachineList, IGTextures.CASING_INDEX_COMMAND, 4),
                 StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 5))) // Dyson Swarm Command Center Base Casing
         .addElement('p', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 6)) // Dyson Swarm Command Center Primary Windings
         .addElement('s', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 7)) // Dyson Swarm Command Center Secondary Windings
@@ -247,7 +247,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         for (MTEHatchInputBus bus : filterValidMTEs(mInputBusses)) {
             for (int i = 0; i < bus.getBaseMetaTileEntity().getSizeInventory(); i++) {
                 ItemStack stack = bus.getBaseMetaTileEntity().getStackInSlot(i);
-                if (stack != null && stack.getItem() == GSItems.DysonSwarmItems
+                if (stack != null && stack.getItem() == IGItems.DysonSwarmItems
                         && stack.getItemDamage() == 0
                         && moduleCount < IGConfig.dysonSwarm.maxModules + 1) {
                     int usedStackSize = Math.min(stack.stackSize, IGConfig.dysonSwarm.maxModules - moduleCount);
@@ -356,7 +356,7 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
         int maxReduction = (int) Math.min(
                 this.moduleCount,
                 MetaGeneratedTool01.getToolMaxDamage(heldItem) - MetaGeneratedTool01.getToolDamage(heldItem));
-        ItemStack modules = new ItemStack(GSItems.DysonSwarmItems, maxReduction);
+        ItemStack modules = new ItemStack(IGItems.DysonSwarmItems, maxReduction);
 
         // Fill player inventory
         aPlayer.inventory.addItemStackToInventory(modules);

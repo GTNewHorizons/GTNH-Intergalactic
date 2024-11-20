@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class IGItems {
 
     public static Item SpaceElevatorItems;
+    public static Item DysonSwarmItems;
     public static Item MiningDrones;
     public static ItemStack PlanetaryGasSiphon;
     public static ItemStack DysonSwarmController;
@@ -43,8 +44,10 @@ public class IGItems {
     public static void init() {
         SpaceElevatorItems = new ItemSpaceElevatorParts();
         MiningDrones = new ItemMiningDrones();
+        DysonSwarmItems = new ItemDysonSwarmParts();
         registerItem(SpaceElevatorItems);
         registerItem(MiningDrones);
+        registerItem(DysonSwarmItems);
     }
 
     /**
