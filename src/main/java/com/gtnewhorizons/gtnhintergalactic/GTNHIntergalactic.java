@@ -114,11 +114,12 @@ public class GTNHIntergalactic {
                             .remap(Item.getItemFromBlock(IGBlocks.SpaceElevatorMotor));
                     case "GalaxySpace:spaceelevatorcable" -> mapping
                             .remap(Item.getItemFromBlock(IGBlocks.SpaceElevatorCable));
-                    case "GalaxySpace:item.SpaceElevatorParts" -> mapping.remap(IGItems.SpaceElevatorItems);
-                    case "GalaxySpace:item.MiningDrone" -> mapping.remap(IGItems.MiningDrones);
                     case "GalaxySpace:dysonswarmparts" -> mapping
                             .remap(Item.getItemFromBlock(IGBlocks.DysonSwarmCasing));
                     case "GalaxySpace:machineframes" -> mapping.remap(Item.getItemFromBlock(IGBlocks.GasSiphonCasing));
+                    case "GalaxySpace:item.SpaceElevatorParts" -> mapping.remap(IGItems.SpaceElevatorItems);
+                    case "GalaxySpace:item.MiningDrone" -> mapping.remap(IGItems.MiningDrones);
+                    case "GalaxySpace:item.DysonSwarmParts" -> mapping.remap(IGItems.DysonSwarmItems);
                 }
             }
         }
