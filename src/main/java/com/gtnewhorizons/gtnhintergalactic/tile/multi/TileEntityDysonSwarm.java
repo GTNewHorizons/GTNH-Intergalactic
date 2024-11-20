@@ -24,11 +24,11 @@ import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
+import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.client.IGTextures;
 import com.gtnewhorizons.gtnhintergalactic.client.lore.LoreHolder;
 import com.gtnewhorizons.gtnhintergalactic.config.IGConfig;
 
-import galaxyspace.core.register.GSBlocks;
 import galaxyspace.core.register.GSItems;
 import gregtech.api.GregTechAPI;
 import gregtech.api.enums.Materials;
@@ -145,14 +145,14 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
                         "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
                         "bbbbbbbnbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
                         "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb" } }))
-        .addElement('b', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 9)) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
+        .addElement('b', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 9)) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
         .addElement('c', StructureUtility.ofBlock(GregTechAPI.sBlockCasings5, 8)) // Awakened Draconium Coil Block
-        .addElement('d', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 1)) // Dyson Swarm Energy Receiver Dish Block
+        .addElement('d', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 1)) // Dyson Swarm Energy Receiver Dish Block
         .addElement(
             'e',
             StructureUtility.ofChain(
                 GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDynamoToMachineList, IGTextures.CASING_INDEX_RECEIVER, 1),
-                StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0))) // Dyson Swarm Energy Receiver Base Casing
+                StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 0))) // Dyson Swarm Energy Receiver Base Casing
         .addElement('f', GTStructureUtility.ofFrame(Materials.HSSS))
         .addElement('g', GTStructureUtility.ofFrame(Materials.Titanium))
         .addElement('h', StructureUtility.ofBlock(GregTechAPI.sBlockCasings6, 10)) // Hermetic Casing X
@@ -160,26 +160,26 @@ public class TileEntityDysonSwarm extends GT_MetaTileEntity_EnhancedMultiBlockBa
             'i',
             StructureUtility.ofChain(
                 GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addInputToMachineList, IGTextures.CASING_INDEX_LAUNCH, 2),
-                StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2))) // Dyson Swarm Module Deployment Unit Base Casing
-        .addElement('j', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 3)) // Dyson Swarm Module Deployment Unit Core
+                StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 2))) // Dyson Swarm Module Deployment Unit Base Casing
+        .addElement('j', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 3)) // Dyson Swarm Module Deployment Unit Core
         .addElement('k', GTStructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
-        .addElement('m', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 4)) // Dyson Swarm Module Deployment Unit Superconducting Magnet
+        .addElement('m', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 4)) // Dyson Swarm Module Deployment Unit Superconducting Magnet
         .addElement(
             'n',
             StructureUtility.ofChain(
                 GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addClassicMaintenanceToMachineList, IGTextures.CASING_INDEX_FLOOR, 3),
-                StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 9))) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
+                StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 9))) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
         .addElement(
             'o',
             StructureUtility.ofChain(
-                GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataInputToMachineList, IGTextures.CASING_INDEX_COMMAND, 4),
-                StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5))) // Dyson Swarm Command Center Base Casing
-        .addElement('p', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 6)) // Dyson Swarm Command Center Primary Windings
-        .addElement('s', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 7)) // Dyson Swarm Command Center Secondary Windings
-        .addElement('t', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 8)) // Dyson Swarm Command Center Toroid Casing
-        .addElement('x', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 0)) // Dyson Swarm Energy Receiver Base Casing
-        .addElement('y', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 5)) // Dyson Swarm Command Center Base Casing
-        .addElement('z', StructureUtility.ofBlock(GSBlocks.DysonSwarmBlocks, 2)) // Dyson Swarm Module Deployment Unit Base Casing
+                GTStructureUtility.ofHatchAdder(TileEntityDysonSwarm::addDataConnectorToMachineList, IGTextures.CASING_INDEX_COMMAND, 4),
+                StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 5))) // Dyson Swarm Command Center Base Casing
+        .addElement('p', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 6)) // Dyson Swarm Command Center Primary Windings
+        .addElement('s', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 7)) // Dyson Swarm Command Center Secondary Windings
+        .addElement('t', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 8)) // Dyson Swarm Command Center Toroid Casing
+        .addElement('x', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 0)) // Dyson Swarm Energy Receiver Base Casing
+        .addElement('y', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 5)) // Dyson Swarm Command Center Base Casing
+        .addElement('z', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 2)) // Dyson Swarm Module Deployment Unit Base Casing
         .build();
 
     // spotless:on

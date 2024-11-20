@@ -34,6 +34,7 @@ import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.IStructureElement;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureUtility;
+import com.gtnewhorizons.gtnhintergalactic.block.IGBlocks;
 import com.gtnewhorizons.gtnhintergalactic.client.IGTextures;
 import com.gtnewhorizons.gtnhintergalactic.recipe.GasSiphonRecipes;
 
@@ -41,7 +42,6 @@ import bartworks.client.textures.PrefixTextureLinker;
 import bartworks.system.material.BWTileEntityMetaGeneratedBlocksCasingAdvanced;
 import bartworks.system.material.WerkstoffLoader;
 import cpw.mods.fml.common.Loader;
-import galaxyspace.core.register.GSBlocks;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
@@ -110,7 +110,7 @@ public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<Tile
                                     TileEntityPlanetaryGasSiphon::addOutputToMachineList,
                                     IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
                                     1),
-                            StructureUtility.ofBlock(GSBlocks.MachineFrames, 0)))
+                            StructureUtility.ofBlock(IGBlocks.GasSiphonCasing, 0)))
             .build();
 
     /**
