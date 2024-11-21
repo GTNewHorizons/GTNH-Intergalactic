@@ -160,8 +160,15 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                 }
                 if (parallels > 0 && batchSize > 0) {
                     fluid = fluid.copy();
-                    fluid.amount = fluid.amount * parallels * batchSize;
-                    usedEUt += ENERGY_CONSUMPTION * parallels;
+                    long fluidLong = (long) fluid.amount * parallels * batchSize;
+                    usedEUt += (int) (ENERGY_CONSUMPTION * parallels);
+                    while (fluidLong > Integer.MAX_VALUE) {
+                        FluidStack tmpFluid = fluid.copy();
+                        tmpFluid.amount = Integer.MAX_VALUE;
+                        outputs.add(tmpFluid);
+                        fluidLong -= Integer.MAX_VALUE;
+                    }
+                    fluid.amount = (int) fluidLong;
                     outputs.add(fluid);
                 }
             }
@@ -173,7 +180,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
         mEfficiencyIncrease = 10000;
         mMaxProgresstime = 20 * maxBatchSize;
 
-        return outputs.size() > 0 ? CheckRecipeResultRegistry.SUCCESSFUL : CheckRecipeResultRegistry.NO_RECIPE;
+        return !outputs.isEmpty() ? CheckRecipeResultRegistry.SUCCESSFUL : CheckRecipeResultRegistry.NO_RECIPE;
     }
 
     /**
