@@ -1,7 +1,6 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -31,6 +30,7 @@ import gregtech.api.metatileentity.implementations.MTEHatchOutput;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.api.util.ParallelHelper;
 import gregtech.common.tileentities.machines.MTEHatchOutputME;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import tectech.thing.metaTileEntity.multi.base.INameFunction;
@@ -127,7 +127,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     .insufficientPower(ENERGY_CONSUMPTION * getParallelRecipes() * getParallels());
         }
 
-        List<FluidStack> outputs = new ArrayList<>();
+        ArrayList<FluidStack> outputs = new ArrayList<>();
         int usedEUt = 0;
         // We store the highest batch size as time multiplier
         int maxBatchSize = (int) Math.min(Math.max(batchSetting.get(), 1.0D), 128.0D);
@@ -162,14 +162,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     fluid = fluid.copy();
                     long fluidLong = (long) fluid.amount * parallels * batchSize;
                     usedEUt += (int) (ENERGY_CONSUMPTION * parallels);
-                    while (fluidLong > Integer.MAX_VALUE) {
-                        FluidStack tmpFluid = fluid.copy();
-                        tmpFluid.amount = Integer.MAX_VALUE;
-                        outputs.add(tmpFluid);
-                        fluidLong -= Integer.MAX_VALUE;
-                    }
-                    fluid.amount = (int) fluidLong;
-                    outputs.add(fluid);
+                    ParallelHelper.addFluidsLong(outputs, fluid, fluidLong);
                 }
             }
         }
