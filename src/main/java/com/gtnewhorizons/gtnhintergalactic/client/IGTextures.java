@@ -28,7 +28,7 @@ public class IGTextures implements Runnable {
     public static final int CASING_INDEX_COMMAND = 151;
     public static final int CASING_INDEX_LAUNCH = 152;
     public static final int CASING_INDEX_FLOOR = 153;
-    public static final int ADVANCED_MACHINE_FRAME_INDEX = 154;
+    public static final int CASING_INDEX_SIPHON = 154;
 
     /**
      * Register all used textures
@@ -48,6 +48,6 @@ public class IGTextures implements Runnable {
         BlockIcons.setCasingTextureForId(CASING_INDEX_LAUNCH, TextureFactory.of(IGBlocks.DysonSwarmCasing, 2));
         BlockIcons.setCasingTextureForId(CASING_INDEX_COMMAND, TextureFactory.of(IGBlocks.DysonSwarmCasing, 5));
         BlockIcons.setCasingTextureForId(CASING_INDEX_FLOOR, TextureFactory.of(IGBlocks.DysonSwarmCasing, 9));
-        BlockIcons.setCasingTextureForId(ADVANCED_MACHINE_FRAME_INDEX, TextureFactory.of(IGBlocks.GasSiphonCasing));
+        BlockIcons.setCasingTextureForId(CASING_INDEX_SIPHON, TextureFactory.of(IGBlocks.GasSiphonCasing));
     }
 }
