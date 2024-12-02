@@ -96,19 +96,19 @@ public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<Tile
                     StructureUtility.ofChain(
                             GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addMaintenanceToMachineList,
-                                    IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
+                                    IGTextures.CASING_INDEX_SIPHON,
                                     1),
                             GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addEnergyInputToMachineList,
-                                    IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
+                                    IGTextures.CASING_INDEX_SIPHON,
                                     1),
                             GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addInputToMachineList,
-                                    IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
+                                    IGTextures.CASING_INDEX_SIPHON,
                                     1),
                             GTStructureUtility.ofHatchAdder(
                                     TileEntityPlanetaryGasSiphon::addOutputToMachineList,
-                                    IGTextures.ADVANCED_MACHINE_FRAME_INDEX,
+                                    IGTextures.CASING_INDEX_SIPHON,
                                     1),
                             StructureUtility.ofBlock(IGBlocks.GasSiphonCasing, 0)))
             .build();
@@ -236,15 +236,15 @@ public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<Tile
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
             int colorIndex, boolean active, boolean redstone) {
         if (side == facing) {
-            if (active) return new ITexture[] {
-                    Textures.BlockIcons.getCasingTextureForId(IGTextures.ADVANCED_MACHINE_FRAME_INDEX),
-                    TextureFactory.of(IGTextures.SIPHON_OVERLAY_FRONT),
-                    TextureFactory.builder().addIcon(IGTextures.SIPHON_OVERLAY_FRONT_ACTIVE_GLOW).glow().build() };
-            return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(IGTextures.ADVANCED_MACHINE_FRAME_INDEX),
+            if (active)
+                return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(IGTextures.CASING_INDEX_SIPHON),
+                        TextureFactory.of(IGTextures.SIPHON_OVERLAY_FRONT),
+                        TextureFactory.builder().addIcon(IGTextures.SIPHON_OVERLAY_FRONT_ACTIVE_GLOW).glow().build() };
+            return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(IGTextures.CASING_INDEX_SIPHON),
                     TextureFactory.of(IGTextures.SIPHON_OVERLAY_FRONT),
                     TextureFactory.builder().addIcon(IGTextures.SIPHON_OVERLAY_FRONT_GLOW).glow().build() };
         }
-        return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(IGTextures.ADVANCED_MACHINE_FRAME_INDEX) };
+        return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(IGTextures.CASING_INDEX_SIPHON) };
     }
 
     /**
