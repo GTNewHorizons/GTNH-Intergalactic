@@ -187,7 +187,7 @@ public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<Tile
                 .beginStructureBlock(3, 7, 3, false)
                 .addController(GCCoreUtil.translate("ig.siphon.structure.ControllerPos"))
                 .addOtherStructurePart(
-                        GCCoreUtil.translate("ig.siphon.structure.AdvMachineFrame"),
+                        GCCoreUtil.translate("ig.siphon.structure.SiphonCasing"),
                         GCCoreUtil.translate("ig.siphon.structure.Base"))
                 .addOtherStructurePart(
                         GCCoreUtil.translate("ig.siphon.structure.ReboltedRhodiumPalladiumCasing"),
@@ -195,10 +195,10 @@ public class TileEntityPlanetaryGasSiphon extends MTEEnhancedMultiBlockBase<Tile
                 .addOtherStructurePart(
                         GCCoreUtil.translate("ig.siphon.structure.FrameTungstensteel"),
                         GCCoreUtil.translate("ig.siphon.structure.Sides"))
-                .addEnergyHatch(GCCoreUtil.translate("ig.siphon.structure.AnyAdvMachineFrame"), 1)
-                .addMaintenanceHatch(GCCoreUtil.translate("ig.siphon.structure.AnyAdvMachineFrame"), 1)
-                .addInputBus(GCCoreUtil.translate("ig.siphon.structure.AnyAdvMachineFrame"), 1)
-                .addOutputHatch(GCCoreUtil.translate("ig.siphon.structure.AnyAdvMachineFrame"), 1).toolTipFinisher();
+                .addEnergyHatch(GCCoreUtil.translate("ig.siphon.structure.AnySiphonCasing"), 1)
+                .addMaintenanceHatch(GCCoreUtil.translate("ig.siphon.structure.AnySiphonCasing"), 1)
+                .addInputBus(GCCoreUtil.translate("ig.siphon.structure.AnySiphonCasing"), 1)
+                .addOutputHatch(GCCoreUtil.translate("ig.siphon.structure.AnySiphonCasing"), 1).toolTipFinisher();
         return tt;
     }
 

@@ -335,11 +335,11 @@ ig.nei.siphon.depth=Depth
 
 # Structure and Tooltip
 ig.siphon.structure.ControllerPos=Front bottom
-ig.siphon.structure.AnyAdvMachineFrame=Any Advanced Machine Frame
+ig.siphon.structure.AnySiphonCasing=Any Planetary Siphon Casing
 ig.siphon.structure.PillarMiddle=1x4x1 pillar in the middle
 ig.siphon.structure.Sides=Each pillar's side and 1x3x1 on top
 ig.siphon.structure.Base=3x1x3 base (hollow)
-ig.siphon.structure.AdvMachineFrame=Advanced Machine Frame
+ig.siphon.structure.SiphonCasing=Planetary Siphon Casing
 ig.siphon.structure.FrameTungstensteel=Tungstensteel Frame Box
 ig.siphon.structure.ReboltedRhodiumPalladiumCasing=Rebolted Rhodium-Plated Palladium Casing
 ig.elevator.structure.ProjectModule=Project Modules
