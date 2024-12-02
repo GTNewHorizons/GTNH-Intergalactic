@@ -157,7 +157,7 @@ tile.DysonSwarmControlPrimary.name=Dyson Swarm Control Center Primary Windings
 tile.DysonSwarmControlSecondary.name=Dyson Swarm Control Center Secondary Windings
 tile.DysonSwarmControlToroid.name=Dyson Swarm Control Center Toroid Casing
 tile.DysonSwarmFloor.name=Ultra High Strength Concrete Floor
-tile.GasSiphonCasing.name=Advanced Machine Frame
+tile.GasSiphonCasing.name=Planetary Siphon Casing
 
 # GUI
 GT5U.gui.text.no_space_station=§7Not on a space station
