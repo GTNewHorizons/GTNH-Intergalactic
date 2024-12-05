@@ -1,7 +1,6 @@
 package com.gtnewhorizons.gtnhintergalactic.tile.multi.elevatormodules;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -31,6 +30,7 @@ import gregtech.api.metatileentity.implementations.MTEHatchOutput;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.api.util.ParallelHelper;
 import gregtech.common.tileentities.machines.MTEHatchOutputME;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import tectech.thing.metaTileEntity.multi.base.INameFunction;
@@ -127,7 +127,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     .insufficientPower(ENERGY_CONSUMPTION * getParallelRecipes() * getParallels());
         }
 
-        List<FluidStack> outputs = new ArrayList<>();
+        ArrayList<FluidStack> outputs = new ArrayList<>();
         int usedEUt = 0;
         // We store the highest batch size as time multiplier
         int maxBatchSize = (int) Math.min(Math.max(batchSetting.get(), 1.0D), 128.0D);
@@ -160,9 +160,9 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                 }
                 if (parallels > 0 && batchSize > 0) {
                     fluid = fluid.copy();
-                    fluid.amount = fluid.amount * parallels * batchSize;
-                    usedEUt += ENERGY_CONSUMPTION * parallels;
-                    outputs.add(fluid);
+                    long fluidLong = (long) fluid.amount * parallels * batchSize;
+                    usedEUt += (int) (ENERGY_CONSUMPTION * parallels);
+                    ParallelHelper.addFluidsLong(outputs, fluid, fluidLong);
                 }
             }
         }
@@ -173,7 +173,7 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
         mEfficiencyIncrease = 10000;
         mMaxProgresstime = 20 * maxBatchSize;
 
-        return outputs.size() > 0 ? CheckRecipeResultRegistry.SUCCESSFUL : CheckRecipeResultRegistry.NO_RECIPE;
+        return !outputs.isEmpty() ? CheckRecipeResultRegistry.SUCCESSFUL : CheckRecipeResultRegistry.NO_RECIPE;
     }
 
     /**
@@ -412,9 +412,6 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     .addInfo(GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.motorT2"))
                     .beginStructureBlock(1, 5, 2, false)
                     .addCasingInfoRange(GCCoreUtil.translate("gt.blockcasings.ig.0.name"), 0, 9, false)
-                    .addInputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addOutputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addInputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .addOutputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .toolTipFinisher();
             return tt;
@@ -505,9 +502,6 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     .addInfo(GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.motorT3"))
                     .beginStructureBlock(1, 5, 2, false)
                     .addCasingInfoRange(GCCoreUtil.translate("gt.blockcasings.ig.0.name"), 0, 9, false)
-                    .addInputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addOutputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addInputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .addOutputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .toolTipFinisher();
             return tt;
@@ -598,9 +592,6 @@ public abstract class TileEntityModulePump extends TileEntityModuleBase {
                     .addInfo(GCCoreUtil.translate("gt.blockmachines.multimachine.project.ig.motorT4"))
                     .beginStructureBlock(1, 5, 2, false)
                     .addCasingInfoRange(GCCoreUtil.translate("gt.blockcasings.ig.0.name"), 0, 9, false)
-                    .addInputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addOutputBus(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
-                    .addInputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .addOutputHatch(GCCoreUtil.translate("ig.elevator.structure.AnyBaseCasingWith1Dot"), 1)
                     .toolTipFinisher();
             return tt;
