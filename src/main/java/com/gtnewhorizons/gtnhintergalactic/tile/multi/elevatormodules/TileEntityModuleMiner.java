@@ -23,7 +23,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
 import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
@@ -322,7 +321,6 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         long tVoltage = getMaxInputVoltage();
         int distance = (int) distanceDisplay.get();
         int availDroneMask = getAvailDroneMask(inputs);
-        GTNHIntergalactic.LOG.warn("availDroneMask: " + availDroneMask);
         WeightedAsteroidList recipes = null;
         // Try to use the cached recipe list if the distance and available drones are the same as when it was computed
         if (prevRecipes != null && prevDistance == distance && prevAvailDroneMask == availDroneMask) {
