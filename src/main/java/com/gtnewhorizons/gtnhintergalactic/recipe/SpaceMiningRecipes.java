@@ -1010,19 +1010,19 @@ public class SpaceMiningRecipes {
      */
     public static class WeightedAsteroidList {
 
-        public List<IG_Recipe.IG_SpaceMiningRecipe> recipes;
+        public List<IG_SpaceMiningRecipe> recipes;
         public int totalWeight;
         public int totalTimedensity;
 
-        public WeightedAsteroidList(Stream<IG_Recipe.IG_SpaceMiningRecipe> inRecipes) {
+        public WeightedAsteroidList(Stream<IG_SpaceMiningRecipe> inRecipes) {
             recipes = inRecipes.collect(Collectors.toList());
-            for (IG_Recipe.IG_SpaceMiningRecipe recipe : recipes) {
+            for (IG_SpaceMiningRecipe recipe : recipes) {
                 totalWeight += recipe.recipeWeight;
                 totalTimedensity += recipe.recipeWeight * recipe.mDuration;
             }
         }
 
-        public IG_Recipe.IG_SpaceMiningRecipe getRandom() {
+        public IG_SpaceMiningRecipe getRandom() {
             int i = 0;
             double r = Math.random() * totalWeight;
             while (i < recipes.size() - 1) {

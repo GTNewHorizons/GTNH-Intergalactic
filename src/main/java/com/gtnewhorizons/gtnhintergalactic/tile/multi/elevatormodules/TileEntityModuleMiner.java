@@ -6,7 +6,6 @@ import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,13 +23,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gtnewhorizons.gtnhintergalactic.GTNHIntergalactic;
-import com.gtnewhorizons.gtnhintergalactic.Tags;
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
-import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IGRecipeMaps;
-import com.gtnewhorizons.gtnhintergalactic.recipe.IG_Recipe;
+import com.gtnewhorizons.gtnhintergalactic.recipe.IG_SpaceMiningRecipe;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceMiningRecipes;
 import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceMiningRecipes.WeightedAsteroidList;
 import com.gtnewhorizons.gtnhintergalactic.spaceprojects.ProjectAsteroidOutpost;
@@ -331,8 +327,8 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         } else {
             recipes = new WeightedAsteroidList(
                     IGRecipeMaps.spaceMiningRecipes.findRecipeQuery().items(inputs).fluids(fluidInputs)
-                            .voltage(tVoltage).findAll().filter(IG_Recipe.IG_SpaceMiningRecipe.class::isInstance)
-                            .map(IG_Recipe.IG_SpaceMiningRecipe.class::cast)
+                            .voltage(tVoltage).findAll().filter(IG_SpaceMiningRecipe.class::isInstance)
+                            .map(IG_SpaceMiningRecipe.class::cast)
                             .filter(
                                     recipe -> recipe.minDistance <= distance && recipe.maxDistance >= distance
                                             && recipe.mSpecialValue <= tModuleTier)
@@ -361,7 +357,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
             plasmaModifier -= asteroidOutpost.getPlasmaDiscount();
         }
 
-        IG_Recipe.IG_SpaceMiningRecipe tRecipe = recipes.getRandom();
+        IG_SpaceMiningRecipe tRecipe = recipes.getRandom();
 
         // Make sure recipe really exists and we have enough power
         if (tRecipe == null) {
@@ -611,13 +607,12 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
      */
     protected class AsteroidSummary {
 
-        public IG_Recipe.IG_SpaceMiningRecipe recipe;
+        public IG_SpaceMiningRecipe recipe;
         public float chance;
         public float timeDensity;
         public int maxParallels;
 
-        public AsteroidSummary(IG_Recipe.IG_SpaceMiningRecipe recipe, float chance, float timeDensity,
-                int maxParallels) {
+        public AsteroidSummary(IG_SpaceMiningRecipe recipe, float chance, float timeDensity, int maxParallels) {
             this.recipe = recipe;
             this.chance = chance;
             this.timeDensity = timeDensity;

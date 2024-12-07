@@ -1,9 +1,16 @@
 package com.gtnewhorizons.gtnhintergalactic.recipe;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import gregtech.api.util.GTRecipe;
+import gregtech.api.util.GTUtility;
 
 /**
  * Recipe for Space Mining in the Space Elevator
@@ -20,9 +27,10 @@ public class IG_SpaceMiningRecipe extends GTRecipe {
     public int computation;
     public int recipeWeight;
 
-    public IG_SpaceMiningRecipe(boolean aOptimize, String asteroidName, ItemStack[] aItemInputs, ItemStack[] aItemOutputs,
-            FluidStack[] aFluidInputs, int[] aChances, int aDuration, int aEUt, int computation, int minModuleTier,
-            int minDistance, int maxDistance, int minSize, int maxSize, int recipeWeight) {
+    public IG_SpaceMiningRecipe(boolean aOptimize, String asteroidName, ItemStack[] aItemInputs,
+            ItemStack[] aItemOutputs, FluidStack[] aFluidInputs, int[] aChances, int aDuration, int aEUt,
+            int computation, int minModuleTier, int minDistance, int maxDistance, int minSize, int maxSize,
+            int recipeWeight) {
         super(aOptimize, aItemInputs, aItemOutputs, null, aChances, aFluidInputs, null, aDuration, aEUt, minModuleTier);
         this.asteroidName = asteroidName;
         this.minDistance = minDistance;
@@ -33,14 +41,14 @@ public class IG_SpaceMiningRecipe extends GTRecipe {
         this.recipeWeight = recipeWeight;
     }
 
-        /**
-         * Get the non localized name of the asteroid, can be used in nei and gui
-         * 
-         * @return Asteroid Name
-         */
-        public String getAsteroidName() {
-            return asteroidName;
-        }
+    /**
+     * Get the non localized name of the asteroid, can be used in nei and gui
+     * 
+     * @return Asteroid Name
+     */
+    public String getAsteroidName() {
+        return asteroidName;
+    }
 
     /**
      * Get the weight of the recipe
