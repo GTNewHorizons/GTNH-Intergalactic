@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.recipe.IGRecipeMaps;
-import com.gtnewhorizons.gtnhintergalactic.recipe.IG_SpaceMiningRecipe;
+import com.gtnewhorizons.gtnhintergalactic.recipe.SpaceMiningData;
 import com.gtnewhorizons.gtnhintergalactic.spaceprojects.ProjectAsteroidOutpost;
 import com.gtnewhorizons.gtnhintergalactic.tile.multi.elevator.TileEntitySpaceElevator;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
@@ -55,6 +56,7 @@ import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
+import gregtech.api.util.GTRecipe;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.api.util.ParallelHelper;
@@ -299,13 +301,16 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         // Get all asteroid pools that this drone can pull from
         long tVoltage = getMaxInputVoltage();
         int distance = (int) distanceDisplay.get();
-        List<IG_SpaceMiningRecipe> recipes = IGRecipeMaps.spaceMiningRecipes.findRecipeQuery().items(inputs)
-                .fluids(fluidInputs).voltage(tVoltage).findAll().filter(IG_SpaceMiningRecipe.class::isInstance)
-                .map(IG_SpaceMiningRecipe.class::cast)
-                .filter(
-                        recipe -> recipe.minDistance <= distance && recipe.maxDistance >= distance
-                                && recipe.mSpecialValue <= tModuleTier)
-                .collect(Collectors.toList());
+        List<GTRecipe> recipes = IGRecipeMaps.spaceMiningRecipes.findRecipeQuery().items(inputs).fluids(fluidInputs)
+                .voltage(tVoltage).findAll().filter(r -> {
+                    // Check module tier
+                    if (r.mSpecialValue > tModuleTier) return false;
+
+                    // Check mining recipe distance
+                    SpaceMiningData data = r.getMetadata(IGRecipeMaps.SPACE_MINING_DATA);
+                    if (data == null) return false;
+                    return data.minDistance <= distance && data.maxDistance >= distance;
+                }).collect(Collectors.toList());
 
         // Return if no recipe was found
         if (recipes.isEmpty()) {
@@ -321,16 +326,20 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         }
 
         // Get a recipe randomly with weight from the pool
-        int totalWeight = recipes.stream().mapToInt(IG_SpaceMiningRecipe::getRecipeWeight).sum();
+        int totalWeight = recipes.stream()
+                .mapToInt(r -> Objects.requireNonNull(r.getMetadata(IGRecipeMaps.SPACE_MINING_DATA)).recipeWeight)
+                .sum();
         int recipeIndex = 0;
         for (double r = Math.random() * totalWeight; recipeIndex < recipes.size() - 1; ++recipeIndex) {
-            r -= recipes.get(recipeIndex).getRecipeWeight();
+            r -= Objects
+                    .requireNonNull(recipes.get(recipeIndex).getMetadata(IGRecipeMaps.SPACE_MINING_DATA)).recipeWeight;
             if (r <= 0.0) break;
         }
-        IG_SpaceMiningRecipe tRecipe = recipes.get(recipeIndex);
+        GTRecipe tRecipe = recipes.get(recipeIndex);
+        SpaceMiningData miningData = tRecipe.getMetadata(IGRecipeMaps.SPACE_MINING_DATA);
 
         // Make sure recipe really exists and we have enough power
-        if (tRecipe == null) {
+        if (tRecipe == null || miningData == null) {
             return CheckRecipeResultRegistry.NO_RECIPE;
         }
         if (tRecipe.mEUt > tVoltage) {
@@ -338,7 +347,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         }
 
         // Limit parallels by available computation, return if not enough computation is available
-        maxParallels = (int) Math.min(maxParallels, getAvailableData_EM() / (tRecipe.computation * compModifier));
+        maxParallels = (int) Math.min(maxParallels, getAvailableData_EM() / (miningData.computation * compModifier));
         if (maxParallels <= 0) {
             return CheckRecipeResultRegistry.NO_RECIPE;
         }
@@ -356,12 +365,12 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         Map<GTUtility.ItemId, Long> outputs = new HashMap<>();
         int totalChance = Arrays.stream(tRecipe.mChances).sum();
         try {
-            for (int i = 0; i < tRecipe.maxSize * parallels; i++) {
+            for (int i = 0; i < miningData.maxSize * parallels; i++) {
                 int bonusStackChance = 0;
-                if (i >= tRecipe.minSize * parallels) {
+                if (i >= miningData.minSize * parallels) {
                     bonusStackChance = getBonusStackChance(availablePlasmaTier);
                 }
-                if (i < tRecipe.minSize * parallels || bonusStackChance > XSTR.XSTR_INSTANCE.nextInt(10000)) {
+                if (i < miningData.minSize * parallels || bonusStackChance > XSTR.XSTR_INSTANCE.nextInt(10000)) {
                     int random = XSTR.XSTR_INSTANCE.nextInt(totalChance);
                     int currentChance = 0;
                     for (int j = 0; j < tRecipe.mChances.length; j++) {
@@ -399,7 +408,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         eAmpereFlow = 1;
         // TODO: Implement way to get computation from master controller. Or maybe keep it this way so
         // people can route computation to their liking?
-        eRequiredData = (int) Math.ceil(tRecipe.computation * parallels * compModifier);
+        eRequiredData = (int) Math.ceil(miningData.computation * parallels * compModifier);
         mMaxProgresstime = getRecipeTime(tRecipe.mDuration, availablePlasmaTier);
         mEfficiencyIncrease = 10000;
         return CheckRecipeResultRegistry.SUCCESSFUL;
