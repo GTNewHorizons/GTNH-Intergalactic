@@ -21,6 +21,9 @@ public class IGRecipeMaps {
     public static final RecipeMetadataKey<String> SPACE_LOCATION = SimpleRecipeMetadataKey
             .create(String.class, "space_project_location");
 
+    public static final RecipeMetadataKey<SpaceMiningData> SPACE_MINING_DATA = SimpleRecipeMetadataKey
+            .create(SpaceMiningData.class, "space_mining_data");
+
     /** Recipe map for recipes in the Space Research Module */
     public static final RecipeMap<RecipeMapBackend> spaceResearchRecipes = RecipeMapBuilder
             .of("gt.recipe.spaceResearch").maxIO(7, 1, 3, 0).minInputs(1, 0).logo(IG_UITextures.PICTURE_ELEVATOR_LOGO)
