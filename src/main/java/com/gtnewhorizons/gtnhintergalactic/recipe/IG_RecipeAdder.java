@@ -21,8 +21,6 @@ import gregtech.common.RecipeAdder;
 public class IG_RecipeAdder extends RecipeAdder {
 
     public static IG_RecipeAdder instance = new IG_RecipeAdder();
-    public static final ItemStack[] nullItem = new ItemStack[0];
-    public static final FluidStack[] nullFluid = new FluidStack[0];
 
     public static void init() {
 
