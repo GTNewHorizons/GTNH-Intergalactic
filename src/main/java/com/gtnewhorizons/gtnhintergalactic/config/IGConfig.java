@@ -70,36 +70,42 @@ public class IGConfig {
                 "Format is \"DIMID:FACTOR\"", "DIMIDs for Space Stations are \"SS_unlocalizedNameOfBodyToOrbit\"",
                 "DIMIDs for Utility Worlds dimensions are \"UW_Garden\", \"UW_Mining\" and \"UW_Void\"" })
         @Config.DefaultStringList({ "0:1.0", // Overworld
-                "-1011:0.15", // Makemake
-                "-28:1.0", // Moon
-                "-29:0.81", // Mars
-                "-30:0.61", // Asteroids
-                "-1021:2.28", // A Centauri Bb
-                "-1022:2.31", // Barnarda C
-                "-1009:0.16", // Kuiper Belt
-                "-1014:0.44", // Europa
-                "-1013:0.44", // Io
-                "-1005:1.61", // Mercury
-                "-1011:0.81", // Phobos
-                "-1006:1.76", // Venus
-                "-1012:0.81", // Deimos
-                "-1016:0.32", // Enceladus
-                "-1007:0.6", // Ceres
-                "-1015:0.44", // Ganymede
-                "-1017:0.32", // Titan
-                "-1024:0.32", // Callisto
-                "-1018:0.23", // Oberon
-                "-1019:0.23", // Proteus
-                "-1020:0.18", // Triton
-                "-1008:0.16", // Pluto
+                "25:0.15", // Makemake
+                "28:1.0", // Moon
+                "29:0.81", // Mars
+                "30:0.61", // Asteroids
+                "31:2.28", // A Centauri Bb
+                "32:2.31", // Barnarda C
+                "33:0.16", // Kuiper Belt
+                "35:0.44", // Europa
+                "36:0.44", // Io
+                "37:1.61", // Mercury
+                "38:0.81", // Phobos
+                "39:1.76", // Venus
+                "40:0.81", // Deimos
+                "41:0.32", // Enceladus
+                "42:0.6", // Ceres
+                "43:0.44", // Ganymede
+                "44:0.32", // Titan
+                "45:0.32", // Callisto
+                "46:0.23", // Oberon
+                "47:0.23", // Proteus
+                "48:0.18", // Triton
+                "49:0.16", // Pluto
                 "63:1.12", // Ross128ba
                 "64:1.12", // Ross128b
-                "-1023:1.41", // Barnarda E
-                "-1026:1.26", // Barnarda F
-                "-1025:0.15", // Haumea
-                "-1027:1.98", // Vega B
-                "-1028:1.34", // T Ceti E
-                "-1029:0.23", // Miranda
+                "81:1.41", // Barnarda E
+                "82:1.26", // Barnarda F
+                "83:0.15", // Haumea
+                "84:1.98", // Vega B
+                "85:1.34", // T Ceti E
+                "86:0.23", // Miranda
+                "90:2.28", // Neper
+                "91:1.98", // Maahes
+                "92:1.81", // Anubis
+                "93:3.37", // Horus
+                "94:1.98", // Seth
+                "95:2.11", // Mehen
                 "SS_Overworld:1.1", // Earth Space Station
                 "SS_planet.mars:0.89", // Mars Space Station
                 "SS_planet.venus:1.94", // Venus Space Station
