@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import gtPlusPlus.core.material.MaterialsElements;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -68,6 +67,7 @@ import gregtech.api.util.ParallelHelper;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
 import gregtech.common.misc.spaceprojects.enums.SolarSystem;
 import gregtech.common.misc.spaceprojects.interfaces.ISpaceProject;
+import gtPlusPlus.core.material.MaterialsElements;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import tectech.TecTech;
 import tectech.thing.gui.TecTechUITextures;
@@ -105,7 +105,6 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
     protected static int PLASMA_TECHNETIUM_USAGE = 250;
     /** Usage of plutonium 241 plasma per mining operation */
     protected static int PLASMA_PLUTONIUM241_USAGE = 150;
-
 
     /* Size of the whitelist in stacks **/
     protected static int WHITELIST_SIZE = 64;
@@ -478,17 +477,23 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         if (fluidStack == null) {
             return 0;
         }
-        if ((fluidStack.isFluidEqual(Materials.Plutonium241.getPlasma(1)) && fluidStack.amount >= PLASMA_PLUTONIUM241_USAGE)) {
+        if ((fluidStack.isFluidEqual(Materials.Plutonium241.getPlasma(1))
+                && fluidStack.amount >= PLASMA_PLUTONIUM241_USAGE)) {
             return 5;
-        } else if ((fluidStack.isFluidEqual(new FluidStack(MaterialsElements.getInstance().TECHNETIUM.getPlasma(), 1)) && fluidStack.amount >= PLASMA_TECHNETIUM_USAGE)) {
-            return 4;
-        } else if (fluidStack.isFluidEqual(Materials.Radon.getPlasma(1)) && fluidStack.amount >= PLASMA_RADON_USAGE) {
-            return 3;
-        } else if (fluidStack.isFluidEqual(Materials.Bismuth.getPlasma(1)) && fluidStack.amount >= PLASMA_BISMUTH_USAGE) {
-            return 2;
-        } else if (fluidStack.isFluidEqual(Materials.Helium.getPlasma(1)) && fluidStack.amount >= PLASMA_HELIUM_USAGE) {
-            return 1;
-        }
+        } else if ((fluidStack.isFluidEqual(new FluidStack(MaterialsElements.getInstance().TECHNETIUM.getPlasma(), 1))
+                && fluidStack.amount >= PLASMA_TECHNETIUM_USAGE)) {
+                    return 4;
+                } else
+            if (fluidStack.isFluidEqual(Materials.Radon.getPlasma(1)) && fluidStack.amount >= PLASMA_RADON_USAGE) {
+                return 3;
+            } else if (fluidStack.isFluidEqual(Materials.Bismuth.getPlasma(1))
+                    && fluidStack.amount >= PLASMA_BISMUTH_USAGE) {
+                        return 2;
+                    } else
+                if (fluidStack.isFluidEqual(Materials.Helium.getPlasma(1))
+                        && fluidStack.amount >= PLASMA_HELIUM_USAGE) {
+                            return 1;
+                        }
         return 0;
     }
 
@@ -527,7 +532,8 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         // T5: 0.578
         // The whole chance is multiplied by 2 - overdrive setting
         return Math.min(
-                (int) ((Math.pow((double) plasmaTier /6, 3) * 10000) * (2.0D - overdriveSetting.get())), BONUS_STACK_MAX_CHANCE);
+                (int) ((Math.pow((double) plasmaTier / 6, 3) * 10000) * (2.0D - overdriveSetting.get())),
+                BONUS_STACK_MAX_CHANCE);
     }
 
     /**
