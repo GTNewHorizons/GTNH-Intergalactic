@@ -96,15 +96,15 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
 
     // Tiered plasmas, the mining operation uses one of them. Using higher tier plasmas boosts the mining operation
     /** Usage of helium plasma per mining operation */
-    protected static int PLASMA_HELIUM_USAGE = 2250;
+    protected static int PLASMA_HELIUM_USAGE = 825;
     /** Usage of bismuth plasma per mining operation */
-    protected static int PLASMA_BISMUTH_USAGE = 1500;
+    protected static int PLASMA_BISMUTH_USAGE = 550;
     /** Usage of radon plasma per mining operation */
-    protected static int PLASMA_RADON_USAGE = 1000;
+    protected static int PLASMA_RADON_USAGE = 375;
     /** Usage of technetium plasma per mining operation */
-    protected static int PLASMA_TECHNETIUM_USAGE = 675;
+    protected static int PLASMA_TECHNETIUM_USAGE = 250;
     /** Usage of plutonium 241 plasma per mining operation */
-    protected static int PLASMA_PLUTONIUM241_USAGE = 450;
+    protected static int PLASMA_PLUTONIUM241_USAGE = 150;
 
 
     /* Size of the whitelist in stacks **/
@@ -519,11 +519,15 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         if (plasmaTier <= 0 || plasmaTier > 5) {
             return 0;
         }
-        // Base chance is 50% + 10% for every plasma tier above T1. The whole chance is multiplied by 2 - overdrive
-        // setting
+        // getBonusStackChance with tiered plasmas:
+        // T1: 0.004
+        // T2: 0.037
+        // T3: 0.125
+        // T4: 0.296
+        // T5: 0.578
+        // The whole chance is multiplied by 2 - overdrive setting
         return Math.min(
-                (int) ((Math.pow((double) plasmaTier /6, 2) * 10000) * (2.0D - overdriveSetting.get())),
-                BONUS_STACK_MAX_CHANCE);
+                (int) ((Math.pow((double) plasmaTier /6, 3) * 10000) * (2.0D - overdriveSetting.get())), BONUS_STACK_MAX_CHANCE);
     }
 
     /**
