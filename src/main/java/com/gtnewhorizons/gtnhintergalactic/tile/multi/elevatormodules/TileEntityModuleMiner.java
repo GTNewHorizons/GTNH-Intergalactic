@@ -284,13 +284,15 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
             return SimpleCheckRecipeResult.ofFailure("no_plasma");
         }
 
+        ItemStack[] itemInputs = validInputs();
+
         // Look for a valid plasma to start a mining operation
         for (FluidStack fluidStack : inputFluids) {
             int availablePlasmaTier = getTierFromPlasma(fluidStack);
             if (availablePlasmaTier > 0) {
                 // Check if valid inputs for a mining operation are present
                 CheckRecipeResult result = process(
-                        validInputs(),
+                        itemInputs,
                         inputFluids.toArray(new FluidStack[0]),
                         availablePlasmaTier,
                         fluidStack,
