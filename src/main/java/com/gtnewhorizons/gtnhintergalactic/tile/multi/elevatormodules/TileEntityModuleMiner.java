@@ -284,6 +284,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
             return SimpleCheckRecipeResult.ofFailure("no_plasma");
         }
 
+        // Check for valid item inputs
         ItemStack[] itemInputs = validInputs();
 
         // Look for a valid plasma to start a mining operation
@@ -307,10 +308,12 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         return CheckRecipeResultRegistry.NO_RECIPE;
     }
 
+    /** Determine which drones and items are in the correct buses */
     protected ItemStack[] validInputs() {
         ArrayList<ItemStack> validatedInputs = new ArrayList<>();
         for (MTEHatchInputBus inputBus : mInputBusses) {
             ArrayList<ItemStack> busItems = new ArrayList<>(Arrays.asList(inputBus.getRealInventory()));
+            // No drone sharing
             if (inputBus instanceof MTEHatchInputBusME || inputBus instanceof MTELinkedInputBus) {
                 busItems.removeIf(item -> item != null && item.getItem() instanceof ItemMiningDrones);
             }
