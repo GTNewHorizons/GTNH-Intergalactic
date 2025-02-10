@@ -48,7 +48,6 @@ import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ggfab.mte.MTELinkedInputBus;
-import gregtech.api.enums.GTValues;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -255,6 +254,17 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
         }
     }
 
+    public void loadFromParametrizer(NBTTagCompound aNBT) {
+        this.whiteListHandler.deserializeNBT(aNBT.getCompoundTag("minerConfig"));
+        this.isWhitelisted = aNBT.getBoolean("isWhitelisted");
+        generateOreConfigurationList();
+    }
+
+    public void saveToParametrizer(NBTTagCompound aNBT) {
+        aNBT.setTag("minerConfig", this.whiteListHandler.serializeNBT());
+        aNBT.setBoolean("isWhitelisted", this.isWhitelisted);
+    }
+
     @Override
     public RecipeMap<?> getRecipeMap() {
         return IGRecipeMaps.spaceMiningRecipes;
@@ -407,7 +417,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
 
         // Check how many parallels we can actually do, return if none
         ParallelHelper helper = new ParallelHelper().setMaxParallel(maxParallels).setRecipe(tRecipe)
-                .setFluidInputs(fluidInputs).setItemInputs(inputs).setAvailableEUt(GTValues.V[tTier])
+                .setFluidInputs(fluidInputs).setItemInputs(inputs).setAvailableEUt(V[tTier])
                 .setMachine(this, false, false).setConsumption(true).build();
         int parallels = helper.getCurrentParallel();
         if (parallels <= 0) {
@@ -677,7 +687,7 @@ public abstract class TileEntityModuleMiner extends TileEntityModuleBase impleme
      * @author hacatu
      */
     protected List<AsteroidSummary> getAsteroidSummaries(int maxParallels, float effectiveComp) {
-        long power = GTValues.V[tTier];
+        long power = V[tTier];
         if (prevRecipes == null) {
             return Collections.<AsteroidSummary>emptyList();
         }
