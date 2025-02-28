@@ -81,7 +81,8 @@ public class MachineRecipes implements Runnable {
                 4,
                 new Object[] { GTModHandler.getModItem("OpenBlocks", "elevator", 1),
                         GTOreDictUnificator.get(OrePrefixes.frameGt, Materials.Neutronium, 64),
-                        ItemList.Field_Generator_UV.get(16), new Object[] { OrePrefixes.circuit.get(Materials.UHV), 16 },
+                        ItemList.Field_Generator_UV.get(16),
+                        new Object[] { OrePrefixes.circuit.get(Materials.UHV), 16 },
                         GTModHandler.getModItem("dreamcraft", "item.HeavyDutyPlateTier7", 32),
                         ItemList.Circuit_Chip_PPIC.get(64),
                         GTOreDictUnificator.get(OrePrefixes.screw, Materials.CosmicNeutronium, 64),
@@ -105,13 +106,12 @@ public class MachineRecipes implements Runnable {
 
         // Space Elevator Cable
         RA.stdBuilder()
-            .itemInputs(
-                new ItemStack(IGItems.SpaceElevatorItems, 64, 0),
-                GTOreDictUnificator.get(OrePrefixes.circuit, Materials.UHV, 4))
-            .fluidInputs(
-                FluidRegistry.getFluidStack("molten.ethylcyanoacrylatesuperglue", 8000))
-            .itemOutputs(new ItemStack(IGBlocks.SpaceElevatorCable))
-            .duration(2 * MINUTE).eut(TierEU.RECIPE_UHV).addTo(assemblerRecipes);
+                .itemInputs(
+                        new ItemStack(IGItems.SpaceElevatorItems, 64, 0),
+                        GTOreDictUnificator.get(OrePrefixes.circuit, Materials.UHV, 4))
+                .fluidInputs(FluidRegistry.getFluidStack("molten.ethylcyanoacrylatesuperglue", 8000))
+                .itemOutputs(new ItemStack(IGBlocks.SpaceElevatorCable)).duration(2 * MINUTE).eut(TierEU.RECIPE_UHV)
+                .addTo(assemblerRecipes);
 
         // Space Elevator Base Casing
         TTRecipeAdder.addResearchableAssemblylineRecipe(
