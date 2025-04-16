@@ -6,6 +6,7 @@ import static gregtech.api.enums.HatchElement.InputBus;
 import static gregtech.api.enums.HatchElement.InputHatch;
 import static gregtech.api.enums.HatchElement.Maintenance;
 import static gregtech.api.util.GTStructureUtility.buildHatchAdder;
+import static gregtech.api.util.GTStructureUtility.ofFrame;
 import static gregtech.api.util.GTUtility.filterValidMTEs;
 import static net.minecraft.util.EnumChatFormatting.*;
 import static net.minecraft.util.StatCollector.translateToLocal;
@@ -47,7 +48,6 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.MTEHatchDynamo;
 import gregtech.api.metatileentity.implementations.MTEHatchInputBus;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GTStructureUtility;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.MultiblockTooltipBuilder;
 import gregtech.common.items.IDMetaTool01;
@@ -149,18 +149,18 @@ public class TileEntityDysonSwarm extends TTMultiblockBase implements ISurvivalC
                         "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
                         "bbbbbbbnbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb",
                         "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbb" } }))
-        .addElement('b', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 9)) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
-        .addElement('c', StructureUtility.ofBlock(GregTechAPI.sBlockCasings5, 8)) // Awakened Draconium Coil Block
-        .addElement('d', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 1)) // Dyson Swarm Energy Receiver Dish Block
+        .addElement('b', ofBlock(IGBlocks.DysonSwarmCasing, 9)) // Dyson Swarm Ground Unit Ultra High Strength Concrete Floor
+        .addElement('c', ofBlock(GregTechAPI.sBlockCasings5, 8)) // Awakened Draconium Coil Block
+        .addElement('d', ofBlock(IGBlocks.DysonSwarmCasing, 1)) // Dyson Swarm Energy Receiver Dish Block
         .addElement(
             'e',
             buildHatchAdder(TileEntityDysonSwarm.class).atLeast(Dynamo, DynamoMulti)
                 .casingIndex(IGTextures.CASING_INDEX_RECEIVER)
                 .dot(1)
                 .buildAndChain(ofBlock(IGBlocks.DysonSwarmCasing, 0))) // Dyson Swarm Energy Receiver Base Casing
-        .addElement('f', GTStructureUtility.ofFrame(Materials.HSSS))
-        .addElement('g', GTStructureUtility.ofFrame(Materials.Titanium))
-        .addElement('h', StructureUtility.ofBlock(GregTechAPI.sBlockCasings6, 10)) // Hermetic Casing X
+        .addElement('f', ofFrame(Materials.HSSS))
+        .addElement('g', ofFrame(Materials.Titanium))
+        .addElement('h', ofBlock(GregTechAPI.sBlockCasings6, 10)) // Hermetic Casing X
         .addElement(
             'i',
             buildHatchAdder(TileEntityDysonSwarm.class)
@@ -168,9 +168,9 @@ public class TileEntityDysonSwarm extends TTMultiblockBase implements ISurvivalC
                 .casingIndex(IGTextures.CASING_INDEX_LAUNCH)
                 .dot(2)
                 .buildAndChain(ofBlock(IGBlocks.DysonSwarmCasing, 2))) // Dyson Swarm Module Deployment Unit Base Casing
-        .addElement('j', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 3)) // Dyson Swarm Module Deployment Unit Core
-        .addElement('k', GTStructureUtility.ofFrame(Materials.Longasssuperconductornameforuhvwire))
-        .addElement('m', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 4)) // Dyson Swarm Module Deployment Unit Superconducting Magnet
+        .addElement('j', ofBlock(IGBlocks.DysonSwarmCasing, 3)) // Dyson Swarm Module Deployment Unit Core
+        .addElement('k', ofFrame(Materials.Longasssuperconductornameforuhvwire))
+        .addElement('m', ofBlock(IGBlocks.DysonSwarmCasing, 4)) // Dyson Swarm Module Deployment Unit Superconducting Magnet
         .addElement(
             'n',
             buildHatchAdder(TileEntityDysonSwarm.class)
@@ -185,12 +185,12 @@ public class TileEntityDysonSwarm extends TTMultiblockBase implements ISurvivalC
                 .casingIndex(IGTextures.CASING_INDEX_COMMAND)
                 .dot(4)
                 .buildAndChain(ofBlock(IGBlocks.DysonSwarmCasing, 5))) // Dyson Swarm Command Center Base Casing
-        .addElement('p', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 6)) // Dyson Swarm Command Center Primary Windings
-        .addElement('s', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 7)) // Dyson Swarm Command Center Secondary Windings
-        .addElement('t', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 8)) // Dyson Swarm Command Center Toroid Casing
-        .addElement('x', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 0)) // Dyson Swarm Energy Receiver Base Casing
-        .addElement('y', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 5)) // Dyson Swarm Command Center Base Casing
-        .addElement('z', StructureUtility.ofBlock(IGBlocks.DysonSwarmCasing, 2)) // Dyson Swarm Module Deployment Unit Base Casing
+        .addElement('p', ofBlock(IGBlocks.DysonSwarmCasing, 6)) // Dyson Swarm Command Center Primary Windings
+        .addElement('s', ofBlock(IGBlocks.DysonSwarmCasing, 7)) // Dyson Swarm Command Center Secondary Windings
+        .addElement('t', ofBlock(IGBlocks.DysonSwarmCasing, 8)) // Dyson Swarm Command Center Toroid Casing
+        .addElement('x', ofBlock(IGBlocks.DysonSwarmCasing, 0)) // Dyson Swarm Energy Receiver Base Casing
+        .addElement('y', ofBlock(IGBlocks.DysonSwarmCasing, 5)) // Dyson Swarm Command Center Base Casing
+        .addElement('z', ofBlock(IGBlocks.DysonSwarmCasing, 2)) // Dyson Swarm Module Deployment Unit Base Casing
         .build();
 
     // spotless:on
