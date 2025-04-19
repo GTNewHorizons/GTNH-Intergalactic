@@ -1,9 +1,9 @@
 package com.gtnewhorizons.gtnhintergalactic.recipe;
 
+import static gregtech.api.enums.Mods.OpenComputers;
+import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.util.GTModHandler.getModItem;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -14,7 +14,6 @@ import com.gtnewhorizons.gtnhintergalactic.gui.IG_UITextures;
 import com.gtnewhorizons.gtnhintergalactic.spaceprojects.ProjectAsteroidOutpost;
 
 import bartworks.common.loaders.ItemRegistry;
-import cpw.mods.fml.common.Loader;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.TierEU;
 import gregtech.common.misc.spaceprojects.SpaceProjectManager;
@@ -40,8 +39,6 @@ public class SpaceProjectRegistration implements Runnable {
             ? FluidRegistry.getFluid("molten.indalloy140")
             : FluidRegistry.getFluid("molten.solderingalloy");
 
-    Block glass = Loader.isModLoaded("bartworks") ? ItemRegistry.bw_realglas : Blocks.glass;
-
     /**
      * Register space projects
      */
@@ -59,10 +56,10 @@ public class SpaceProjectRegistration implements Runnable {
                 .setUpgradeUnlocalizedName("ig.sp.upgrade.reinforcedstructure").setUpgradeTotalStages(40)
                 .setUpgradeVoltage(TierEU.RECIPE_UHV).setUpgradeBuildTime(500 * 20)
                 .setUpgradeItemsCost(
-                        getModItem("supersolarpanel", "AdminSolarPanel", 1L, 0),
+                        getModItem(SuperSolarPanels.ID, "AdminSolarPanel", 1L, 0),
                         // Neutronium Borosilicate Glass
-                        new ItemStack(glass, 24, 5),
-                        getModItem("OpenComputers", "item", 8, 103),
+                        new ItemStack(ItemRegistry.bw_realglas, 24, 5),
+                        getModItem(OpenComputers.ID, "item", 8, 103),
                         CustomItemList.Machine_Multi_Computer.get(1),
                         ItemList.Sensor_UHV.get(1),
                         ItemList.Emitter_UHV.get(1))
@@ -72,10 +69,10 @@ public class SpaceProjectRegistration implements Runnable {
                 .setUpgradeVoltage(TierEU.RECIPE_UEV).setUpgradeBuildTime(750 * 20)
                 .setUpgradeRequirements(new SPRequirements().setUpgrades(reinforcedStructure))
                 .setUpgradeItemsCost(
-                        getModItem("supersolarpanel", "PhotonicSolarPanel", 1L, 0),
-                        getModItem("OpenComputers", "item", 32, 103),
+                        getModItem(SuperSolarPanels.ID, "PhotonicSolarPanel", 1L, 0),
+                        getModItem(OpenComputers.ID, "item", 32, 103),
                         // Cosmic Neutronium Borosilicate Glass
-                        new ItemStack(glass, 32, 14),
+                        new ItemStack(ItemRegistry.bw_realglas, 32, 14),
                         CustomItemList.Machine_Multi_Computer.get(16),
                         ItemList.Sensor_UEV.get(1),
                         ItemList.Emitter_UEV.get(1))
@@ -87,7 +84,7 @@ public class SpaceProjectRegistration implements Runnable {
                 .setProjectBuildTime(250 * 20).setProjectStages(40).setProjectVoltage(TierEU.RECIPE_UV)
                 .setProjectTexture(IG_UITextures.PICTURE_SPACE_PROJECT_ASTEROID_OUTPOST).setProjectItemsCost(
                         // Osmium Borosilicate Glass
-                        new ItemStack(glass, 16, 5),
+                        new ItemStack(ItemRegistry.bw_realglas, 16, 5),
                         // Ultra High Strength Concrete
                         new ItemStack(IGBlocks.DysonSwarmCasing, 32, 9),
                         ItemList.Machine_LuV_SolarPanel.get(1),
@@ -108,7 +105,7 @@ public class SpaceProjectRegistration implements Runnable {
                 .setProjectTexture(IG_UITextures.PICTURE_SPACE_PROJECT_PLANETARY_SCAN).setProjectStages(8)
                 .setProjectVoltage(TierEU.RECIPE_UV).setProjectItemsCost(
                         // Osmium Borosilicate Glass
-                        new ItemStack(glass, 8, 5),
+                        new ItemStack(ItemRegistry.bw_realglas, 8, 5),
                         ItemList.Block_NeutroniumPlate.get(4),
                         ItemList.Sensor_UV.get(2),
                         ItemList.Emitter_UV.get(2))

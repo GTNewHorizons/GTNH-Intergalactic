@@ -76,14 +76,12 @@ public class SpacePumpingRecipes {
         RECIPES.put(Pair.of(8, 6), Materials.Radon.getGas(64000));
         RECIPES.put(Pair.of(8, 7), Materials.Tin.getMolten(672000));
 
-        if (Mods.BartWorks.isModLoaded()) {
-            // T5
-            RECIPES.put(Pair.of(5, 6), WerkstoffLoader.Neon.getFluidOrGas(32000));
-            RECIPES.put(Pair.of(5, 8), WerkstoffLoader.Krypton.getFluidOrGas(8000));
+        // T5
+        RECIPES.put(Pair.of(5, 6), WerkstoffLoader.Neon.getFluidOrGas(32000));
+        RECIPES.put(Pair.of(5, 8), WerkstoffLoader.Krypton.getFluidOrGas(8000));
 
-            // T6
-            RECIPES.put(Pair.of(6, 4), WerkstoffLoader.Xenon.getFluidOrGas(16000));
-        }
+        // T6
+        RECIPES.put(Pair.of(6, 4), WerkstoffLoader.Xenon.getFluidOrGas(16000));
 
         if (Mods.GalaxySpace.isModLoaded()) {
             // T8

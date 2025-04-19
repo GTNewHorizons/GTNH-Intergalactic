@@ -1,5 +1,7 @@
 package com.gtnewhorizons.gtnhintergalactic.recipe;
 
+import static gregtech.api.enums.Mods.DraconicEvolution;
+import static gregtech.api.enums.Mods.HardcoreEnderExpansion;
 import static gregtech.api.util.GTRecipeBuilder.SECONDS;
 
 import java.util.ArrayList;
@@ -17,8 +19,6 @@ import com.gtnewhorizons.gtnhintergalactic.item.IGItems;
 import com.gtnewhorizons.gtnhintergalactic.item.ItemMiningDrones;
 
 import bartworks.system.material.WerkstoffLoader;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
 import goodgenerator.items.GGMaterial;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -28,6 +28,9 @@ import gregtech.api.util.GTModHandler;
 import gregtech.api.util.GTOreDictUnificator;
 import gregtech.api.util.GTRecipe;
 import gregtech.api.util.GTUtility;
+import gtPlusPlus.core.material.MaterialMisc;
+import gtPlusPlus.core.material.MaterialsAlloy;
+import gtPlusPlus.core.material.MaterialsOres;
 
 /**
  * Available asteroids for space mining are defined here
@@ -530,36 +533,29 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.ZPM.ordinal(),
                 250);
 
-        if (Loader.isModLoaded("miscutils")) {
-            // Everglades Asteroid
-            addRecipesToDrones(
-                    "evergladesAsteroid",
-                    null,
-                    null,
-                    new int[] { 600, 400, 1500, 1500, 1000, 400, 1000, 600, 1000, 1000, 1000 },
-                    new ItemStack[] { new ItemStack(GameRegistry.findItem("miscutils", "oreKoboldite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreCrocoite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreGadoliniteY"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreLepersonnite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreZircon"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreLautarite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreHoneaite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreAlburnite"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthI"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthII"), 64),
-                            new ItemStack(GameRegistry.findItem("miscutils", "oreRareEarthIII"), 64) },
-                    10,
-                    20,
-                    110,
-                    230,
-                    200,
-                    1,
-                    25 * SECONDS,
-                    (int) TierEU.RECIPE_IV,
-                    ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                    ItemMiningDrones.DroneTiers.UHV.ordinal(),
-                    100);
-        }
+        // Everglades Asteroid
+        addRecipesToDrones(
+                "evergladesAsteroid",
+                null,
+                null,
+                new int[] { 600, 400, 1500, 1500, 1000, 400, 1000, 600, 1000, 1000, 1000 },
+                new ItemStack[] { MaterialsAlloy.KOBOLDITE.getOre(64), MaterialsOres.CROCROITE.getOre(64),
+                        MaterialsOres.GADOLINITE_Y.getOre(64), MaterialsOres.LEPERSONNITE.getOre(64),
+                        MaterialsOres.ZIRCON.getOre(64), MaterialsOres.LAUTARITE.getOre(64),
+                        MaterialsOres.HONEAITE.getOre(64), MaterialsOres.ALBURNITE.getOre(64),
+                        MaterialMisc.RARE_EARTH_LOW.getOre(64), MaterialMisc.RARE_EARTH_MID.getOre(64),
+                        MaterialMisc.RARE_EARTH_HIGH.getOre(64) },
+                10,
+                20,
+                110,
+                230,
+                200,
+                1,
+                25 * SECONDS,
+                (int) TierEU.RECIPE_IV,
+                ItemMiningDrones.DroneTiers.ZPM.ordinal(),
+                ItemMiningDrones.DroneTiers.UHV.ordinal(),
+                100);
 
         // Draconic Asteroid
         addRecipesToDrones(
@@ -722,7 +718,7 @@ public class SpaceMiningRecipes {
                 ItemMiningDrones.DroneTiers.LuV.ordinal(),
                 200);
 
-        if (Loader.isModLoaded("HardcoreEnderExpansion")) {
+        if (HardcoreEnderExpansion.isModLoaded()) {
             // Mysterious Crystal Asteroid
             addRecipesToDrones(
                     "mysteriousCrystalAsteroid",
@@ -733,7 +729,7 @@ public class SpaceMiningRecipes {
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Mytryl, 64),
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.Oriharukon, 64),
                             GTOreDictUnificator.get(OrePrefixes.oreEndstone, Materials.HeeEndium, 64),
-                            new ItemStack(GameRegistry.findItem("HardcoreEnderExpansion", "end_powder_ore"), 64) },
+                            GTModHandler.getModItem(HardcoreEnderExpansion.ID, "end_powder_ore", 64) },
                     30,
                     60,
                     65,
@@ -747,168 +743,163 @@ public class SpaceMiningRecipes {
                     220);
         }
 
-        if (Loader.isModLoaded("bartworks")) {
-            // Uranium-Plutonium Asteroid
-            addRecipesToDrones(
-                    "uraniumPlutoniumAsteroid",
-                    null,
-                    null,
-                    new int[] { 3000, 2450, 2450, 2000, 100 },
-                    new Materials[] { Materials.Uranium, Materials.Uranium235, Materials.Plutonium,
-                            Materials.Plutonium241, WerkstoffLoader.Thorianit.getBridgeMaterial() },
-                    OrePrefixes.ore,
-                    40,
-                    180,
-                    30,
-                    70,
-                    120,
-                    1,
-                    20 * SECONDS,
-                    (int) TierEU.RECIPE_LuV,
-                    ItemMiningDrones.DroneTiers.HV.ordinal(),
-                    ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                    150);
+        // Uranium-Plutonium Asteroid
+        addRecipesToDrones(
+                "uraniumPlutoniumAsteroid",
+                null,
+                null,
+                new int[] { 3000, 2450, 2450, 2000, 100 },
+                new Materials[] { Materials.Uranium, Materials.Uranium235, Materials.Plutonium, Materials.Plutonium241,
+                        WerkstoffLoader.Thorianit.getBridgeMaterial() },
+                OrePrefixes.ore,
+                40,
+                180,
+                30,
+                70,
+                120,
+                1,
+                20 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
+                ItemMiningDrones.DroneTiers.HV.ordinal(),
+                ItemMiningDrones.DroneTiers.ZPM.ordinal(),
+                150);
 
-            // Holmium/Samarium Asteroid
-            addRecipesToDrones(
-                    "holmiumSamariumAsteroid",
-                    null,
-                    null,
-                    new int[] { 2000, 3000, 3000, 2000 },
-                    new Materials[] { Materials.Holmium, Materials.Samarium,
-                            WerkstoffLoader.Tiberium.getBridgeMaterial(), Materials.Strontium },
-                    OrePrefixes.ore,
-                    15,
-                    50,
-                    40,
-                    80,
-                    260,
-                    2,
-                    25 * SECONDS,
-                    (int) TierEU.RECIPE_LuV,
-                    ItemMiningDrones.DroneTiers.UV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UXV.ordinal(),
-                    75);
+        // Holmium/Samarium Asteroid
+        addRecipesToDrones(
+                "holmiumSamariumAsteroid",
+                null,
+                null,
+                new int[] { 2000, 3000, 3000, 2000 },
+                new Materials[] { Materials.Holmium, Materials.Samarium, WerkstoffLoader.Tiberium.getBridgeMaterial(),
+                        Materials.Strontium },
+                OrePrefixes.ore,
+                15,
+                50,
+                40,
+                80,
+                260,
+                2,
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
+                ItemMiningDrones.DroneTiers.UV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
+                75);
 
-            // PlatLine Pure Asteroid
-            addRecipesToDrones(
-                    "platlinePureAsteroid",
-                    null,
-                    null,
-                    new int[] { 3800, 2000, 1500, 500, 1200, 1000 },
-                    new Materials[] { Materials.Platinum, Materials.Palladium, Materials.Iridium, Materials.Osmium,
-                            WerkstoffLoader.Ruthenium.getBridgeMaterial(),
-                            WerkstoffLoader.Rhodium.getBridgeMaterial() },
-                    OrePrefixes.dust,
-                    10,
-                    30,
-                    25,
-                    200,
-                    360,
-                    3,
-                    500,
-                    (int) TierEU.RECIPE_ZPM,
-                    ItemMiningDrones.DroneTiers.ZPM.ordinal(),
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
-                    60);
+        // PlatLine Pure Asteroid
+        addRecipesToDrones(
+                "platlinePureAsteroid",
+                null,
+                null,
+                new int[] { 3800, 2000, 1500, 500, 1200, 1000 },
+                new Materials[] { Materials.Platinum, Materials.Palladium, Materials.Iridium, Materials.Osmium,
+                        WerkstoffLoader.Ruthenium.getBridgeMaterial(), WerkstoffLoader.Rhodium.getBridgeMaterial() },
+                OrePrefixes.dust,
+                10,
+                30,
+                25,
+                200,
+                360,
+                3,
+                500,
+                (int) TierEU.RECIPE_ZPM,
+                ItemMiningDrones.DroneTiers.ZPM.ordinal(),
+                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                60);
 
-            // Magnesium Asteroid
-            addRecipesToDrones(
-                    "magnesiumAsteroid",
-                    null,
-                    null,
-                    new int[] { 4000, 3000, 3000 },
-                    new Materials[] { Materials.Magnesium, Materials.Manganese,
-                            WerkstoffLoader.Fluorspar.getBridgeMaterial() },
-                    OrePrefixes.ore,
-                    10,
-                    80,
-                    10,
-                    200,
-                    60,
-                    1,
-                    20 * SECONDS,
-                    (int) TierEU.RECIPE_IV,
-                    ItemMiningDrones.DroneTiers.EV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UHV.ordinal(),
-                    250);
-        }
+        // Magnesium Asteroid
+        addRecipesToDrones(
+                "magnesiumAsteroid",
+                null,
+                null,
+                new int[] { 4000, 3000, 3000 },
+                new Materials[] { Materials.Magnesium, Materials.Manganese,
+                        WerkstoffLoader.Fluorspar.getBridgeMaterial() },
+                OrePrefixes.ore,
+                10,
+                80,
+                10,
+                200,
+                60,
+                1,
+                20 * SECONDS,
+                (int) TierEU.RECIPE_IV,
+                ItemMiningDrones.DroneTiers.EV.ordinal(),
+                ItemMiningDrones.DroneTiers.UHV.ordinal(),
+                250);
 
-        if (Loader.isModLoaded("GoodGenerator")) {
-            // Lanthanum Asteroid
-            addRecipesToDrones(
-                    "lanthanumAsteroid",
-                    null,
-                    null,
-                    new int[] { 1500, 2000, 3000, 3500 },
-                    new Materials[] { Materials.Trinium, Materials.Lanthanum, GGMaterial.orundum.getBridgeMaterial(),
-                            Materials.Silver },
-                    OrePrefixes.ore,
-                    30,
-                    120,
-                    30,
-                    230,
-                    120,
-                    2,
-                    25 * SECONDS,
-                    (int) TierEU.RECIPE_LuV,
-                    ItemMiningDrones.DroneTiers.IV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UIV.ordinal(),
-                    150);
+        // Lanthanum Asteroid
+        addRecipesToDrones(
+                "lanthanumAsteroid",
+                null,
+                null,
+                new int[] { 1500, 2000, 3000, 3500 },
+                new Materials[] { Materials.Trinium, Materials.Lanthanum, GGMaterial.orundum.getBridgeMaterial(),
+                        Materials.Silver },
+                OrePrefixes.ore,
+                30,
+                120,
+                30,
+                230,
+                120,
+                2,
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
+                ItemMiningDrones.DroneTiers.IV.ordinal(),
+                ItemMiningDrones.DroneTiers.UIV.ordinal(),
+                150);
 
-            // Tengam Asteroid
-            addRecipesToDrones(
-                    "tengamAsteroid",
-                    null,
-                    null,
-                    new int[] { 100, 1650, 3500, 2250, 2500 },
-                    new Materials[] { Materials.Dilithium, GGMaterial.orundum.getBridgeMaterial(), Materials.Vanadium,
-                            Materials.Ytterbium, Materials.TengamRaw },
-                    OrePrefixes.ore,
-                    5,
-                    100,
-                    20,
-                    100,
-                    120,
-                    3,
-                    25 * SECONDS,
-                    (int) TierEU.RECIPE_LuV,
-                    ItemMiningDrones.DroneTiers.UEV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UXV.ordinal(),
-                    50);
+        // Tengam Asteroid
+        addRecipesToDrones(
+                "tengamAsteroid",
+                null,
+                null,
+                new int[] { 100, 1650, 3500, 2250, 2500 },
+                new Materials[] { Materials.Dilithium, GGMaterial.orundum.getBridgeMaterial(), Materials.Vanadium,
+                        Materials.Ytterbium, Materials.TengamRaw },
+                OrePrefixes.ore,
+                5,
+                100,
+                20,
+                100,
+                120,
+                3,
+                25 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
+                ItemMiningDrones.DroneTiers.UEV.ordinal(),
+                ItemMiningDrones.DroneTiers.UXV.ordinal(),
+                50);
 
-            // Naquadah Asteroid
-            addRecipesToDrones(
-                    "naquadahAsteroid",
-                    null,
-                    null,
-                    new int[] { 4000, 3500, 2500 },
-                    new Materials[] { GGMaterial.naquadahEarth.getBridgeMaterial(),
-                            GGMaterial.enrichedNaquadahEarth.getBridgeMaterial(),
-                            GGMaterial.naquadriaEarth.getBridgeMaterial() },
-                    OrePrefixes.ore,
-                    20,
-                    80,
-                    50,
-                    150,
-                    240,
-                    1,
-                    50 * SECONDS,
-                    (int) TierEU.RECIPE_LuV,
-                    ItemMiningDrones.DroneTiers.IV.ordinal(),
-                    ItemMiningDrones.DroneTiers.UV.ordinal(),
-                    200);
-        }
+        // Naquadah Asteroid
+        addRecipesToDrones(
+                "naquadahAsteroid",
+                null,
+                null,
+                new int[] { 4000, 3500, 2500 },
+                new Materials[] { GGMaterial.naquadahEarth.getBridgeMaterial(),
+                        GGMaterial.enrichedNaquadahEarth.getBridgeMaterial(),
+                        GGMaterial.naquadriaEarth.getBridgeMaterial() },
+                OrePrefixes.ore,
+                20,
+                80,
+                50,
+                150,
+                240,
+                1,
+                50 * SECONDS,
+                (int) TierEU.RECIPE_LuV,
+                ItemMiningDrones.DroneTiers.IV.ordinal(),
+                ItemMiningDrones.DroneTiers.UV.ordinal(),
+                200);
 
-        if (Loader.isModLoaded("kubatech")) {
-            // Draconic Core Ruin
+        // Draconic Core Ruin
+        if (DraconicEvolution.isModLoaded()) {
             addRecipesToDrones(
                     "draconicCoreRuin",
                     null,
                     null,
                     new int[] { 100, 100, 9800 },
-                    new ItemStack[] { GTModHandler.getModItem("kubatech", "kubaitems", 1, 38),
-                            GTModHandler.getModItem("DraconicEvolution", "draconicCore", 1, 0),
+                    new ItemStack[] { kubatech.api.enums.ItemList.DEFCDraconicSchematic.get(1),
+                            GTModHandler.getModItem(DraconicEvolution.ID, "draconicCore", 1, 0),
                             ItemList.ZPM.getWithCharge(1, Integer.MAX_VALUE - 1) },
                     1,
                     1,
